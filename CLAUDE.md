@@ -4,31 +4,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Static rebuild of the "مهارة مقابل قيمة | Skill for Value" landing page — a platform matching university students/graduates with short paid tasks from organizations. Original site: https://dashing-torte-81514a.netlify.app/
-
-`reference/REFERENCE.md` is the spec: section order, exact Arabic copy, colors, and layout rules. The JPGs in `reference/` are mobile-width screenshots of the original. Check changes against both.
+"مهارة مقابل قيمة | Skill for Value": a platform matching university students/graduates with short paid tasks from organizations. `index.html` is the original site from https://dashing-torte-81514a.netlify.app/. Only the Netlify-injected comment and `/.netlify/` script were removed. It is published on GitHub Pages at https://reralalalmunis.github.io/skill-for-value/.
 
 ## Structure
 
-- `index.html` is the whole site: HTML, CSS (in `<style>`), and JS (in `<script>`) in one file. No build step, no dependencies, no package manager, no tests.
-- Plain HTML/CSS/JS only. Login, sign-up, and payments are placeholder `href="#"` links.
+- `index.html` is the whole app: HTML, CSS (in `<style>`), and JS (in `<script>`) in one file. No build step, no dependencies, no package manager, no tests. Plain HTML/CSS/JS only.
+- It is a single-page app with hash routes: `#/home`, `#/tasks`, `#/task/<id>`, `#/auth`, `#/business`, `#/profile`, `#/matching`, `#/review`, `#/projects`.
+- Routing: `VIEWS` maps route names to view functions. `parse()` reads `location.hash` into `S.route`/`S.param`, and unknown routes fall back to `home`. `render()` draws the current view. `go('#/x')` navigates. A `hashchange` listener re-renders and scrolls to top.
+- App state lives in the global `S` object (students, businesses, tasks, applications, UI state). Only the language choice is persisted, via the `LS` wrapper around `localStorage` (key `sfv-lang`). Everything else resets on reload.
+- Bilingual: `S.lang` is `ar` or `en`. Strings go through `tr(key)`, and bilingual values go through `L(...)`. `applyLang()` sets `lang`/`dir` on `<html>`. Add both Arabic and English text for any new string.
 
 ## Running and checking
 
-Open `index.html` in a browser. To screenshot it headlessly on Windows (run from the project folder):
+Open `index.html` in a browser. Add a hash to go to a route, e.g. `index.html#/tasks`. To screenshot it headlessly on Windows (run from the project folder):
 
 ```powershell
-& "${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe" --headless=new --disable-gpu --hide-scrollbars --window-size=1280,3800 --screenshot="<out>.png" "$PWD\index.html"
+& "${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe" --headless=new --disable-gpu --hide-scrollbars --window-size=1280,3800 --screenshot="<out>.png" "file:///$($PWD -replace '\\','/')/index.html#/tasks"
 ```
 
 Headless Edge won't render narrower than ~500px; a `--window-size=420,...` screenshot is cropped, not a real overflow. Use 500 for mobile checks.
 
 ## Conventions
 
-- `dir="rtl"`, `lang="ar"`. Arabic is the primary language; Latin strings (e.g. "Skill for Value", task IDs) get `direction:ltr`.
-- Colors come only from the CSS variables in `:root` (copied from REFERENCE.md). Don't add raw hex values.
-- Radii: `--r-btn` (8px) for buttons, `--r-card` (14px) for cards. Max content width 1180px (`.wrap`).
-- One breakpoint: `@media (min-width:860px)` switches to the desktop layout (two-column hero, 3-column grids, 5-column steps). Mobile styles are the default.
-- The "how it works" toggle uses ARIA tabs (`role="tab"`/`tabpanel`) and the `hidden` attribute. A global `[hidden]{display:none !important}` rule is required because `.steps` sets `display:grid`.
-- Language switch (`#lang-toggle`): Arabic stays in the HTML; English is in the `EN` object in `<script>`. Every translatable element needs `data-i18n="key"` (text), `data-i18n-html` (contains markup), or `data-i18n-attr="attr:key"`, plus a matching `EN` entry. Choice is saved in `localStorage` (`sfv-lang`); `?lang=en` forces English for screenshots. Use logical CSS (`text-align:start`, `border-inline-start`) so both directions work.
-- Steps for organizations and the FAQ answers aren't in the reference; they were written for this build and can be changed.
+- Arabic and RTL are the default (`<html lang="ar" dir="rtl">`).
+- Colors come from the CSS variables in `:root`, and there is a `prefers-color-scheme:dark` override. Don't add raw hex values in new rules.
+- Styles are desktop-first, with breakpoints at `max-width:980px` and `max-width:620px`.
+- Use relative paths only. The site is served from `/skill-for-value/` on GitHub Pages, so root paths like `/x` would break.

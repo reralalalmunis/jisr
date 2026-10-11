@@ -1,657 +1,1062 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>مهارة مقابل قيمة | Skill for Value</title>
-<meta name="description" content="مهام قصيرة مدفوعة من منشآت حقيقية لطلاب الجامعة وخريجيها، تنتهي بسجل إنجاز موثّق." data-i18n-attr="content:meta.desc">
+<meta name="description" content="مهام قصيرة مدفوعة تحوّل مهارات طلاب الجامعة وخريجيها إلى خبرة موثّقة. Short paid tasks that turn students’ skills into verified experience.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F3F7F6; --surface:#FFFFFF; --ink:#10272B; --muted:#55706F; --line:#D6E0DE;
-  --brand:#0B6E66; --brand-d:#08504B; --onbrand:#FFFFFF; --mint:#E2F0ED;
-  --gold:#B9791A; --gold-fill:#F0C060; --gold-soft:#FBF1DA;
-  --ok:#1F7A4D; --ok-soft:#DFF1E6; --warn:#9A6A0B; --warn-soft:#FBF0D3;
-  --bad:#B3412F; --bad-soft:#F8E2DD;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#F3F7F6;--surface:#FFFFFF;--ink:#10272B;--muted:#55706F;--line:#D6E0DE;
+  --brand:#0B6E66;--brand-d:#08504B;--onbrand:#FFFFFF;--mint:#E2F0ED;
+  --gold:#B9791A;--gold-fill:#F0C060;--gold-soft:#FBF1DA;
+  --ok:#1F7A4D;--ok-soft:#DFF1E6;--warn:#9A6A0B;--warn-soft:#FBF0D3;--bad:#B3412F;--bad-soft:#F8E2DD;
   --shadow:0 1px 2px rgba(16,39,43,.06),0 8px 24px rgba(16,39,43,.06);
-  --r-btn:8px; --r-card:14px;
 }
-*{box-sizing:border-box}
-[hidden]{display:none !important}
-html{scroll-behavior:smooth}
-body{
-  margin:0; background:var(--bg); color:var(--ink);
-  font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,Arial,sans-serif;
-  line-height:1.7; -webkit-font-smoothing:antialiased;
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1A1C;--surface:#132527;--ink:#E6EFEE;--muted:#9DB3B1;--line:#25393B;
+    --brand:#3FB5A6;--brand-d:#7DD3C7;--onbrand:#04201D;--mint:#173032;
+    --gold:#E9B44C;--gold-fill:#E9B44C;--gold-soft:#2C2614;
+    --ok:#6CD39B;--ok-soft:#14301F;--warn:#E9B44C;--warn-soft:#2C2614;--bad:#F08A78;--bad-soft:#38201B;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  }
 }
-a{color:var(--brand)}
-h1,h2,h3,p{margin:0}
-.wrap{max-width:1180px; margin:0 auto; padding:0 16px}
+:root[data-theme="dark"]{
+  --bg:#0C1A1C;--surface:#132527;--ink:#E6EFEE;--muted:#9DB3B1;--line:#25393B;
+  --brand:#3FB5A6;--brand-d:#7DD3C7;--onbrand:#04201D;--mint:#173032;
+  --gold:#E9B44C;--gold-fill:#E9B44C;--gold-soft:#2C2614;
+  --ok:#6CD39B;--ok-soft:#14301F;--warn:#E9B44C;--warn-soft:#2C2614;--bad:#F08A78;--bad-soft:#38201B;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}
+html{height:100%;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 120px);-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,Arial,sans-serif;font-size:16px;line-height:1.7}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{margin:0;line-height:1.35;font-weight:700}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold-fill);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:20px}
+.muted{color:var(--muted)}
+.small{font-size:.875rem}
+.num{font-variant-numeric:tabular-nums}
+.skip{position:absolute;inset-inline-start:12px;top:-64px;background:var(--brand);color:var(--onbrand);padding:8px 14px;border-radius:8px;z-index:60;font-weight:600}
+.skip:focus{top:8px}
 
-/* Buttons */
-.btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:9px 16px; border-radius:var(--r-btn); border:1px solid var(--line);
-  background:var(--surface); color:var(--ink); font:inherit; font-weight:600;
-  font-size:.95rem; text-decoration:none; cursor:pointer; white-space:nowrap;
-  transition:background .15s, border-color .15s;
-}
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.top .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.brand b{display:block;font-size:1.05rem;line-height:1.2}
+.brand small{display:block;color:var(--muted);font-size:.75rem;letter-spacing:.02em}
+.mark{width:38px;height:38px;border-radius:10px;background:var(--brand);display:grid;place-items:center;flex:none}
+.seg{display:flex;background:var(--mint);border-radius:999px;padding:3px;gap:2px;width:max-content;max-width:100%}
+.seg button{border:0;background:transparent;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.875rem;color:var(--muted);font-weight:500}
+.seg button[aria-pressed="true"]{background:var(--brand);color:var(--onbrand)}
+.user{display:flex;align-items:center;gap:8px}
+.user .nm{font-weight:600;font-size:.9rem;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav{border-top:1px solid var(--line);background:var(--surface)}
+.nav .in{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding-block:6px;align-items:center}
+.nav .in::-webkit-scrollbar{display:none}
+.nav a{padding:6px 12px;border-radius:8px;white-space:nowrap;font-size:.9rem;color:var(--muted);font-weight:500}
+.nav a:hover{background:var(--mint);color:var(--ink)}
+.nav a[aria-current="page"]{background:var(--mint);color:var(--brand-d);font-weight:700}
+
+/* generic */
+main{padding-block:28px 56px;min-height:60vh}
+main:focus{outline:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:600;font-size:.95rem;transition:background .15s,border-color .15s}
 .btn:hover{border-color:var(--brand)}
-.btn-primary{background:var(--brand); border-color:var(--brand); color:var(--onbrand)}
-.btn-primary:hover{background:var(--brand-d); border-color:var(--brand-d)}
-.btn-lg{padding:12px 22px; font-size:1rem}
-.btn:focus-visible,a:focus-visible,summary:focus-visible,.toggle button:focus-visible{
-  outline:3px solid var(--gold-fill); outline-offset:2px;
+.btn.primary{background:var(--brand);color:var(--onbrand);border-color:var(--brand)}
+.btn.primary:hover{background:var(--brand-d);border-color:var(--brand-d)}
+.btn.gold{background:var(--gold-fill);color:#2B1F05;border-color:var(--gold-fill)}
+.btn.ghost{background:transparent;color:var(--onbrand);border-color:var(--onbrand)}
+.btn.ghost:hover{background:rgba(255,255,255,.12);border-color:var(--onbrand)}
+.btn.sm{padding:6px 12px;font-size:.85rem;border-radius:8px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card.flat{box-shadow:none}
+.card.raise{box-shadow:var(--shadow)}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.between{justify-content:space-between}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.side{grid-template-columns:minmax(0,1fr) 340px}
+.stack>*+*{margin-top:12px}
+.ph{margin-bottom:22px}
+.ph h1{font-size:1.7rem}
+.ph p{color:var(--muted);margin-top:4px;max-width:70ch}
+.sec{margin-top:56px}
+.sec>h2{font-size:1.45rem;margin-bottom:6px}
+.sec>.lead{color:var(--muted);margin-bottom:20px;max-width:70ch}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;background:var(--mint);color:var(--brand-d);font-size:.8rem;font-weight:500;border:1px solid transparent}
+.chip.v{background:var(--ok-soft);color:var(--ok)}
+.chip.r{background:var(--warn-soft);color:var(--warn)}
+.chip.d{background:transparent;border-color:var(--line);color:var(--muted)}
+.chip.p{background:var(--gold-soft);color:var(--gold)}
+.chip.no{background:transparent;border:1px dashed var(--line);color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+button.chip{cursor:pointer;font-family:inherit}
+button.chip.on{background:var(--brand);color:var(--onbrand)}
+.field{display:block}
+.field>span{display:block;font-size:.85rem;font-weight:600;margin-bottom:4px}
+.field input,.field select,.field textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg)}
+.field textarea{min-height:92px;resize:vertical}
+.field small{color:var(--muted);display:block;margin-top:4px}
+.form{display:grid;gap:14px}
+.hr{height:1px;background:var(--line);border:0;margin:16px 0}
+.empty{text-align:center;padding:36px 16px;color:var(--muted)}
+.empty b{display:block;color:var(--ink);margin-bottom:4px}
+.note{background:var(--gold-soft);color:var(--ink);border-radius:10px;padding:10px 14px;font-size:.875rem;border-inline-start:4px solid var(--gold-fill)}
+.avatar{width:56px;height:56px;border-radius:50%;background:var(--brand);color:var(--onbrand);display:grid;place-items:center;font-weight:700;font-size:1.2rem;flex:none}
+.avatar.sm{width:36px;height:36px;font-size:.85rem}
+.money{font-weight:700;font-variant-numeric:tabular-nums}
+.money small{font-weight:500;color:var(--muted)}
+.meter{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--brand);border-radius:99px}
+.link{text-decoration:underline;text-underline-offset:3px;color:var(--brand-d);font-weight:600}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center;padding-block:18px 8px}
+.hero h1{font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.25;letter-spacing:-.01em}
+.hero p.sub{font-size:1.1rem;color:var(--muted);margin-top:16px;max-width:52ch}
+.hero .cta{margin-top:26px}
+.cred{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.cred .t{padding:20px 22px}
+.cred .perf{position:relative;border-top:2px dashed var(--line)}
+.cred .perf::before,.cred .perf::after{content:"";position:absolute;top:-11px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:1px solid var(--line)}
+.cred .perf::before{inset-inline-start:-11px}
+.cred .perf::after{inset-inline-end:-11px}
+.cred .split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.cred .split div{background:var(--mint);border-radius:10px;padding:10px 12px}
+.cred .split div.g{background:var(--gold-soft)}
+.cred .split b{display:block;font-size:1.25rem}
+.cred .rec{background:var(--brand);color:var(--onbrand);padding:18px 22px}
+.cred .rec .id{direction:ltr;text-align:start;font-size:.8rem;opacity:.85;letter-spacing:.04em}
+
+/* journey */
+.journey{display:grid;grid-template-columns:repeat(var(--n,5),minmax(0,1fr));gap:12px;counter-reset:j}
+.journey .j{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 14px}
+.journey .j::before{counter-increment:j;content:counter(j);width:28px;height:28px;border-radius:50%;background:var(--brand);color:var(--onbrand);display:grid;place-items:center;font-weight:700;font-size:.9rem;margin-bottom:10px}
+.journey .j b{display:block;font-size:.98rem;line-height:1.4}
+.journey .j span{display:block;font-size:.84rem;color:var(--muted);margin-top:4px}
+table.cmp{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:640px}
+table.cmp th,table.cmp td{padding:12px 16px;text-align:start;border-bottom:1px solid var(--line);vertical-align:top}
+table.cmp th{background:var(--mint);font-size:.9rem}
+table.cmp td:last-child{background:color-mix(in srgb,var(--mint) 45%,var(--surface));font-weight:500}
+table.cmp tr:last-child td{border-bottom:0}
+.scroll-x{overflow-x:auto}
+details.qa{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details.qa+details.qa{margin-top:10px}
+details.qa summary{cursor:pointer;font-weight:600}
+details.qa p{margin-top:8px;color:var(--muted)}
+
+/* tasks */
+.tcard{display:flex;flex-direction:column;gap:10px;transition:border-color .15s}
+.tcard:hover{border-color:var(--brand)}
+.tcard h3{font-size:1.05rem}
+.pill{display:inline-flex;align-items:center;justify-content:center;min-width:54px;padding:3px 10px;border-radius:999px;font-weight:700;font-size:.85rem;background:var(--ok-soft);color:var(--ok)}
+.pill.mid{background:var(--warn-soft);color:var(--warn)}
+.pill.low{background:var(--bad-soft);color:var(--bad)}
+.ring{--p:70;width:64px;height:64px;border-radius:50%;background:conic-gradient(var(--brand) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center;flex:none}
+.ring span{width:50px;height:50px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-weight:700;font-size:.95rem}
+.kpi{padding:16px 18px}
+.kpi b{display:block;font-size:1.6rem;line-height:1.2;font-variant-numeric:tabular-nums}
+.kpi span{color:var(--muted);font-size:.85rem}
+
+/* stepper */
+.stepper{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-block:14px}
+.stepper .s{text-align:center;font-size:.78rem;color:var(--muted);position:relative}
+.stepper .s i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;margin:0 auto 4px;background:var(--line);color:var(--muted);font-style:normal;font-weight:700;position:relative;z-index:1}
+.stepper .s::before{content:"";position:absolute;top:13px;height:3px;background:var(--line);inset-inline:-50% 50%;z-index:0}
+.stepper .s:first-child::before{display:none}
+.stepper .s.done i{background:var(--brand);color:var(--onbrand)}
+.stepper .s.done::before{background:var(--brand)}
+.stepper .s.cur i{background:var(--gold-fill);color:#2B1F05}
+.stepper .s.cur{color:var(--ink);font-weight:600}
+.stepper .s.cur::before{background:var(--brand)}
+
+/* stars */
+.stars{display:flex;gap:2px}
+.stars button{border:0;background:transparent;font-size:1.7rem;line-height:1;cursor:pointer;color:var(--line);padding:0 2px}
+.stars button.on{color:var(--gold-fill)}
+
+.toast{position:fixed;inset-inline:0;bottom:calc(20px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;pointer-events:none;z-index:50}
+.toast div{background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:10px;font-weight:600;box-shadow:var(--shadow);max-width:90vw}
+footer.ft{border-top:1px solid var(--line);background:var(--surface);padding-block:32px 24px;color:var(--muted);font-size:.9rem}
+footer.ft .cols{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr));gap:28px}
+footer.ft h4{color:var(--ink);font-size:.95rem;margin-bottom:8px}
+footer.ft ul{list-style:none;margin:0;padding:0}
+footer.ft li+li{margin-top:6px}
+footer.ft a:hover{color:var(--ink);text-decoration:underline}
+footer.ft .copy{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-size:.82rem}
+
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr}
+  .journey{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .side{grid-template-columns:1fr}
+  footer.ft .cols{grid-template-columns:1fr 1fr}
 }
-
-/* Header */
-.site-header{position:sticky; top:0; z-index:10; background:var(--surface); border-bottom:1px solid var(--line)}
-.topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; flex-wrap:wrap}
-.logo{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink)}
-.logo-mark{
-  width:40px; height:40px; border-radius:10px; background:var(--brand);
-  display:grid; place-items:center; flex-shrink:0;
+@media (max-width:620px){
+  .wrap{padding-inline:14px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .journey{grid-template-columns:1fr}
+  .stepper .s{font-size:.68rem}
+  .ph h1{font-size:1.4rem}
+  .user .nm{display:none}
+  footer.ft .cols{grid-template-columns:1fr}
 }
-.logo-text strong{display:block; font-size:1.05rem; line-height:1.3}
-.logo-text small{display:block; color:var(--muted); font-size:.75rem; direction:ltr; text-align:right}
-html[lang="en"] .logo-text small{display:none}
-.actions{display:flex; gap:8px; flex-wrap:wrap}
-.nav{border-top:1px solid var(--line)}
-.nav ul{list-style:none; margin:0; padding:8px 16px; display:flex; gap:6px}
-.nav a{display:block; padding:6px 14px; border-radius:var(--r-btn); color:var(--muted); text-decoration:none; font-weight:500}
-.nav a:hover{color:var(--ink)}
-.nav a[aria-current="page"]{background:var(--mint); color:var(--brand-d); font-weight:600}
-
-/* Sections */
-section{padding:56px 0}
-.sec-title{font-size:1.6rem; font-weight:700; line-height:1.4}
-.sec-sub{color:var(--muted); margin-top:6px; margin-bottom:24px}
-.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card); box-shadow:var(--shadow); padding:22px}
-.card h3{font-size:1.15rem; margin-bottom:6px}
-.card p{color:var(--muted)}
-.grid-3{display:grid; gap:16px}
-
-/* Hero */
-.hero{padding-top:48px}
-.hero-grid{display:grid; gap:32px; align-items:center}
-.hero h1{font-size:clamp(1.8rem,4.5vw,2.8rem); line-height:1.35; font-weight:700}
-.hero-lead{color:var(--muted); font-size:1.1rem; margin-top:14px; max-width:560px}
-.hero-ctas{display:flex; gap:10px; flex-wrap:wrap; margin-top:24px}
-.hero-note{color:var(--muted); font-size:.85rem; margin-top:14px}
-.hero-note a{font-weight:600}
-
-/* Example task card */
-.example{border-radius:var(--r-card); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--line)}
-.example-body{background:var(--surface); padding:20px}
-.example-head{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:12px}
-.example-head h3{font-size:1.05rem}
-.tags{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px}
-.tag{
-  display:inline-block; padding:3px 10px; border-radius:999px; font-size:.8rem; font-weight:500;
-  background:var(--bg); color:var(--muted); border:1px solid var(--line);
-}
-.tag-ok{background:var(--ok-soft); color:var(--ok); border-color:transparent}
-.tag-gold{background:var(--gold-soft); color:var(--warn); border-color:transparent}
-.tag-mint{background:var(--mint); color:var(--brand-d); border-color:transparent}
-.stats{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-.stat{border-radius:10px; padding:12px 14px}
-.stat small{display:block; color:var(--muted); font-size:.8rem}
-.stat strong{font-size:1.25rem}
-.stat-mint{background:var(--mint)}
-.stat-gold{background:var(--gold-soft)}
-.record{background:var(--brand-d); color:var(--onbrand); padding:16px 20px}
-.record-top{display:flex; justify-content:space-between; align-items:center; gap:8px}
-.record-top strong{font-size:1rem}
-.record-rating{color:var(--gold-fill); font-weight:700; direction:ltr}
-.record p{opacity:.8; font-size:.85rem}
-.record code{display:block; margin-top:6px; font-family:inherit; font-size:.8rem; opacity:.75; direction:ltr; text-align:start; letter-spacing:.5px}
-html[dir="rtl"] .record code{text-align:right}
-
-/* How it works */
-.toggle{display:inline-flex; background:var(--mint); border-radius:999px; padding:4px; margin-bottom:20px}
-.toggle button{
-  font:inherit; font-weight:600; border:0; background:transparent; color:var(--muted);
-  padding:6px 18px; border-radius:999px; cursor:pointer;
-}
-.toggle button[aria-selected="true"]{background:var(--brand); color:var(--onbrand)}
-.steps{list-style:none; margin:0; padding:0; display:grid; gap:12px}
-.steps li{padding:18px 20px}
-.step-num{
-  width:30px; height:30px; border-radius:50%; background:var(--brand-d); color:var(--onbrand);
-  display:grid; place-items:center; font-weight:700; font-size:.95rem; margin-bottom:10px;
-}
-.steps h3{font-size:1.05rem; margin-bottom:2px}
-.steps p{font-size:.92rem}
-
-/* Tasks */
-.task .org{font-size:.85rem; color:var(--muted); display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px}
-.task h3{margin-bottom:12px}
-.task .tags{margin-bottom:14px}
-.task-meta{display:flex; gap:14px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:12px; font-size:.9rem; color:var(--muted)}
-.task-meta strong{color:var(--brand-d); font-size:1.05rem}
-.more{display:inline-block; margin-top:20px; font-weight:600}
-
-/* Skill levels */
-.badge{display:inline-block; padding:3px 12px; border-radius:999px; font-size:.85rem; font-weight:600; margin-bottom:12px}
-.badge-gray{background:var(--bg); color:var(--muted); border:1px solid var(--line)}
-.badge-gold{background:var(--gold-soft); color:var(--warn)}
-.badge-ok{background:var(--ok-soft); color:var(--ok)}
-.note{
-  margin-top:16px; background:var(--gold-soft); border-inline-start:4px solid var(--gold);
-  border-radius:var(--r-btn); padding:12px 16px; font-size:.92rem;
-}
-
-/* Compare table */
-.table-wrap{overflow-x:auto; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card); box-shadow:var(--shadow)}
-table{width:100%; border-collapse:collapse; min-width:560px}
-th,td{padding:14px 18px; text-align:start; border-bottom:1px solid var(--line); vertical-align:top}
-tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
-thead th{background:var(--bg); font-size:.9rem; color:var(--muted)}
-thead th.ours{background:var(--mint); color:var(--brand-d)}
-tbody th{font-weight:600; width:22%}
-td{color:var(--muted)}
-td.ours{color:var(--ink); background:#F7FBFA; font-weight:500}
-
-/* FAQ */
-.faq{display:grid; gap:10px; max-width:820px}
-.faq details{background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card); padding:0 20px}
-.faq summary{cursor:pointer; font-weight:600; padding:16px 0; list-style:none; display:flex; justify-content:space-between; gap:12px}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+"; color:var(--brand); font-size:1.3rem; line-height:1}
-.faq details[open] summary::after{content:"−"}
-.faq details p{color:var(--muted); padding-bottom:16px}
-
-/* CTA */
-.cta{background:var(--brand-d); color:var(--onbrand); border-radius:var(--r-card); padding:36px 24px; text-align:center}
-.cta h2{font-size:1.6rem}
-.cta p{opacity:.85; margin:8px 0 20px}
-.cta .hero-ctas{justify-content:center; margin-top:0}
-.cta .btn-primary{background:var(--surface); color:var(--brand-d); border-color:var(--surface)}
-.cta .btn-primary:hover{background:var(--mint)}
-.cta .btn-ghost{background:transparent; color:var(--onbrand); border-color:rgba(255,255,255,.5)}
-.cta .btn-ghost:hover{border-color:var(--onbrand)}
-
-/* Footer */
-.site-footer{background:var(--surface); border-top:1px solid var(--line); padding:40px 0 20px; margin-top:56px}
-.footer-grid{display:grid; gap:24px}
-.footer-about p{color:var(--muted); font-size:.92rem; margin-top:10px; max-width:360px}
-.site-footer h4{margin:0 0 8px; font-size:1rem}
-.site-footer ul{list-style:none; margin:0; padding:0}
-.site-footer li a{color:var(--muted); text-decoration:none; display:inline-block; padding:3px 0}
-.site-footer li a:hover{color:var(--brand)}
-.copy{border-top:1px solid var(--line); margin-top:28px; padding-top:16px; color:var(--muted); font-size:.85rem}
-
-/* Desktop */
-@media (min-width:860px){
-  .hero-grid{grid-template-columns:1.1fr .9fr; gap:56px}
-  .grid-3{grid-template-columns:repeat(3,1fr)}
-  .steps{grid-template-columns:repeat(5,1fr)}
-  .footer-grid{grid-template-columns:2fr 1fr 1fr}
-  section{padding:72px 0}
-}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="wrap topbar">
-    <a href="#top" class="logo" aria-label="مهارة مقابل قيمة - الرئيسية" data-i18n-attr="aria-label:logo.home">
-      <span class="logo-mark" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="#fff">
-          <rect x="2" y="11" width="4" height="7" rx="1"/>
-          <rect x="8" y="7" width="4" height="11" rx="1"/>
-          <rect x="14" y="2" width="4" height="16" rx="1"/>
-        </svg>
-      </span>
-      <span class="logo-text">
-        <strong data-i18n="brand">مهارة مقابل قيمة</strong>
-        <small>Skill for Value</small>
-      </span>
-    </a>
-    <div class="actions">
-      <button type="button" class="btn" id="lang-toggle" lang="en">English</button>
-      <a href="#" class="btn" data-i18n="nav.login">تسجيل الدخول</a>
-      <a href="#" class="btn btn-primary" data-i18n="nav.signup">إنشاء حساب</a>
-    </div>
-  </div>
-  <nav class="nav" aria-label="التنقل الرئيسي" data-i18n-attr="aria-label:nav.label">
-    <ul class="wrap">
-      <li><a href="#top" aria-current="page" data-i18n="nav.home">الرئيسية</a></li>
-      <li><a href="#tasks" data-i18n="nav.tasks">المهام</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main id="top">
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <h1 data-i18n="hero.title">مهارتك تستحق أن تتحول إلى خبرة موثّقة ودخل حقيقي</h1>
-        <p class="hero-lead" data-i18n="hero.lead">مهام قصيرة مدفوعة من منشآت حقيقية، تُطابَق مع مهاراتك المتحقَّق منها، وتنتهي بسجل إنجاز يُضاف إلى ملفك المهني.</p>
-        <div class="hero-ctas">
-          <a href="#" class="btn btn-primary btn-lg" data-i18n="cta.student">أنا طالب أو خريج</a>
-          <a href="#" class="btn btn-lg" data-i18n="cta.org">أنا منشأة</a>
-        </div>
-        <p class="hero-note" data-i18n-html="hero.note">مخصصة لطلاب الجامعة وخريجيها، وليست منصة عمل حر عامة. <a href="#tasks">استعرض المهام</a></p>
-      </div>
-
-      <div class="example">
-        <div class="example-body">
-          <div class="example-head">
-            <h3 data-i18n="ex.title">مهمة: تصميم واجهة تطبيق حجز</h3>
-            <span class="tag tag-mint" data-i18n="ex.tag">مثال</span>
-          </div>
-          <div class="tags">
-            <span class="tag tag-ok">Figma ✓</span>
-            <span class="tag tag-ok">HTML/CSS ✓</span>
-            <span class="tag tag-gold" data-i18n="skill.data">تحليل البيانات</span>
-          </div>
-          <div class="stats">
-            <div class="stat stat-mint"><small data-i18n="ex.value">قيمة المهمة</small><strong data-i18n="ex.amount">1,000 ر.س</strong></div>
-            <div class="stat stat-gold"><small data-i18n="ex.duration">المدة</small><strong data-i18n="ex.days">10 أيام</strong></div>
-          </div>
-        </div>
-        <div class="record">
-          <div class="record-top">
-            <strong data-i18n="ex.record">سجل إنجاز موثّق</strong>
-            <span class="record-rating">★ 4.8</span>
-          </div>
-          <p data-i18n="ex.recordNote">يُضاف تلقائيًا إلى ملفك بعد اعتماد المنشأة</p>
-          <code>SFV-2026-0001</code>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why -->
-  <section id="why">
-    <div class="wrap">
-      <h2 class="sec-title" data-i18n="why.title">لماذا مهارة مقابل قيمة؟</h2>
-      <p class="sec-sub" data-i18n="why.sub">مسار واضح يجمع الطالب والمنشأة على أساس مهارة موثّقة.</p>
-      <div class="grid-3">
-        <article class="card">
-          <h3 data-i18n="why.c1.title">للطلاب والخريجين</h3>
-          <p data-i18n="why.c1.text">ابدأ بفرصة صغيرة، واكسب دخلًا، وابنِ سجلًا موثّقًا يثبت مهارتك لأي جهة.</p>
-        </article>
-        <article class="card">
-          <h3 data-i18n="why.c2.title">للمنشآت</h3>
-          <p data-i18n="why.c2.text">انشر مهمة قصيرة بمخرجات واضحة، واختر من مواهب تثق بمستوى مهاراتها دون الحاجة إلى توظيف كامل.</p>
-        </article>
-        <article class="card">
-          <h3 data-i18n="why.c3.title">ثقة من البداية</h3>
-          <p data-i18n="why.c3.text">لكل مهارة مستوى توثيق ظاهر، وتنتهي كل مهمة بتقييم وسجل إنجاز قابل للتحقق.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- How -->
-  <section id="how">
-    <div class="wrap">
-      <h2 class="sec-title" data-i18n="how.title">كيف تعمل المنصة</h2>
-      <p class="sec-sub" data-i18n="how.sub">اختر مسارك لترى الخطوات.</p>
-      <div class="toggle" role="tablist" aria-label="اختر المسار" data-i18n-attr="aria-label:how.tablist">
-        <button type="button" role="tab" id="tab-students" aria-controls="steps-students" aria-selected="true" data-i18n="how.tabStudents">للطلاب</button>
-        <button type="button" role="tab" id="tab-orgs" aria-controls="steps-orgs" aria-selected="false" tabindex="-1" data-i18n="how.tabOrgs">للمنشآت</button>
-      </div>
-
-      <ol class="steps" id="steps-students" role="tabpanel" aria-labelledby="tab-students">
-        <li class="card"><span class="step-num">1</span><h3 data-i18n="how.s1.title">أنشئ ملف مهاراتك</h3><p data-i18n="how.s1.text">أضف مهاراتك ومجالات اهتمامك وساعات تفرغك.</p></li>
-        <li class="card"><span class="step-num">2</span><h3 data-i18n="how.s2.title">وثّق مهاراتك</h3><p data-i18n="how.s2.text">اطلب مراجعة أعمالك أو توثيقًا أكاديميًا لترتفع ثقة المنشآت بك.</p></li>
-        <li class="card"><span class="step-num">3</span><h3 data-i18n="how.s3.title">تقدّم للمهام المناسبة</h3><p data-i18n="how.s3.text">ترى نسبة المطابقة لكل مهمة قبل التقديم.</p></li>
-        <li class="card"><span class="step-num">4</span><h3 data-i18n="how.s4.title">نفّذ وسلّم</h3><p data-i18n="how.s4.text">نفّذ المخرجات المتفق عليها وسلّمها عبر المنصة.</p></li>
-        <li class="card"><span class="step-num">5</span><h3 data-i18n="how.s5.title">وثّق خبرتك</h3><p data-i18n="how.s5.text">بعد اعتماد المنشأة تحصل على المبلغ وسجل إنجاز في ملفك.</p></li>
-      </ol>
-
-      <ol class="steps" id="steps-orgs" role="tabpanel" aria-labelledby="tab-orgs" hidden>
-        <li class="card"><span class="step-num">1</span><h3 data-i18n="how.o1.title">أنشئ حساب منشأتك</h3><p data-i18n="how.o1.text">سجّل بيانات المنشأة ومجال عملها.</p></li>
-        <li class="card"><span class="step-num">2</span><h3 data-i18n="how.o2.title">انشر مهمة قصيرة</h3><p data-i18n="how.o2.text">حدّد المخرجات والمهارات المطلوبة والمدة والقيمة.</p></li>
-        <li class="card"><span class="step-num">3</span><h3 data-i18n="how.o3.title">اختر المرشح المناسب</h3><p data-i18n="how.o3.text">ترى المتقدمين مرتّبين بحسب المطابقة ومستوى توثيق مهاراتهم.</p></li>
-        <li class="card"><span class="step-num">4</span><h3 data-i18n="how.o4.title">استلم المخرجات</h3><p data-i18n="how.o4.text">تابع التنفيذ واستلم العمل عبر المنصة في الموعد المتفق عليه.</p></li>
-        <li class="card"><span class="step-num">5</span><h3 data-i18n="how.o5.title">اعتمد وقيّم</h3><p data-i18n="how.o5.text">بعد اعتمادك يُصرف المبلغ للطالب ويُضاف سجل الإنجاز إلى ملفه.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- Open tasks -->
-  <section id="tasks">
-    <div class="wrap">
-      <h2 class="sec-title" data-i18n="tasks.title">مهام مفتوحة الآن</h2>
-      <p class="sec-sub" data-i18n="tasks.sub">مهام قصيرة من منشآت حقيقية تنتظر مهارتك.</p>
-      <div class="grid-3">
-        <article class="card task">
-          <div class="org"><span data-i18n="tasks.t1.org">نماء للحلول التقنية</span><span class="tag tag-mint" data-i18n="cat.design">تصميم</span></div>
-          <h3 data-i18n="tasks.t1.title">تصميم واجهة تطبيق حجز لمركز لياقة</h3>
-          <div class="tags"><span class="tag">Figma</span></div>
-          <div class="task-meta"><strong data-i18n="tasks.t1.amount">1,200 ر.س</strong><span data-i18n="tasks.t1.days">10 يومًا</span><span data-i18n="tasks.t1.hours">12 س/أسبوع</span></div>
-        </article>
-        <article class="card task">
-          <div class="org"><span data-i18n="tasks.t2.org">أفق للاستشارات</span><span class="tag tag-mint" data-i18n="cat.data">بيانات وتحليل</span></div>
-          <h3 data-i18n="tasks.t2.title">لوحة تحليلات مبيعات في Power BI</h3>
-          <div class="tags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag" data-i18n="skill.data">تحليل البيانات</span></div>
-          <div class="task-meta"><strong data-i18n="tasks.t2.amount">1,500 ر.س</strong><span data-i18n="tasks.t2.days">14 يومًا</span><span data-i18n="tasks.t2.hours">10 س/أسبوع</span></div>
-        </article>
-        <article class="card task">
-          <div class="org"><span data-i18n="tasks.t3.org">مقهى ركن الصباح</span><span class="tag tag-mint" data-i18n="cat.design">تصميم</span></div>
-          <h3 data-i18n="tasks.t3.title">هوية بصرية لمقهى ناشئ</h3>
-          <div class="tags"><span class="tag" data-i18n="skill.brand">تصميم الهوية البصرية</span><span class="tag">Adobe Illustrator</span></div>
-          <div class="task-meta"><strong data-i18n="tasks.t3.amount">1,000 ر.س</strong><span data-i18n="tasks.t3.days">12 يومًا</span><span data-i18n="tasks.t3.hours">10 س/أسبوع</span></div>
-        </article>
-      </div>
-      <a href="#" class="more" data-i18n="tasks.more">عرض كل المهام ←</a>
-    </div>
-  </section>
-
-  <!-- Skill levels -->
-  <section id="levels">
-    <div class="wrap">
-      <h2 class="sec-title" data-i18n="levels.title">مستويات توثيق المهارة</h2>
-      <p class="sec-sub" data-i18n="levels.sub">يظهر مستوى كل مهارة للمنشآت، ويرتفع بالمراجعة وبإثباتها في مشاريع فعلية.</p>
-      <div class="grid-3">
-        <article class="card"><span class="badge badge-gray" data-i18n="levels.l1">مُعلنة</span><p data-i18n="levels.l1.text">يصرّح بها الطالب.</p></article>
-        <article class="card"><span class="badge badge-gold" data-i18n="levels.l2">أعمالها مُراجعة</span><p data-i18n="levels.l2.text">يراجع المراجع نماذج أعماله.</p></article>
-        <article class="card"><span class="badge badge-ok" data-i18n="levels.l3">موثّقة ✓</span><p data-i18n="levels.l3.text">توثيق أكاديمي أو اجتياز تقييم.</p></article>
-      </div>
-      <p class="note" data-i18n="levels.note">اعتماد المنشأة لمهارة أثبتها الطالب في مشروع يرفع مستواها تلقائيًا.</p>
-    </div>
-  </section>
-
-  <!-- Compare -->
-  <section id="compare">
-    <div class="wrap">
-      <h2 class="sec-title" data-i18n="cmp.title">ما الذي يميّزنا عن منصات العمل الحر؟</h2>
-      <p class="sec-sub" data-i18n="cmp.sub">الفرق في من يشارك، وفي ما تخرج به بعد كل مهمة.</p>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <td></td>
-              <th scope="col" data-i18n="cmp.them">منصات العمل الحر العامة</th>
-              <th scope="col" class="ours" data-i18n="brand">مهارة مقابل قيمة</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row" data-i18n="cmp.r1">المتقدمون</th><td data-i18n="cmp.r1.them">الجميع، والمنافسة غالبًا على السعر</td><td class="ours" data-i18n="cmp.r1.ours">طلاب وخريجو الجامعة فقط</td></tr>
-            <tr><th scope="row" data-i18n="cmp.r2">حجم العمل</th><td data-i18n="cmp.r2.them">مشاريع بأحجام متفاوتة</td><td class="ours" data-i18n="cmp.r2.ours">مهام قصيرة واضحة المخرجات تناسب وقت الطالب</td></tr>
-            <tr><th scope="row" data-i18n="cmp.r3">المهارات</th><td data-i18n="cmp.r3.them">ادعاءات ذاتية في الغالب</td><td class="ours" data-i18n="cmp.r3.ours">مستويات توثيق: مُعلنة، مُراجعة، موثّقة، وتتعزز بكل مشروع</td></tr>
-            <tr><th scope="row" data-i18n="cmp.r4">ما يحصل عليه الطالب</th><td data-i18n="cmp.r4.them">دخل</td><td class="ours" data-i18n="cmp.r4.ours">دخل وسجل إنجاز قابل للتحقق وخبرة عملية</td></tr>
-            <tr><th scope="row" data-i18n="cmp.r5">ما تحصل عليه المنشأة</th><td data-i18n="cmp.r5.them">مرشحون كثر يصعب تقييمهم</td><td class="ours" data-i18n="cmp.r5.ours">مرشحون مرتّبون بحسب المطابقة ومستوى التوثيق</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="wrap">
-      <h2 class="sec-title" data-i18n="faq.title">أسئلة شائعة</h2>
-      <p class="sec-sub" data-i18n="faq.sub">إجابات سريعة عن أكثر ما يُسأل عنه.</p>
-      <div class="faq">
-        <details>
-          <summary data-i18n="faq.q1">من يمكنه الانضمام؟</summary>
-          <p data-i18n="faq.a1">طلاب الجامعة وخريجوها كمنفّذين للمهام، والمنشآت بمختلف أحجامها كناشرين لها. يُطلب من الطالب التحقق من انتمائه الجامعي عند التسجيل.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q2">كيف يتحقق النظام من مهاراتي؟</summary>
-          <p data-i18n="faq.a2">تبدأ كل مهارة "مُعلنة"، ثم ترتفع إلى "مُراجعة" بعد مراجعة نماذج أعمالك، وإلى "موثّقة" بتوثيق أكاديمي أو اجتياز تقييم. واعتماد المنشأة لعملك في مشروع يرفع مستواها تلقائيًا.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q3">كيف تُحمى المدفوعات؟</summary>
-          <p data-i18n="faq.a3">تودِع المنشأة قيمة المهمة لدى المنصة قبل بدء التنفيذ، ولا يُصرف المبلغ للطالب إلا بعد اعتماد التسليم. هكذا يضمن الطرفان حقهما.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q4">ماذا لو لم أكن راضيًا عن التسليم؟</summary>
-          <p data-i18n="faq.a4">يمكن للمنشأة طلب تعديلات ضمن المخرجات المتفق عليها. وإن لم يُحل الخلاف، يتدخل فريق المنصة لمراجعة العمل والوصول إلى قرار عادل.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q5">كيف تُضمن جودة العمل؟</summary>
-          <p data-i18n="faq.a5">بمطابقة المهمة مع مهارات موثّقة، وبمخرجات واضحة من البداية، وبتقييم علني بعد كل مهمة يبني سمعة الطالب ويحفّزه على الإتقان.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="start">
-    <div class="wrap">
-      <div class="cta">
-        <h2 data-i18n="start.title">ابدأ الآن</h2>
-        <p data-i18n="start.text">أنشئ حسابك كطالب أو كمنشأة وابدأ أول مهمة.</p>
-        <div class="hero-ctas">
-          <a href="#" class="btn btn-primary btn-lg" data-i18n="cta.student">أنا طالب أو خريج</a>
-          <a href="#" class="btn btn-ghost btn-lg" data-i18n="cta.org">أنا منشأة</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-about">
-        <a href="#top" class="logo">
-          <span class="logo-mark" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#fff">
-              <rect x="2" y="11" width="4" height="7" rx="1"/>
-              <rect x="8" y="7" width="4" height="11" rx="1"/>
-              <rect x="14" y="2" width="4" height="16" rx="1"/>
-            </svg>
-          </span>
-          <span class="logo-text"><strong data-i18n="brand">مهارة مقابل قيمة</strong><small>Skill for Value</small></span>
-        </a>
-        <p data-i18n="footer.about">مهام قصيرة مدفوعة تحوّل مهارات طلاب الجامعة وخريجيها إلى خبرة موثّقة.</p>
-      </div>
-      <div>
-        <h4 data-i18n="why.c1.title">للطلاب والخريجين</h4>
-        <ul>
-          <li><a href="#tasks" data-i18n="footer.browse">استعرض المهام</a></li>
-          <li><a href="#how" data-i18n="how.title">كيف تعمل المنصة</a></li>
-          <li><a href="#faq" data-i18n="faq.title">أسئلة شائعة</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 data-i18n="why.c2.title">للمنشآت</h4>
-        <ul>
-          <li><a href="#" data-i18n="footer.post">انشر مهمة</a></li>
-          <li><a href="#tasks" data-i18n="footer.browse">استعرض المهام</a></li>
-        </ul>
-      </div>
-    </div>
-    <p class="copy" data-i18n="footer.copy">© 2026 مهارة مقابل قيمة. جميع الحقوق محفوظة.</p>
-  </div>
-</footer>
+<div id="app"></div>
+<div class="toast" id="toast" aria-live="polite"></div>
 
 <script>
-  // Switch between student and organization steps
-  const tabs = document.querySelectorAll('.toggle [role="tab"]');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => select(tab));
-    tab.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        const other = [...tabs].find(t => t !== tab);
-        select(other);
-        other.focus();
-      }
-    });
-  });
-  function select(active) {
-    tabs.forEach(t => {
-      const on = t === active;
-      t.setAttribute('aria-selected', on);
-      t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-    });
+/* ================= الترجمة / Translations ================= */
+const D={
+ docTitle:['مهارة مقابل قيمة | Skill for Value','Skill for Value | مهارة مقابل قيمة'],
+ skip:['تخطَّ إلى المحتوى','Skip to content'],
+ navLabel:['القائمة الرئيسية','Main navigation'],
+ cur:['ر.س','SAR'],
+ langBtn:['English','العربية'],
+ login:['تسجيل الدخول','Log in'],signup:['إنشاء حساب','Sign up'],logout:['تسجيل الخروج','Log out'],
+ navHome:['الرئيسية','Home'],navTasks:['المهام','Tasks'],navProfile:['ملفي','My profile'],navProjects:['مشاريعي','My projects'],
+ navAch:['إنجازاتي','Achievements'],navBusiness:['لوحة المنشأة','Business dashboard'],navMatching:['المرشحون','Candidates'],navReview:['التقييم والاعتماد','Reviews'],
+ roleStudent:['طالب / خريج','Student / graduate'],roleBiz:['منشأة','Business'],
+
+ /* footer */
+ ftTag:['مهام قصيرة مدفوعة تحوّل مهارات طلاب الجامعة وخريجيها إلى خبرة موثّقة.','Short paid tasks that turn university students’ and graduates’ skills into verified experience.'],
+ ftStudents:['للطلاب والخريجين','For students & graduates'],ftBiz:['للمنشآت','For businesses'],
+ ftHow:['كيف تعمل المنصة','How it works'],ftFaq:['أسئلة شائعة','FAQ'],ftBrowse:['استعرض المهام','Browse tasks'],ftPost:['انشر مهمة','Post a task'],
+ ftCopy:['© 2026 مهارة مقابل قيمة. جميع الحقوق محفوظة.','© 2026 Skill for Value. All rights reserved.'],
+
+ /* home */
+ heroTitle:['مهارتك تستحق أن تتحول إلى خبرة موثّقة ودخل حقيقي','Turn your skills into verified experience and real income'],
+ heroSub:['مهام قصيرة مدفوعة من منشآت حقيقية، تُطابَق مع مهاراتك المتحقَّق منها، وتنتهي بسجل إنجاز يُضاف إلى ملفك المهني.','Short paid tasks from real businesses, matched to your verified skills, ending in an achievement record added to your professional profile.'],
+ ctaStudent:['أنا طالب أو خريج','I’m a student or graduate'],ctaBiz:['أنا منشأة','I’m a business'],
+ heroNote:['مخصصة لطلاب الجامعة وخريجيها، وليست منصة عمل حر عامة.','Built for university students and graduates, not a general freelance marketplace.'],
+ browseTasks:['استعرض المهام','Browse tasks'],
+ credTask:['مهمة: تصميم واجهة تطبيق حجز','Task: Booking app interface design'],credEx:['مثال','Example'],
+ credValue:['قيمة المهمة','Task value'],credDur:['المدة','Duration'],credDays:['10 أيام','10 days'],
+ credRec:['سجل إنجاز موثّق','Verified achievement record'],credRecSub:['يُضاف تلقائيًا إلى ملفك بعد اعتماد المنشأة','Added to your profile automatically once the business approves'],
+ credAria:['مثال على مهمة مكتملة','Example of a completed task'],
+ whyTitle:['لماذا مهارة مقابل قيمة؟','Why Skill for Value?'],
+ whyLead:['مسار واضح يجمع الطالب والمنشأة على أساس مهارة موثّقة.','A clear path that brings students and businesses together around verified skills.'],
+ whyStu:['للطلاب والخريجين','For students & graduates'],
+ whyStuT:['ابدأ بفرصة صغيرة، واكسب دخلًا، وابنِ سجلًا موثّقًا يثبت مهارتك لأي جهة.','Start with a small opportunity, earn income, and build a verified record that proves your skills to anyone.'],
+ whyBiz:['للمنشآت','For businesses'],
+ whyBizT:['انشر مهمة قصيرة بمخرجات واضحة، واختر من مواهب تثق بمستوى مهاراتها دون الحاجة إلى توظيف كامل.','Post a short task with clear deliverables and choose from talent whose skill levels you can trust, with no full-time hire needed.'],
+ whyTrust:['ثقة من البداية','Trust from the start'],
+ whyTrustT:['لكل مهارة مستوى توثيق ظاهر، وتنتهي كل مهمة بتقييم وسجل إنجاز قابل للتحقق.','Every skill shows a verification level, and every task ends with a rating and a verifiable achievement record.'],
+ howTitle:['كيف تعمل المنصة','How it works'],howLead:['اختر مسارك لترى الخطوات.','Choose your path to see the steps.'],
+ tabStu:['للطلاب','Students'],tabBiz:['للمنشآت','Businesses'],
+ cmpTitle:['ما الذي يميّزنا عن منصات العمل الحر؟','How we differ from freelance platforms'],
+ cmpLead:['الفرق في من يشارك، وفي ما تخرج به بعد كل مهمة.','The difference is who takes part and what you walk away with after each task.'],
+ cmpGen:['منصات العمل الحر العامة','General freelance platforms'],
+ lvlTitle:['مستويات توثيق المهارة','Skill verification levels'],
+ lvlLead:['يظهر مستوى كل مهارة للمنشآت، ويرتفع بالمراجعة وبإثباتها في مشاريع فعلية.','Each skill’s level is visible to businesses and rises through review and by proving it in real projects.'],
+ lvlDecl:['يصرّح بها الطالب.','Stated by the student.'],lvlRev:['يراجع المراجع نماذج أعماله.','A reviewer checks sample work.'],lvlVer:['توثيق أكاديمي أو اجتياز تقييم.','Academic verification or a passed assessment.'],
+ lvlNote:['اعتماد المنشأة لمهارة أثبتها الطالب في مشروع يرفع مستواها تلقائيًا.','When a business confirms a skill proven in a project, its level rises automatically.'],
+ homeTasks:['مهام مفتوحة الآن','Open tasks now'],viewAll:['عرض كل المهام','View all tasks'],
+ faqTitle:['أسئلة شائعة','Frequently asked questions'],
+ ctaTitle:['ابدأ الآن','Get started'],ctaText:['أنشئ حسابك كطالب أو كمنشأة وابدأ أول مهمة.','Create a student or business account and start your first task.'],
+ ctaStuText:['تصفّح المهام المفتوحة وتقدّم لما يناسب مهاراتك.','Browse open tasks and apply to the ones that fit your skills.'],
+ ctaBizText:['انشر مهمتك واستعرض المرشحين المناسبين.','Post your task and review the candidates who fit.'],
+
+ /* auth */
+ authSignupSub:['أنشئ حسابك للتقدّم للمهام أو نشرها.','Create your account to apply for or post tasks.'],
+ authLoginSub:['سجّل الدخول لمتابعة مهامك ومشاريعك.','Log in to follow your tasks and projects.'],
+ tabNew:['حساب جديد','New account'],tabHave:['لدي حساب','I have an account'],
+ accType:['نوع الحساب','Account type'],
+ fNameStu:['الاسم الكامل','Full name'],fNameBiz:['اسم المنشأة','Business name'],
+ fMailStu:['البريد الجامعي','University email'],fMailBiz:['البريد الإلكتروني','Email'],fPass:['كلمة المرور','Password'],
+ fMajor:['الكلية أو التخصص','College or major'],fStatus:['الحالة','Status'],fSector:['القطاع','Sector'],fCR:['رقم السجل التجاري','Commercial registration no.'],
+ fCRHint:['يُستخدم للتحقق من المنشأة.','Used to verify the business.'],
+ submitSignup:['إنشاء الحساب','Create account'],submitLogin:['دخول','Log in'],
+ afterStu:['بعد إنشاء الحساب تنتقل إلى ملفك لإضافة مهاراتك.','After signing up you’ll go to your profile to add your skills.'],
+ afterBiz:['بعد إنشاء الحساب تنتقل إلى لوحة المنشأة لنشر أول مهمة.','After signing up you’ll go to your dashboard to post your first task.'],
+ needMailPass:['أدخل البريد الإلكتروني وكلمة المرور','Enter your email and password'],
+ needNameStu:['أدخل اسمك الكامل','Enter your full name'],needNameBiz:['أدخل اسم المنشأة','Enter your business name'],
+ signedUp:['تم إنشاء حسابك','Your account is ready'],loggedIn:['تم تسجيل الدخول','You’re logged in'],loggedOut:['تم تسجيل الخروج','You’re logged out'],
+ gateStudent:['هذه الصفحة خاصة بالطلاب والخريجين','This page is for students and graduates'],
+ gateBiz:['هذه الصفحة خاصة بالمنشآت','This page is for businesses'],
+ gateAny:['سجّل الدخول لعرض هذه الصفحة','Log in to view this page'],
+ gateGuest:['سجّل الدخول أو أنشئ حسابًا للمتابعة.','Log in or create an account to continue.'],
+ gateWrong:['هذه الصفحة غير متاحة لنوع حسابك الحالي.','This page isn’t available for your account type.'],
+
+ /* statuses & skills */
+ stOpen:['مفتوحة','Open'],stAssigned:['تم الاختيار','Selected'],stProgress:['قيد التنفيذ','In progress'],stSubmitted:['بانتظار الاعتماد','Awaiting approval'],stCompleted:['مكتملة','Completed'],
+ skV:['موثّقة','Verified'],skR:['أعمالها مُراجعة','Work reviewed'],skD:['مُعلنة','Declared'],skP:['قيد التحقق','Pending'],
+
+ /* profile */
+ profTitle:['ملف الطالب والمهارات','Profile and skills'],
+ profLead:['لكل مهارة مستوى توثيق يظهر للمنشآت، ويرتفع بالمراجعة وبإثباتها في مشاريع فعلية.','Each skill has a verification level that businesses can see. It rises through review and by proving it in real projects.'],
+ profHours:['متاح {0} ساعات أسبوعيًا','{0} hours/week available'],
+ profComplete:['اكتمال الملف','Profile completeness'],
+ skillsTitle:['المهارات ومستويات توثيقها','Skills and verification levels'],
+ noSkills:['لم تضف مهارات بعد','No skills yet'],noSkillsHint:['اختر مهارة من القائمة أدناه لتبدأ.','Pick a skill from the list below to get started.'],
+ reqReview:['اطلب مراجعة أعمال','Request work review'],reqAcad:['اطلب توثيقًا أكاديميًا','Request academic verification'],
+ underReview:['طلبك قيد المراجعة','Your request is under review'],
+ addSkill:['إضافة مهارة','Add skill'],newSkillAria:['مهارة جديدة','New skill'],
+ summaryTitle:['ملخص الخبرة الموثّقة','Verified experience summary'],
+ kDone:['مهام مكتملة','Tasks completed'],kRating:['متوسط التقييم','Average rating'],kEarn:['الدخل من المنصة','Earned on the platform'],
+ viewRecords:['عرض سجلات الإنجاز','View achievement records'],
+ lvlCardTitle:['مستويات التوثيق','Verification levels'],
+ intTitle:['المجالات والتفرغ','Interests and availability'],intLead:['تُستخدم في مطابقتك مع المهام.','Used to match you with tasks.'],hoursLabel:['ساعات التفرغ الأسبوعية','Weekly available hours'],
+ skillAdded:['أُضيفت المهارة كمُعلنة','Skill added as declared'],verifySent:['أُرسل طلب التحقق','Verification request sent'],
+
+ /* tasks */
+ tasksTitle:['المهام المفتوحة','Open tasks'],
+ tasksLeadGuest:['مهام قصيرة بمخرجات واضحة من منشآت تبحث عن مهارتك.','Short tasks with clear deliverables from businesses looking for your skills.'],
+ tasksLeadStu:['مهام قصيرة بمخرجات واضحة. النسبة الظاهرة تعبّر عن مطابقة المهمة لمهاراتك.','Short tasks with clear deliverables. The percentage shows how well each task matches your skills.'],
+ catAll:['الكل','All'],searchPh:['ابحث بالمهارة أو المنشأة أو العنوان','Search by skill, business or title'],searchAria:['بحث','Search'],sortAria:['الترتيب','Sort'],
+ sortNew:['الأحدث','Newest'],sortMatch:['الأنسب لي','Best match'],sortPay:['الأعلى مكافأة','Highest pay'],sortShort:['الأقصر مدة','Shortest'],
+ matchTitle:['مطابقتها لمهاراتك','Match with your skills'],
+ daysN:['{0} يومًا','{0} days'],hoursWk:['{0} س/أسبوع','{0} h/week'],applied:['تم التقديم','Applied'],
+ noTasks:['لا توجد مهام مطابقة','No matching tasks'],noTasksHint:['غيّر التصنيف أو امسح كلمة البحث لعرض كل المهام المفتوحة.','Change the category or clear the search to see all open tasks.'],
+
+ /* task detail */
+ back:['→ المهام','← Tasks'],descTitle:['وصف المهمة','Description'],delivTitle:['المخرجات المطلوبة','Deliverables'],skillsReq:['المهارات المطلوبة','Required skills'],
+ youHave:['لديك: {0}','You have: {0}'],notAdded:['غير مضافة إلى ملفك','Not in your profile'],yourMatch:['مطابقتك مع هذه المهمة','Your match for this task'],
+ matchParts:['المهارات {0}/70 · التخصص {1}/15 · التفرغ {2}/15','Skills {0}/70 · Field {1}/15 · Availability {2}/15'],
+ budgetTitle:['الميزانية','Budget'],budgetFor:['مبلغ المهمة','Task amount'],durLine:['المدة {0} يومًا · يتطلب {1} ساعات أسبوعيًا','{0} days · {1} hours per week'],
+ applyTitle:['التقدّم للمهمة','Apply for this task'],msgLabel:['رسالة للمنشأة','Message to the business'],
+ msgPh:['اذكر خبرتك ذات الصلة وكيف ستنفذ المهمة','Share your relevant experience and how you’ll approach the task'],
+ daysLabel:['المدة المقترحة (يوم)','Proposed duration (days)'],sendApp:['إرسال الطلب','Send application'],
+ appliedNote:['ستجد نتيجة الاختيار في صفحة مشاريعي.','You’ll see the result on your Projects page.'],
+ guestApply:['سجّل الدخول كطالب أو خريج للتقدّم لهذه المهمة.','Log in as a student or graduate to apply for this task.'],
+ bizNote:['التقديم على المهام متاح من حسابات الطلاب والخريجين.','Applying is available from student accounts.'],
+ notFound:['المهمة غير موجودة','Task not found'],backToTasks:['العودة إلى المهام','Back to tasks'],
+ msgShort:['اكتب رسالة قصيرة للمنشأة (10 أحرف على الأقل)','Write a short message to the business (at least 10 characters)'],
+ applySent:['أُرسل طلبك إلى المنشأة','Your application was sent'],
+
+ /* business */
+ bizTitle:['لوحة المنشأة','Business dashboard'],
+ bizLead:['{0} — انشر مهمة بمخرجات واضحة وستُطابَق تلقائيًا مع المواهب المناسبة.','{0} — post a task with clear deliverables and it will be matched with suitable talent automatically.'],
+ kPosted:['مهام منشورة','Tasks posted'],kNewApps:['طلبات تقديم جديدة','New applications'],kActive:['مشاريع جارية','Active projects'],kPaid:['إجمالي المدفوع (ر.س)','Total paid (SAR)'],
+ myTasks:['مهامي','My tasks'],viewCands:['عرض المرشحين','View candidates'],follow:['المتابعة','Follow up'],applicantsN:['{0} متقدّم','{0} applicants'],
+ noPosted:['لم تنشر مهامًا بعد','No tasks posted yet'],noPostedHint:['استخدم النموذج لنشر أول مهمة.','Use the form to post your first task.'],
+ postTitle:['نشر مهمة جديدة','Post a new task'],fTitle:['عنوان المهمة','Task title'],fTitlePh:['مثال: تصميم شعار ومواد تعريفية','e.g. Logo and brand materials design'],
+ fCat:['التصنيف','Category'],fDesc:['الوصف','Description'],fDeliv:['المخرجات المطلوبة','Required deliverables'],fDelivPh:['اكتب كل مخرج في سطر','Write one deliverable per line'],
+ fSkills:['المهارات المطلوبة','Required skills'],fBudget:['الميزانية (ر.س)','Budget (SAR)'],fDays:['المدة (يوم)','Duration (days)'],postBtn:['نشر المهمة','Post task'],
+ needTitle:['أدخل عنوان المهمة','Enter a task title'],needDesc:['أدخل وصف المهمة','Enter a task description'],needSkill:['اختر مهارة واحدة على الأقل','Choose at least one skill'],
+ minBudget:['الميزانية لا تقل عن 100 ر.س','Budget must be at least 100 SAR'],needDays:['أدخل مدة المهمة بالأيام','Enter the task duration in days'],
+ posted:['نُشرت المهمة وبدأت المطابقة','Task posted — matching has started'],
+
+ /* matching */
+ matchPageTitle:['المرشحون المناسبون','Matching candidates'],
+ matchLead:['يرتّب النظام المرشحين حسب مستوى توثيق مهاراتهم وتخصصهم وتفرغهم، ويعرض سبب كل نسبة.','Candidates are ranked by skill verification, field and availability, with the reason behind each score.'],
+ taskLabel:['المهمة','Task'],pick:['اختيار','Select'],appliedChip:['تقدّم للمهمة','Applied'],
+ pSkills:['المهارات','Skills'],pField:['التخصص','Field'],pAvail:['التفرغ','Availability'],
+ howCalc:['كيف تُحسب المطابقة؟','How is the match calculated?'],
+ howSkills:['<b>المهارات (70 نقطة):</b> متوسط وزن كل مهارة مطلوبة. الموثّقة تحتسب بالكامل، والمُراجعة 70%، والمُعلنة أو قيد التحقق 35%، وغير الموجودة صفرًا.','<b>Skills (70 points):</b> the average weight of each required skill. Verified counts in full, reviewed 70%, declared or pending 35%, and missing skills zero.'],
+ howField:['<b>التخصص (15 نقطة):</b> تطابق مجال المهمة مع مجالات الطالب.','<b>Field (15 points):</b> how well the task’s category matches the student’s fields.'],
+ howAvail:['<b>التفرغ (15 نقطة):</b> مقارنة ساعات الطالب الأسبوعية بما تتطلبه المهمة.','<b>Availability (15 points):</b> the student’s weekly hours compared with what the task requires.'],
+ noOpen:['لا توجد مهام مفتوحة للمطابقة','No open tasks to match'],noOpenHint:['انشر مهمة من لوحة المنشأة لترى أفضل المرشحين.','Post a task from your dashboard to see the best candidates.'],
+ proposedDays:['المدة المقترحة {0} يومًا','proposed duration {0} days'],picked:['تم اختيار {0}','{0} selected'],
+
+ /* projects */
+ projTitle:['متابعة المشاريع','Project tracking'],projSubStu:['مشاريعك الجارية والمكتملة.','Your active and completed projects.'],projSubBiz:['مشاريع منشأتك وحالة كل مرحلة.','Your business’s projects and the stage of each.'],
+ step1:['اختيار الطالب','Student selected'],step2:['التنفيذ','In progress'],step3:['التسليم','Delivery'],step4:['الاعتماد والتقييم','Approval and rating'],step5:['الدفع والتوثيق','Payment and record'],
+ studentIs:['الطالب: {0}','Student: {0}'],startWork:['بدء التنفيذ','Start work'],
+ deliverLabel:['رابط التسليم أو ملاحظاتك','Delivery link or notes'],deliverPh:['أرفق رابط الملفات وما أنجزته من المخرجات','Attach a link to your files and what you completed'],deliverBtn:['تسليم العمل','Submit work'],
+ awaiting:['بانتظار اعتماد المنشأة','Awaiting business approval'],viewRecord:['عرض سجل الإنجاز','View achievement record'],
+ reviewApprove:['مراجعة واعتماد','Review and approve'],reqChanges:['طلب تعديل','Request changes'],completedChip:['اكتملت — {0}','Completed — {0}'],
+ heldNote:['المبلغ محجوز لحين التسليم والاعتماد.','The amount is held until delivery and approval.'],
+ submittedNote:['سلّم الطالب العمل، والمبلغ يُفرج عنه بعد الاعتماد.','The student has submitted the work; the amount is released after approval.'],
+ deliveryNotes:['ملاحظات التسليم:','Delivery notes:'],changeReq:['طلب تعديل:','Change request:'],revNoteText:['طلبت المنشأة تعديلات قبل الاعتماد.','The business requested changes before approval.'],
+ emptyProj:['لا توجد مشاريع بعد','No projects yet'],
+ emptyProjStu:['تقدّم إلى مهمة، وبعد اختيار المنشأة لك يظهر مشروعك هنا.','Apply to a task and, once a business selects you, your project appears here.'],
+ emptyProjBiz:['اختر طالبًا من صفحة المرشحين لبدء أول مشروع.','Pick a student on the Candidates page to start your first project.'],
+ started:['بدأ التنفيذ','Work started'],needDelivery:['أضف رابط التسليم أو ملاحظاتك','Add a delivery link or your notes'],submitted:['سُلّم العمل للمنشأة','Work submitted'],changesSent:['أُرسل طلب التعديل للطالب','Change request sent'],
+
+ /* reviews */
+ achTitle:['سجل إنجازاتي','My achievement records'],
+ achLead:['سجلات إنجازك الموثّقة، وكل سجل يحمل رقمًا قابلًا للتحقق منه.','Your verified achievement records. Each one carries a number that can be verified.'],
+ revTitle:['التقييم والاعتماد','Review and approval'],
+ revLead:['قيّم العمل المسلَّم، وسيُنشأ سجل إنجاز موثّق في ملف الطالب.','Rate delivered work and a verified achievement record will be added to the student’s profile.'],
+ noPending:['لا توجد مهام بانتظار الاعتماد','No tasks awaiting approval'],noPendingHint:['عندما يسلّم الطالب عمله تظهر المهمة هنا للتقييم.','When a student submits work, the task appears here for rating.'],
+ evalTitle:['تقييم وتوثيق: {0}','Rate and verify: {0}'],
+ rQ:['جودة العمل','Work quality'],rC:['التواصل','Communication'],rT:['الالتزام بالموعد','Meeting the deadline'],rF:['مطابقة المخرجات للمطلوب','Deliverables match the request'],
+ provedTitle:['المهارات التي أثبتها الطالب عمليًا','Skills the student proved in practice'],provedHint:['تؤدي إلى رفع مستوى المهارة في ملف الطالب.','Raises the skill’s level in the student’s profile.'],
+ commentLabel:['تعليق (يظهر في سجل الإنجاز)','Comment (shown in the achievement record)'],approveBtn:['اعتماد العمل وتوثيق الخبرة','Approve work and record experience'],
+ approveNote:['عند الاعتماد يُفرج عن {0} ر.س للطالب.','On approval, {0} SAR is released to the student.'],
+ recsStu:['سجل إنجازاتي','My achievement records'],recsBiz:['سجلات الإنجاز الموثّقة','Verified achievement records'],
+ noRecs:['لا توجد سجلات بعد','No records yet'],noRecsHint:['تظهر السجلات هنا بعد اعتماد أول مهمة.','Records appear here after the first task is approved.'],
+ verified:['موثّق','Verified'],provedNote:['✓ مهارة أُثبتت عمليًا في هذا المشروع','✓ Skill proven in practice on this project'],
+ copyRec:['نسخ رقم السجل','Copy record number'],copied:['نُسخ رقم السجل','Record number copied'],copyFail:['تعذّر النسخ','Couldn’t copy'],
+ rateAll:['قيّم المعايير الأربعة قبل الاعتماد','Rate all four criteria before approving'],approved:['اعتُمد العمل ووُثّقت الخبرة: {0}','Work approved and experience recorded: {0}'],
+ ofFive:['{0} من 5','{0} of 5']
+};
+const tr=(k,...a)=>{const e=D[k];let s=e?e[S.lang==='ar'?0:1]:k;a.forEach((v,i)=>{s=s.split('{'+i+'}').join(v)});return s};
+const L=x=>Array.isArray(x)?x[S.lang==='ar'?0:1]:(x==null?'':x);
+const both=x=>Array.isArray(x)?x.join(' '):String(x||'');
+
+/* ================= البيانات / Data ================= */
+const CATS={design:['تصميم','Design'],marketing:['تسويق ومحتوى','Marketing & content'],tech:['برمجة وتقنية','Development & tech'],data:['بيانات وتحليل','Data & analytics'],business:['مالية وإدارة','Finance & management'],lang:['لغات وترجمة','Languages & translation']};
+const SK={figma:['Figma','Figma'],html:['HTML/CSS','HTML/CSS'],react:['React','React'],python:['Python','Python'],data:['تحليل البيانات','Data analysis'],powerbi:['Power BI','Power BI'],excel:['Excel','Excel'],brand:['تصميم الهوية البصرية','Brand identity design'],ai:['Adobe Illustrator','Adobe Illustrator'],video:['التصوير والمونتاج','Photography & video editing'],social:['إدارة وسائل التواصل','Social media management'],writing:['كتابة المحتوى','Content writing'],seo:['SEO','SEO'],translate:['ترجمة عربي–إنجليزي','Arabic–English translation'],acct:['المحاسبة المالية','Financial accounting'],pm:['إدارة المشاريع','Project management']};
+const LV={y3:['سنة ثالثة','3rd year'],y4:['سنة رابعة','4th year'],grad:['خريج','Graduate'],student:['طالب','Student']};
+const SK_CLASS={V:'v',R:'r',D:'d',P:'p'};
+const SK_W={V:1,R:.7,D:.35,P:.35};
+const STATUS_KEY={open:'stOpen',assigned:'stAssigned',in_progress:'stProgress',submitted:'stSubmitted',completed:'stCompleted'};
+const BR=['مهارة مقابل قيمة','Skill for Value'];
+
+const S={
+  lang:'ar',role:'guest',me:'s1',biz:'b2',route:'home',param:null,seq:0,accounts:[],
+  students:[
+    {id:'s1',name:['ريم العسيري','Reem Al-Asiri'],major:['نظم المعلومات','Information Systems'],level:'y4',hours:10,fields:['tech','design'],skills:{figma:'V',html:'V',data:'R',excel:'D'},pend:{},portfolio:'behance.net/reem-asiri'},
+    {id:'s2',name:['فهد الشهراني','Fahad Al-Shahrani'],major:['علوم الحاسب','Computer Science'],level:'grad',hours:15,fields:['tech','data'],skills:{python:'V',data:'V',powerbi:'R',react:'D'},pend:{}},
+    {id:'s3',name:['لمى القرني','Lama Al-Qarni'],major:['التسويق','Marketing'],level:'y3',hours:8,fields:['marketing'],skills:{social:'V',writing:'R',seo:'D'},pend:{}},
+    {id:'s4',name:['عبدالله الغامدي','Abdullah Al-Ghamdi'],major:['التصميم الجرافيكي','Graphic Design'],level:'grad',hours:12,fields:['design'],skills:{brand:'V',ai:'V',figma:'R',video:'D'},pend:{}},
+    {id:'s5',name:['نورة الزهراني','Noura Al-Zahrani'],major:['المحاسبة','Accounting'],level:'y4',hours:6,fields:['business','data'],skills:{excel:'V',acct:'R',powerbi:'D'},pend:{}},
+    {id:'s6',name:['ماجد العمري','Majed Al-Omari'],major:['اللغات والترجمة','Languages & Translation'],level:'grad',hours:8,fields:['lang','marketing'],skills:{translate:'V',writing:'V'},pend:{}}
+  ],
+  bizs:[
+    {id:'b1',name:['مقهى ركن الصباح','Morning Corner Café'],sector:['مطاعم وضيافة','Food & hospitality']},
+    {id:'b2',name:['نماء للحلول التقنية','Nama Tech Solutions'],sector:['تقنية معلومات','Information technology']},
+    {id:'b3',name:['جمعية بذور التنموية','Buthoor Development Association'],sector:['قطاع غير ربحي','Non-profit']},
+    {id:'b4',name:['أفق للاستشارات','Ofuq Consulting'],sector:['خدمات مهنية','Professional services']}
+  ],
+  tasks:[
+    {id:'t1',title:['تصميم واجهة تطبيق حجز لمركز لياقة','Booking app interface for a fitness center'],biz:'b2',cat:'design',
+     desc:['نحتاج تصميم واجهات تطبيق جوال لحجز الحصص الرياضية: الشاشة الرئيسية، جدول الحصص، تأكيد الحجز، والملف الشخصي.','We need mobile app screens for booking fitness classes: home, class schedule, booking confirmation and profile.'],
+     deliv:[['ملف Figma بخمس شاشات رئيسية','Figma file with five key screens'],['نظام ألوان وخطوط مختصر','Short color and type system'],['نموذج تفاعلي قابل للتجربة','Clickable interactive prototype']],skills:['figma'],budget:1200,days:10,hours:12,status:'open'},
+    {id:'t2',title:['لوحة تحليلات مبيعات في Power BI','Sales analytics dashboard in Power BI'],biz:'b4',cat:'data',
+     desc:['لدينا ملفات مبيعات شهرية في Excel، ونريد لوحة تفاعلية تعرض المبيعات حسب الفرع والمنتج والشهر.','We have monthly sales files in Excel and want an interactive dashboard showing sales by branch, product and month.'],
+     deliv:[['ملف Power BI قابل للتعديل','Editable Power BI file'],['ثلاث صفحات تحليلية','Three analysis pages'],['شرح مختصر لطريقة التحديث','Short guide to refreshing the data']],skills:['powerbi','excel','data'],budget:1500,days:14,hours:10,status:'open'},
+    {id:'t3',title:['هوية بصرية لمقهى ناشئ','Brand identity for a new café'],biz:'b1',cat:'design',
+     desc:['شعار وألوان وخطوط وتطبيقات أساسية (كوب، قائمة، لافتة) لمقهى سيُفتتح قريبًا.','Logo, colors, typography and core applications (cup, menu, signage) for a café opening soon.'],
+     deliv:[['شعار بصيغ متعددة','Logo in multiple formats'],['دليل استخدام الهوية','Brand usage guide'],['ثلاثة تطبيقات تجريبية','Three sample applications']],skills:['brand','ai'],budget:1000,days:12,hours:10,status:'open'},
+    {id:'t4',title:['إدارة حسابات التواصل لإطلاق منتج جديد','Social media management for a product launch'],biz:'b1',cat:'marketing',
+     desc:['خطة محتوى لمدة ثلاثة أسابيع مع كتابة ونشر المنشورات وتقرير مختصر بالنتائج.','A three-week content plan with writing and publishing of posts, and a short results report.'],
+     deliv:[['خطة محتوى أسبوعية','Weekly content plan'],['12 منشورًا جاهزًا','12 ready-to-publish posts'],['تقرير أداء ختامي','Final performance report']],skills:['social','writing'],budget:800,days:21,hours:6,status:'open'},
+    {id:'t5',title:['صفحة هبوط لمبادرة تطوعية','Landing page for a volunteer initiative'],biz:'b3',cat:'tech',
+     desc:['صفحة واحدة تعرّف بالمبادرة وتتيح التسجيل التطوعي، متوافقة مع الجوال.','A single mobile-friendly page that introduces the initiative and lets people sign up to volunteer.'],
+     deliv:[['صفحة HTML/CSS مستجيبة','Responsive HTML/CSS page'],['نموذج تسجيل يعمل','Working sign-up form'],['تسليم الملفات المصدرية','Source files handover']],skills:['html','figma'],budget:700,days:7,hours:12,status:'open'},
+    {id:'t6',title:['ترجمة دليل مستخدم تقني (عربي–إنجليزي)','Technical user guide translation (Arabic–English)'],biz:'b2',cat:'lang',
+     desc:['ترجمة دليل مستخدم لمنتج برمجي من العربية إلى الإنجليزية مع مراجعة المصطلحات.','Translate a software product user guide from Arabic to English, with terminology review.'],
+     deliv:[['الدليل مترجمًا بالكامل','Fully translated guide'],['قائمة مصطلحات','Glossary']],skills:['translate'],budget:600,days:5,hours:12,status:'open'},
+    {id:'t7',title:['تنظيف وتحليل بيانات استبيان','Survey data cleaning and analysis'],biz:'b3',cat:'data',
+     desc:['تنظيف بيانات استبيان مجتمعي وإخراج ملخص إحصائي ورسوم أساسية.','Clean community survey data and produce a statistical summary and basic charts.'],
+     deliv:[['ملف بيانات نظيف','Clean data file'],['ملخص إحصائي','Statistical summary'],['خمسة رسوم بيانية','Five charts']],skills:['python','data'],budget:900,days:8,hours:12,status:'in_progress',assignee:'s2'},
+    {id:'t8',title:['صفحة تعريفية لمكتب استشارات','Company profile page for a consulting office'],biz:'b4',cat:'tech',
+     desc:['تصميم وتنفيذ صفحة تعريفية بسيطة بالخدمات وطرق التواصل.','Design and build a simple page presenting services and contact options.'],
+     deliv:[['تصميم Figma','Figma design'],['تنفيذ HTML/CSS','HTML/CSS implementation']],skills:['figma','html'],budget:900,days:9,hours:10,status:'completed',assignee:'s1',
+     rating:{q:5,c:5,t:4,f:5},comment:['تسليم منظم وتواصل واضح، والصفحة جاهزة للنشر.','Well-organized delivery and clear communication; the page is ready to publish.'],proved:['figma','html'],record:'SFV-2026-0001',doneAt:'2026-09-14'},
+    {id:'t9',title:['تصميم قائمة طعام ولافتات','Menu and signage design'],biz:'b1',cat:'design',
+     desc:['قائمة طعام مطبوعة ولافتتان داخليتان بهوية المقهى.','A printed menu and two indoor signs in the café’s brand identity.'],
+     deliv:[['ملفات الطباعة','Print-ready files'],['نسخ رقمية','Digital versions']],skills:['brand','ai'],budget:700,days:6,hours:12,status:'completed',assignee:'s4',
+     rating:{q:5,c:4,t:5,f:5},comment:['عمل احترافي وفي الوقت المحدد.','Professional work, delivered on time.'],proved:['brand'],record:'SFV-2026-0002',doneAt:'2026-09-20'},
+    {id:'t10',title:['نموذج أولي لواجهة لوحة عملاء','Prototype for a client dashboard interface'],biz:'b2',cat:'tech',
+     desc:['نموذج أولي تفاعلي للوحة عملاء داخلية: قائمة العملاء، تفاصيل العميل، وسجل التواصل.','An interactive prototype for an internal client dashboard: client list, client details and communication log.'],
+     deliv:[['نموذج Figma تفاعلي','Interactive Figma prototype'],['صفحتان بـ HTML/CSS','Two HTML/CSS pages']],skills:['figma','html'],budget:1100,days:10,hours:10,status:'submitted',assignee:'s1',
+     delivery:['تم رفع ملف Figma وصفحتين HTML — الرابط في ملاحظات المشروع.','Figma file and two HTML pages uploaded — link in the project notes.']},
+    {id:'t11',title:['ترجمة تقرير سنوي','Annual report translation'],biz:'b3',cat:'lang',
+     desc:['ترجمة تقرير سنوي لجمعية من العربية إلى الإنجليزية.','Translate an association’s annual report from Arabic to English.'],
+     deliv:[['التقرير مترجمًا','Translated report']],skills:['translate'],budget:600,days:5,hours:12,status:'completed',assignee:'s6',
+     rating:{q:4,c:5,t:5,f:4},comment:['ترجمة دقيقة ومصطلحات متسقة.','Accurate translation with consistent terminology.'],proved:['translate'],record:'SFV-2026-0003',doneAt:'2026-09-25'}
+  ],
+  apps:[
+    {id:'a1',task:'t1',student:'s4',msg:['خبرتي في Figma ويمكنني تسليم النموذج التفاعلي في الوقت المحدد.','I have Figma experience and can deliver the interactive prototype on time.'],days:9},
+    {id:'a2',task:'t2',student:'s2',msg:['أعمل على لوحات Power BI، وسأبدأ بنموذج أولي خلال يومين.','I build Power BI dashboards and will start with a prototype within two days.'],days:12},
+    {id:'a3',task:'t2',student:'s5',msg:['خلفيتي محاسبية وأتقن Excel، وأرغب في تطوير مهاراتي في Power BI.','I come from an accounting background, I’m strong in Excel, and I want to grow my Power BI skills.'],days:14},
+    {id:'a4',task:'t3',student:'s4',msg:['أرفقت أعمالًا سابقة في الهوية البصرية للمطاعم.','I’ve attached previous brand identity work for restaurants.'],days:11},
+    {id:'a5',task:'t4',student:'s3',msg:['أدير حساب نادي الطلاب وأستطيع تقديم خطة محتوى واضحة.','I run the student club’s account and can deliver a clear content plan.'],days:20}
+  ],
+  ui:{f:{},rev:{},authTab:'signup',authRole:'student',cat:'all',sort:null,q:'',revTask:null,matchTask:null,proved:[],howTab:'student'}
+};
+
+/* ================= أدوات / Helpers ================= */
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=n=>Math.round(n).toLocaleString('en-US');
+const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const me=()=>S.students.find(s=>s.id===S.me);
+const stu=id=>S.students.find(s=>s.id===id);
+const bz=id=>S.bizs.find(b=>b.id===id);
+const avgRate=t=>t.rating?(t.rating.q+t.rating.c+t.rating.t+t.rating.f)/4:null;
+const initials=n=>String(n).trim().split(/\s+/).map(w=>w[0]).slice(0,2).join(' ');
+const vf=k=>S.ui.f[k]??'';
+const money=n=>`<span class="money">${fmt(n)} <small>${tr('cur')}</small></span>`;
+const applicants=id=>S.apps.filter(a=>a.task===id);
+const stLabel=s=>tr(STATUS_KEY[s]);
+const skLabel=s=>tr('sk'+s);
+function toast(m){const el=$('#toast');el.innerHTML=`<div>${esc(m)}</div>`;clearTimeout(toast.t);toast.t=setTimeout(()=>el.innerHTML='',2600)}
+function skillChip(id,st,plain){
+  const cls=plain?'':st?SK_CLASS[st]:'no';
+  return `<span class="chip ${cls}">${esc(L(SK[id]))}${st==='V'?' ✓':''}</span>`;
+}
+function go(h){if(location.hash===h)render();else location.hash=h}
+function applyLang(){
+  document.documentElement.lang=S.lang;
+  document.documentElement.dir=S.lang==='ar'?'rtl':'ltr';
+  document.title=tr('docTitle');
+}
+
+/* ================= محرك المطابقة / Matching ================= */
+function match(st,t){
+  const per=t.skills.map(k=>({skill:k,status:st.skills[k]||null,w:st.skills[k]?SK_W[st.skills[k]]:0}));
+  const sk=per.reduce((a,b)=>a+b.w,0)/per.length*70;
+  const field=st.fields.includes(t.cat)?15:0;
+  const av=Math.min(1,st.hours/t.hours)*15;
+  return {total:Math.round(sk+field+av),parts:{skills:Math.round(sk),field:Math.round(field),avail:Math.round(av)},per};
+}
+const pillCls=p=>p>=70?'':p>=45?'mid':'low';
+
+/* ================= الهيكل / Layout ================= */
+function navItems(){
+  const it=[{id:'home',k:'navHome'}];
+  if(S.role!=='business')it.push({id:'tasks',k:'navTasks'});
+  if(S.role==='student')it.push({id:'profile',k:'navProfile'},{id:'projects',k:'navProjects'},{id:'review',k:'navAch'});
+  if(S.role==='business')it.push({id:'business',k:'navBusiness'},{id:'matching',k:'navMatching'},{id:'projects',k:'navProjects'},{id:'review',k:'navReview'});
+  return it;
+}
+function header(){
+  const rt=S.route==='task'?'tasks':S.route;
+  const nav=navItems().map(r=>`<a href="#/${r.id}" ${rt===r.id?'aria-current="page"':''}>${tr(r.k)}</a>`).join('');
+  let who='';
+  if(S.role==='guest'){
+    who=`<button class="btn sm" data-act="goLogin">${tr('login')}</button><button class="btn sm primary" data-act="goSignup" data-v="student">${tr('signup')}</button>`;
+  }else{
+    const nm=S.role==='student'?L(me().name):L(bz(S.biz).name);
+    who=`<span class="user"><span class="avatar sm" aria-hidden="true">${esc(initials(nm))}</span><span class="nm">${esc(nm)}</span></span><button class="btn sm" data-act="logout">${tr('logout')}</button>`;
   }
+  return `<a class="skip" href="#" data-act="skip">${tr('skip')}</a>
+  <header class="top"><div class="wrap bar">
+    <a class="brand" href="#/home" aria-label="${esc(L(BR))}">
+      <span class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="14" width="4.5" height="7" rx="1" fill="#fff"/><rect x="9.75" y="9" width="4.5" height="12" rx="1" fill="#fff"/><rect x="16.5" y="4" width="4.5" height="17" rx="1" fill="#fff"/><circle cx="19" cy="3.2" r="2.2" fill="#F0C060"/></svg></span>
+      <span><b>${esc(L(BR))}</b><small>${esc(S.lang==='ar'?BR[1]:BR[0])}</small></span>
+    </a>
+    <div class="row"><button class="btn sm" data-act="lang" aria-label="Language / اللغة">${tr('langBtn')}</button>${who}</div>
+  </div>
+  <nav class="nav" aria-label="${tr('navLabel')}"><div class="wrap in">${nav}</div></nav></header>`;
+}
+function footer(){
+  const stuLinks=`${S.role!=='business'?`<li><a href="#/tasks">${tr('ftBrowse')}</a></li>`:''}<li><a href="#/home" data-act="scrollTo" data-v="how">${tr('ftHow')}</a></li><li><a href="#/home" data-act="scrollTo" data-v="faq">${tr('ftFaq')}</a></li>`;
+  const bizLinks=`<li><a href="#/business">${tr('ftPost')}</a></li>`;
+  return `<footer class="ft"><div class="wrap"><div class="cols">
+    <div><b style="color:var(--ink)">${esc(L(BR))}</b><p style="margin-top:6px;max-width:42ch">${tr('ftTag')}</p></div>
+    <div><h4>${tr('ftStudents')}</h4><ul>${stuLinks}</ul></div>
+    <div><h4>${tr('ftBiz')}</h4><ul>${bizLinks}</ul></div></div>
+    <div class="copy">${tr('ftCopy')}</div></div></footer>`;
+}
+function gate(roles,titleKey){
+  if(roles.includes(S.role))return null;
+  const guest=S.role==='guest';
+  return `<div class="wrap"><div class="card empty" style="max-width:560px;margin:24px auto"><b>${tr(titleKey)}</b><p>${tr(guest?'gateGuest':'gateWrong')}</p>${guest?`<p class="row" style="justify-content:center;margin-top:14px"><button class="btn primary" data-act="goSignup" data-v="${roles[0]}">${tr('signup')}</button><button class="btn" data-act="goLogin" data-v="${roles[0]}">${tr('login')}</button></p>`:''}</div></div>`;
+}
 
-  // Language switch. Arabic lives in the HTML; English lives here.
-  const EN = {
-    'meta.title': 'Skill for Value | مهارة مقابل قيمة',
-    'meta.desc': 'Short paid tasks from real organizations for university students and graduates, ending with a verified achievement record.',
-    'brand': 'Skill for Value',
-    'logo.home': 'Skill for Value - Home',
-    'nav.label': 'Main navigation',
-    'nav.login': 'Log in',
-    'nav.signup': 'Sign up',
-    'nav.home': 'Home',
-    'nav.tasks': 'Tasks',
-    'hero.title': 'Your skill deserves to become verified experience and real income',
-    'hero.lead': 'Short paid tasks from real organizations, matched to your verified skills, each ending with an achievement record added to your professional profile.',
-    'cta.student': "I'm a student or graduate",
-    'cta.org': "I'm an organization",
-    'hero.note': 'Made for university students and graduates, not a general freelancing platform. <a href="#tasks">Browse tasks</a>',
-    'ex.title': 'Task: Booking app interface design',
-    'ex.tag': 'Example',
-    'skill.data': 'Data analysis',
-    'skill.brand': 'Brand identity design',
-    'ex.value': 'Task value',
-    'ex.amount': 'SAR 1,000',
-    'ex.duration': 'Duration',
-    'ex.days': '10 days',
-    'ex.record': 'Verified achievement record',
-    'ex.recordNote': 'Added to your profile automatically once the organization approves',
-    'why.title': 'Why Skill for Value?',
-    'why.sub': 'A clear path that brings students and organizations together around verified skills.',
-    'why.c1.title': 'For students & graduates',
-    'why.c1.text': 'Start with a small opportunity, earn income, and build a verified record that proves your skill to anyone.',
-    'why.c2.title': 'For organizations',
-    'why.c2.text': 'Post a short task with clear deliverables and choose from talent whose skill levels you can trust, without a full hire.',
-    'why.c3.title': 'Trust from the start',
-    'why.c3.text': 'Every skill shows its verification level, and every task ends with a rating and a verifiable achievement record.',
-    'how.title': 'How it works',
-    'how.sub': 'Choose your path to see the steps.',
-    'how.tablist': 'Choose a path',
-    'how.tabStudents': 'For students',
-    'how.tabOrgs': 'For organizations',
-    'how.s1.title': 'Create your skills profile',
-    'how.s1.text': 'Add your skills, interests, and available hours.',
-    'how.s2.title': 'Verify your skills',
-    'how.s2.text': 'Request a portfolio review or academic verification so organizations trust you more.',
-    'how.s3.title': 'Apply to the right tasks',
-    'how.s3.text': 'See your match score for each task before you apply.',
-    'how.s4.title': 'Do the work and deliver',
-    'how.s4.text': 'Complete the agreed deliverables and submit them through the platform.',
-    'how.s5.title': 'Document your experience',
-    'how.s5.text': 'Once the organization approves, you get paid and an achievement record lands on your profile.',
-    'how.o1.title': 'Create your organization account',
-    'how.o1.text': "Register your organization's details and field.",
-    'how.o2.title': 'Post a short task',
-    'how.o2.text': 'Set the deliverables, required skills, duration, and value.',
-    'how.o3.title': 'Pick the right candidate',
-    'how.o3.text': 'See applicants ranked by match and by how well their skills are verified.',
-    'how.o4.title': 'Receive the deliverables',
-    'how.o4.text': 'Follow progress and receive the work through the platform on the agreed date.',
-    'how.o5.title': 'Approve and rate',
-    'how.o5.text': "Once you approve, the student is paid and the achievement record is added to their profile.",
-    'tasks.title': 'Open tasks now',
-    'tasks.sub': 'Short tasks from real organizations waiting for your skills.',
-    'tasks.t1.org': 'Namaa Tech Solutions',
-    'tasks.t1.title': 'Booking app interface for a fitness center',
-    'tasks.t1.amount': 'SAR 1,200',
-    'tasks.t1.days': '10 days',
-    'tasks.t1.hours': '12 hrs/week',
-    'tasks.t2.org': 'Ofoq Consulting',
-    'tasks.t2.title': 'Sales analytics dashboard in Power BI',
-    'tasks.t2.amount': 'SAR 1,500',
-    'tasks.t2.days': '14 days',
-    'tasks.t2.hours': '10 hrs/week',
-    'tasks.t3.org': 'Rukn Al-Sabah Café',
-    'tasks.t3.title': 'Visual identity for a new café',
-    'tasks.t3.amount': 'SAR 1,000',
-    'tasks.t3.days': '12 days',
-    'tasks.t3.hours': '10 hrs/week',
-    'cat.design': 'Design',
-    'cat.data': 'Data & analytics',
-    'tasks.more': 'View all tasks →',
-    'levels.title': 'Skill verification levels',
-    'levels.sub': 'Organizations see the level of every skill. It rises through review and through proof in real projects.',
-    'levels.l1': 'Self-declared',
-    'levels.l1.text': 'Stated by the student.',
-    'levels.l2': 'Work reviewed',
-    'levels.l2.text': 'A reviewer checks samples of their work.',
-    'levels.l3': 'Verified ✓',
-    'levels.l3.text': 'Academic verification or a passed assessment.',
-    'levels.note': "When an organization approves a skill the student proved in a project, that skill's level rises automatically.",
-    'cmp.title': 'What sets us apart from freelancing platforms?',
-    'cmp.sub': 'The difference is in who takes part, and what you walk away with after each task.',
-    'cmp.them': 'General freelancing platforms',
-    'cmp.r1': 'Applicants',
-    'cmp.r1.them': 'Anyone, usually competing on price',
-    'cmp.r1.ours': 'University students and graduates only',
-    'cmp.r2': 'Work size',
-    'cmp.r2.them': 'Projects of all sizes',
-    'cmp.r2.ours': "Short tasks with clear deliverables that fit a student's schedule",
-    'cmp.r3': 'Skills',
-    'cmp.r3.them': 'Mostly self-claimed',
-    'cmp.r3.ours': 'Verification levels: declared, reviewed, verified, and strengthened with every project',
-    'cmp.r4': 'What the student gets',
-    'cmp.r4.them': 'Income',
-    'cmp.r4.ours': 'Income, a verifiable achievement record, and hands-on experience',
-    'cmp.r5': 'What the organization gets',
-    'cmp.r5.them': 'Many candidates that are hard to assess',
-    'cmp.r5.ours': 'Candidates ranked by match and verification level',
-    'faq.title': 'FAQ',
-    'faq.sub': 'Quick answers to the most common questions.',
-    'faq.q1': 'Who can join?',
-    'faq.a1': 'University students and graduates complete tasks, and organizations of any size post them. Students verify their university affiliation when they sign up.',
-    'faq.q2': 'How does the platform verify my skills?',
-    'faq.a2': 'Every skill starts as "self-declared", rises to "reviewed" after your work samples are reviewed, and to "verified" through academic verification or a passed assessment. An organization approving your work on a project also raises its level automatically.',
-    'faq.q3': 'How are payments protected?',
-    'faq.a3': "The organization deposits the task value with the platform before work starts, and the student is paid only after the delivery is approved. That way both sides' rights are protected.",
-    'faq.q4': "What if I'm not happy with the delivery?",
-    'faq.a4': "The organization can request revisions within the agreed deliverables. If the dispute isn't resolved, the platform team steps in to review the work and reach a fair decision.",
-    'faq.q5': 'How is work quality ensured?',
-    'faq.a5': "By matching tasks to verified skills, setting clear deliverables from the start, and a public rating after every task that builds the student's reputation and motivates quality.",
-    'start.title': 'Get started',
-    'start.text': 'Create your account as a student or an organization and start your first task.',
-    'footer.about': 'Short paid tasks that turn the skills of university students and graduates into verified experience.',
-    'footer.browse': 'Browse tasks',
-    'footer.post': 'Post a task',
-    'footer.copy': '© 2026 Skill for Value. All rights reserved.'
-  };
-  const AR = {'meta.title': document.title};
-  const langBtn = document.getElementById('lang-toggle');
+/* ================= الرئيسية / Home ================= */
+const HOW={
+  student:[
+    [['أنشئ ملف مهاراتك','Create your skills profile'],['أضف مهاراتك ومجالات اهتمامك وساعات تفرغك.','Add your skills, interests and weekly availability.']],
+    [['وثّق مهاراتك','Verify your skills'],['اطلب مراجعة أعمالك أو توثيقًا أكاديميًا لترتفع ثقة المنشآت بك.','Request a portfolio review or academic verification to build trust with businesses.']],
+    [['تقدّم للمهام المناسبة','Apply to matching tasks'],['ترى نسبة المطابقة لكل مهمة قبل التقديم.','See your match score for every task before you apply.']],
+    [['نفّذ وسلّم','Deliver the work'],['نفّذ المخرجات المتفق عليها وسلّمها عبر المنصة.','Complete the agreed deliverables and submit them on the platform.']],
+    [['وثّق خبرتك','Get your record'],['بعد اعتماد المنشأة تحصل على المبلغ وسجل إنجاز في ملفك.','Once the business approves, you get paid and an achievement record is added to your profile.']]
+  ],
+  business:[
+    [['انشر مهمتك','Post your task'],['صف المهمة والمخرجات والميزانية والمدة.','Describe the task, deliverables, budget and timeline.']],
+    [['راجع المرشحين','Review candidates'],['يرتّب النظام المرشحين حسب مستوى توثيق مهاراتهم وتخصصهم وتفرغهم.','Candidates are ranked by skill verification, field and availability.']],
+    [['اختر وتابع','Choose and follow up'],['اختر الطالب وتابع التنفيذ والتسليم من مكان واحد.','Pick a student and track progress and delivery in one place.']],
+    [['اعتمد وقيّم','Approve and rate'],['راجع التسليم، واطلب تعديلًا إن لزم، ثم اعتمد العمل وقيّمه.','Review the delivery, request changes if needed, then approve and rate the work.']]
+  ]
+};
+const FAQ=[
+ [['من يمكنه الانضمام؟','Who can join?'],['الطلاب والخريجون يسجّلون بالبريد الجامعي، والمنشآت تسجّل ببيانات المنشأة.','Students and graduates sign up with their university email; businesses sign up with their business details.']],
+ [['كيف يتحقق النظام من مهاراتي؟','How are my skills verified?'],['ثلاث طبقات: تصريح ذاتي، ثم مراجعة نماذج أعمالك، ثم توثيق أكاديمي أو اجتياز تقييم. وترتفع المهارة أيضًا عندما تعتمدها منشأة بعد مشروع فعلي.','Three layers: self-declaration, a review of your sample work, then academic verification or a passed assessment. A skill also levels up when a business confirms it after a real project.']],
+ [['كيف تُحمى المدفوعات؟','How are payments protected?'],['يُحجز مبلغ المهمة لحين التسليم، ويُفرج عنه للطالب بعد اعتماد المنشأة للعمل.','The task amount is held until delivery and released to the student once the business approves the work.']],
+ [['ماذا لو لم أكن راضيًا عن التسليم؟','What if I’m not happy with the delivery?'],['للمنشأة أن تطلب تعديلًا قبل الاعتماد. المخرجات محددة مسبقًا لكل مهمة، فيعرف الطرفان المطلوب بوضوح.','The business can request changes before approving. Deliverables are defined upfront for each task, so both sides know exactly what is expected.']],
+ [['كيف تُضمن جودة العمل؟','How is quality ensured?'],['يُقيَّم العمل بعد كل مهمة على أكثر من معيار، وتعتمد المطابقة على مستوى توثيق المهارة، ويتراكم للطالب سجل إنجازات، فتصبح الجودة سمعة يحرص عليها.','Every task is rated on several criteria, matching takes skill verification into account, and each student builds a growing record, so quality becomes a reputation worth protecting.']]
+];
+function howHTML(){
+  const steps=HOW[S.ui.howTab];
+  return `<div class="journey" style="--n:${steps.length}">${steps.map(s=>`<div class="j"><b>${esc(L(s[0]))}</b><span>${esc(L(s[1]))}</span></div>`).join('')}</div>`;
+}
+function heroCtas(){
+  if(S.role==='student')return `<a class="btn primary" href="#/tasks">${tr('browseTasks')}</a><a class="btn" href="#/profile">${tr('navProfile')}</a>`;
+  if(S.role==='business')return `<a class="btn primary" href="#/business">${tr('postTitle')}</a><a class="btn" href="#/matching">${tr('navMatching')}</a>`;
+  return `<button class="btn primary" data-act="goSignup" data-v="student">${tr('ctaStudent')}</button><button class="btn" data-act="goSignup" data-v="business">${tr('ctaBiz')}</button>`;
+}
+function home(){
+  const open=S.tasks.filter(t=>t.status==='open').slice(0,3);
+  const ctaText=S.role==='student'?tr('ctaStuText'):S.role==='business'?tr('ctaBizText'):tr('ctaText');
+  const ctaBtns=S.role==='student'?`<a class="btn gold" href="#/tasks">${tr('browseTasks')}</a>`:S.role==='business'?`<a class="btn gold" href="#/business">${tr('postTitle')}</a>`:`<div class="row"><button class="btn gold" data-act="goSignup" data-v="student">${tr('ctaStudent')}</button><button class="btn ghost" data-act="goSignup" data-v="business">${tr('ctaBiz')}</button></div>`;
+  const cmp=[
+    [['المتقدمون','Applicants'],['الجميع، والمنافسة غالبًا على السعر','Anyone; competition is often on price'],['طلاب وخريجو الجامعة فقط','University students and graduates only']],
+    [['حجم العمل','Work size'],['مشاريع بأحجام متفاوتة','Projects of any size'],['مهام قصيرة واضحة المخرجات تناسب وقت الطالب','Short tasks with clear deliverables that fit a student’s schedule']],
+    [['المهارات','Skills'],['ادعاءات ذاتية في الغالب','Mostly self-claimed'],['مستويات توثيق: مُعلنة، مُراجعة، موثّقة، وتتعزز بكل مشروع','Verification levels (declared, reviewed, verified) that grow with every project']],
+    [['ما يحصل عليه الطالب','What students get'],['دخل','Income'],['دخل وسجل إنجاز قابل للتحقق وخبرة عملية','Income, a verifiable achievement record and hands-on experience']],
+    [['ما تحصل عليه المنشأة','What businesses get'],['مرشحون كثر يصعب تقييمهم','Many candidates that are hard to assess'],['مرشحون مرتّبون بحسب المطابقة ومستوى التوثيق','Candidates ranked by match and verification level']]
+  ];
+  return `<section class="hero wrap">
+    <div>
+      <h1>${tr('heroTitle')}</h1>
+      <p class="sub">${tr('heroSub')}</p>
+      <div class="row cta">${heroCtas()}</div>
+      <p class="small muted" style="margin-top:14px">${tr('heroNote')}${S.role==='guest'?` <a class="link" href="#/tasks">${tr('browseTasks')}</a>`:''}</p>
+    </div>
+    <div class="cred" aria-label="${tr('credAria')}">
+      <div class="t">
+        <div class="row between"><b>${tr('credTask')}</b><span class="chip">${tr('credEx')}</span></div>
+        <div class="chips" style="margin-top:10px">${skillChip('figma','V')}${skillChip('html','V')}${skillChip('data','R')}</div>
+        <div class="split"><div><span class="small muted">${tr('credValue')}</span><b class="num">1,000 ${tr('cur')}</b></div><div class="g"><span class="small muted">${tr('credDur')}</span><b class="num">${tr('credDays')}</b></div></div>
+      </div>
+      <div class="perf"></div>
+      <div class="rec">
+        <div class="row between"><b>${tr('credRec')}</b><span>★ 4.8</span></div>
+        <p class="small" style="opacity:.9;margin-top:2px">${tr('credRecSub')}</p>
+        <p class="id">SFV-2026-0001</p>
+      </div>
+    </div>
+  </section>
 
-  function setLang(lang) {
-    const dict = lang === 'en' ? EN : AR;
-    document.documentElement.lang = lang;
-    document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
-    document.title = dict['meta.title'];
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.dataset.i18n;
-      if (!(key in AR)) AR[key] = el.textContent;
-      el.textContent = dict[key];
-    });
-    document.querySelectorAll('[data-i18n-html]').forEach(el => {
-      const key = el.dataset.i18nHtml;
-      if (!(key in AR)) AR[key] = el.innerHTML;
-      el.innerHTML = dict[key];
-    });
-    document.querySelectorAll('[data-i18n-attr]').forEach(el => {
-      const [attr, key] = el.dataset.i18nAttr.split(':');
-      if (!(key in AR)) AR[key] = el.getAttribute(attr);
-      el.setAttribute(attr, dict[key]);
-    });
-    langBtn.textContent = lang === 'en' ? 'العربية' : 'English';
-    langBtn.lang = lang === 'en' ? 'ar' : 'en';
+  <section class="wrap sec"><h2>${tr('whyTitle')}</h2><p class="lead">${tr('whyLead')}</p>
+    <div class="grid g3">
+      <div class="card"><h3>${tr('whyStu')}</h3><p class="muted" style="margin-top:6px">${tr('whyStuT')}</p></div>
+      <div class="card"><h3>${tr('whyBiz')}</h3><p class="muted" style="margin-top:6px">${tr('whyBizT')}</p></div>
+      <div class="card"><h3>${tr('whyTrust')}</h3><p class="muted" style="margin-top:6px">${tr('whyTrustT')}</p></div>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="how"><h2>${tr('howTitle')}</h2><p class="lead">${tr('howLead')}</p>
+    <div class="seg" role="group" style="margin-bottom:16px"><button data-act="howTab" data-v="student" aria-pressed="${S.ui.howTab==='student'}">${tr('tabStu')}</button><button data-act="howTab" data-v="business" aria-pressed="${S.ui.howTab==='business'}">${tr('tabBiz')}</button></div>
+    <div id="howBody">${howHTML()}</div>
+  </section>
+
+  <section class="wrap sec"><h2>${tr('homeTasks')}</h2>
+    <div class="grid g3" style="margin-top:16px">${open.map(taskCard).join('')}</div>
+    ${S.role!=='business'?`<p style="margin-top:16px"><a class="btn" href="#/tasks">${tr('viewAll')}</a></p>`:''}
+  </section>
+
+  <section class="wrap sec"><h2>${tr('lvlTitle')}</h2><p class="lead">${tr('lvlLead')}</p>
+    <div class="grid g3">
+      <div class="card"><span class="chip d">${tr('skD')}</span><p class="muted" style="margin-top:10px">${tr('lvlDecl')}</p></div>
+      <div class="card"><span class="chip r">${tr('skR')}</span><p class="muted" style="margin-top:10px">${tr('lvlRev')}</p></div>
+      <div class="card"><span class="chip v">${tr('skV')} ✓</span><p class="muted" style="margin-top:10px">${tr('lvlVer')}</p></div>
+    </div>
+    <p class="note" style="margin-top:14px;max-width:70ch">${tr('lvlNote')}</p>
+  </section>
+
+  <section class="wrap sec"><h2>${tr('cmpTitle')}</h2><p class="lead">${tr('cmpLead')}</p>
+    <div class="scroll-x"><table class="cmp"><thead><tr><th></th><th>${tr('cmpGen')}</th><th>${esc(L(BR))}</th></tr></thead><tbody>
+      ${cmp.map(r=>`<tr><td><b>${esc(L(r[0]))}</b></td><td>${esc(L(r[1]))}</td><td>${esc(L(r[2]))}</td></tr>`).join('')}
+    </tbody></table></div>
+  </section>
+
+  <section class="wrap sec" id="faq" style="max-width:860px"><h2>${tr('faqTitle')}</h2>
+    <div style="margin-top:16px">${FAQ.map(q=>`<details class="qa"><summary>${esc(L(q[0]))}</summary><p>${esc(L(q[1]))}</p></details>`).join('')}</div>
+  </section>
+
+  <section class="wrap sec"><div class="card raise row between" style="background:var(--brand);color:var(--onbrand);border-color:var(--brand)">
+    <div><h2 style="font-size:1.3rem">${tr('ctaTitle')}</h2><p style="opacity:.9">${ctaText}</p></div>
+    ${ctaBtns}
+  </div></section>`;
+}
+
+/* ================= الدخول / Auth ================= */
+function auth(){
+  const tab=S.ui.authTab,st=S.ui.authRole==='student',signup=tab==='signup';
+  return `<div class="wrap" style="max-width:640px"><div class="ph"><h1>${tr(signup?'signup':'login')}</h1><p>${tr(signup?'authSignupSub':'authLoginSub')}</p></div>
+  <div class="card raise">
+    <div class="seg" role="group" style="margin-bottom:16px">
+      <button data-act="set" data-k="authTab" data-v="signup" aria-pressed="${signup}">${tr('tabNew')}</button>
+      <button data-act="set" data-k="authTab" data-v="login" aria-pressed="${!signup}">${tr('tabHave')}</button></div>
+    <div class="field" style="margin-bottom:14px"><span>${tr('accType')}</span><div class="chips">
+      <button class="chip ${st?'on':''}" data-act="set" data-k="authRole" data-v="student">${tr('roleStudent')}</button>
+      <button class="chip ${!st?'on':''}" data-act="set" data-k="authRole" data-v="business">${tr('roleBiz')}</button></div></div>
+    <div class="form">
+      ${signup?`<label class="field"><span>${tr(st?'fNameStu':'fNameBiz')}</span><input data-bind="auName" value="${esc(vf('auName'))}" autocomplete="name"></label>`:''}
+      <label class="field"><span>${tr(st?'fMailStu':'fMailBiz')}</span><input type="email" dir="ltr" data-bind="auMail" value="${esc(vf('auMail'))}" autocomplete="email"></label>
+      <label class="field"><span>${tr('fPass')}</span><input type="password" dir="ltr" data-bind="auPass" value="${esc(vf('auPass'))}" autocomplete="${signup?'new-password':'current-password'}"></label>
+      ${signup&&st?`<div class="grid g2"><label class="field"><span>${tr('fMajor')}</span><input data-bind="auMajor" value="${esc(vf('auMajor'))}"></label>
+        <label class="field"><span>${tr('fStatus')}</span><select data-bind="auLevel"><option value="student" ${vf('auLevel')!=='grad'?'selected':''}>${esc(L(LV.student))}</option><option value="grad" ${vf('auLevel')==='grad'?'selected':''}>${esc(L(LV.grad))}</option></select></label></div>`:''}
+      ${signup&&!st?`<div class="grid g2"><label class="field"><span>${tr('fSector')}</span><input data-bind="auSector" value="${esc(vf('auSector'))}"></label>
+        <label class="field"><span>${tr('fCR')}</span><input dir="ltr" data-bind="auCR" value="${esc(vf('auCR'))}"><small>${tr('fCRHint')}</small></label></div>`:''}
+      <button class="btn primary" data-act="auth">${tr(signup?'submitSignup':'submitLogin')}</button>
+    </div>
+    ${signup?`<p class="small muted" style="margin-top:12px">${tr(st?'afterStu':'afterBiz')}</p>`:''}
+  </div></div>`;
+}
+
+/* ================= ملف الطالب / Profile ================= */
+function profile(){
+  const g=gate(['student'],'gateStudent');if(g)return g;
+  const s=me();const keys=Object.keys(s.skills);
+  const done=S.tasks.filter(t=>t.assignee===s.id&&t.status==='completed');
+  const earn=done.reduce((a,t)=>a+t.budget,0);
+  const rs=done.map(avgRate);const avg=rs.length?rs.reduce((a,b)=>a+b,0)/rs.length:0;
+  const ver=keys.filter(k=>s.skills[k]==='V').length;
+  const comp=Math.min(100,40+(keys.length>=3?20:0)+(ver>=1?20:0)+((s.portfolio||s.fields.length)?20:0));
+  const avail=Object.keys(SK).filter(k=>!s.skills[k]);
+  const meta=[L(s.major),L(LV[s.level]||s.level)].filter(Boolean).concat(tr('profHours',s.hours)).join(' · ');
+  return `<div class="wrap"><div class="ph"><h1>${tr('profTitle')}</h1><p>${tr('profLead')}</p></div>
+  <div class="grid side">
+    <div class="stack">
+      <div class="card"><div class="row"><div class="avatar">${esc(initials(L(s.name)))}</div>
+        <div style="flex:1"><h2 style="font-size:1.3rem">${esc(L(s.name))}</h2><p class="muted">${esc(meta)}</p>
+        ${s.portfolio?`<p class="small muted" dir="ltr" style="text-align:start">${esc(s.portfolio)}</p>`:''}</div></div>
+        <div style="margin-top:16px"><div class="row between small"><span>${tr('profComplete')}</span><b class="num">${comp}%</b></div><div class="meter" style="margin-top:6px"><i style="width:${comp}%"></i></div></div></div>
+      <div class="card"><h3>${tr('skillsTitle')}</h3>
+        <div class="stack" style="margin-top:8px">${keys.length?keys.map(k=>{const st=s.skills[k];
+          let act='';
+          if(st==='D')act=`<button class="btn sm" data-act="verify" data-k="${esc(k)}">${tr('reqReview')}</button>`;
+          else if(st==='R')act=`<button class="btn sm" data-act="verify" data-k="${esc(k)}">${tr('reqAcad')}</button>`;
+          else if(st==='P')act=`<span class="small muted">${tr('underReview')}</span>`;
+          return `<div class="row between" style="padding:10px 0;border-bottom:1px solid var(--line)"><div class="row"><b>${esc(L(SK[k]))}</b><span class="chip ${SK_CLASS[st]}">${skLabel(st)}${st==='V'?' ✓':''}</span></div>${act}</div>`}).join(''):`<div class="empty"><b>${tr('noSkills')}</b>${tr('noSkillsHint')}</div>`}</div>
+        ${avail.length?`<div class="row" style="margin-top:14px"><select id="newSkill" style="padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);flex:1;min-width:180px" aria-label="${tr('newSkillAria')}">${avail.map(k=>`<option value="${k}">${esc(L(SK[k]))}</option>`).join('')}</select>
+          <button class="btn primary" data-act="addSkill">${tr('addSkill')}</button></div>`:''}</div>
+      <div class="card"><h3>${tr('intTitle')}</h3><p class="small muted">${tr('intLead')}</p>
+        <div class="chips" style="margin-top:10px">${Object.keys(CATS).map(c=>`<button class="chip ${s.fields.includes(c)?'on':''}" data-act="toggleField" data-k="${c}" aria-pressed="${s.fields.includes(c)}">${esc(L(CATS[c]))}</button>`).join('')}</div>
+        <label class="field" style="margin-top:14px;max-width:260px"><span>${tr('hoursLabel')}</span><select data-hours="1">${[4,6,8,10,12,15,20].map(h=>`<option value="${h}" ${s.hours===h?'selected':''}>${h}</option>`).join('')}</select></label></div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>${tr('summaryTitle')}</h3>
+        <div class="grid g2" style="margin-top:10px"><div class="kpi card flat"><b>${done.length}</b><span>${tr('kDone')}</span></div><div class="kpi card flat"><b>${avg?avg.toFixed(1):'—'}</b><span>${tr('kRating')}</span></div></div>
+        <div class="kpi card flat" style="margin-top:12px"><b>${fmt(earn)} <small style="font-size:.9rem">${tr('cur')}</small></b><span>${tr('kEarn')}</span></div>
+        <p style="margin-top:12px"><a class="btn" href="#/review">${tr('viewRecords')}</a></p></div>
+      <div class="card"><h3>${tr('lvlCardTitle')}</h3><div class="stack small" style="margin-top:8px">
+        <div><span class="chip d">${tr('skD')}</span> ${tr('lvlDecl')}</div>
+        <div><span class="chip r">${tr('skR')}</span> ${tr('lvlRev')}</div>
+        <div><span class="chip v">${tr('skV')} ✓</span> ${tr('lvlVer')}</div>
+        <p class="muted">${tr('lvlNote')}</p></div></div>
+    </div>
+  </div></div>`;
+}
+
+/* ================= المهام / Tasks ================= */
+function taskCard(t){
+  const isStu=S.role==='student';
+  const r=isStu?match(me(),t):null;
+  const applied=isStu&&S.apps.some(a=>a.task===t.id&&a.student===S.me);
+  const sk=isStu?me().skills:{};
+  return `<a class="card tcard" href="#/task/${t.id}">
+    <div class="row between"><span class="small muted">${esc(L(bz(t.biz).name))}</span>${r?`<span class="pill ${pillCls(r.total)}" title="${esc(tr('matchTitle'))}">${r.total}%</span>`:`<span class="chip">${esc(L(CATS[t.cat]))}</span>`}</div>
+    <h3>${esc(L(t.title))}</h3>
+    <div class="chips">${t.skills.map(k=>skillChip(k,sk[k],!isStu)).join('')}</div>
+    <div class="row between" style="margin-top:auto"><span>${money(t.budget)}</span><span class="small muted">${tr('daysN',t.days)} · ${tr('hoursWk',t.hours)}</span></div>
+    ${applied?`<span class="chip p">${tr('applied')}</span>`:''}</a>`;
+}
+function curSort(){
+  if(S.ui.sort==='match'&&S.role!=='student')return 'new';
+  return S.ui.sort||(S.role==='student'?'match':'new');
+}
+function taskCards(){
+  let list=S.tasks.filter(t=>t.status==='open');
+  if(S.ui.cat!=='all')list=list.filter(t=>t.cat===S.ui.cat);
+  const q=(S.ui.q||'').trim().toLowerCase();
+  if(q)list=list.filter(t=>(both(t.title)+' '+t.skills.map(k=>both(SK[k])).join(' ')+' '+both(bz(t.biz).name)).toLowerCase().includes(q));
+  const sort=curSort();
+  if(sort==='new')list=list.slice().reverse();
+  if(sort==='match'){const m=t=>match(me(),t).total;list.sort((a,b)=>m(b)-m(a))}
+  if(sort==='pay')list.sort((a,b)=>b.budget-a.budget);
+  if(sort==='short')list.sort((a,b)=>a.days-b.days);
+  if(!list.length)return `<div class="card empty" style="grid-column:1/-1"><b>${tr('noTasks')}</b>${tr('noTasksHint')}</div>`;
+  return list.map(taskCard).join('');
+}
+function tasks(){
+  const catBtn=(k,l)=>`<button class="chip ${S.ui.cat===k?'on':''}" data-act="set" data-k="cat" data-v="${k}">${l}</button>`;
+  const sort=curSort();
+  const opt=(v,k)=>`<option value="${v}" ${sort===v?'selected':''}>${tr(k)}</option>`;
+  return `<div class="wrap"><div class="ph"><h1>${tr('tasksTitle')}</h1><p>${tr(S.role==='student'?'tasksLeadStu':'tasksLeadGuest')}</p></div>
+  <div class="card flat" style="margin-bottom:18px"><div class="row between">
+    <div class="chips">${catBtn('all',tr('catAll'))}${Object.entries(CATS).map(([k,l])=>catBtn(k,esc(L(l)))).join('')}</div>
+    <div class="row"><input data-live="q" placeholder="${esc(tr('searchPh'))}" value="${esc(S.ui.q)}" aria-label="${tr('searchAria')}" style="padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg)">
+      <select data-sel="sort" aria-label="${tr('sortAria')}" style="padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg)">
+        ${opt('new','sortNew')}${S.role==='student'?opt('match','sortMatch'):''}${opt('pay','sortPay')}${opt('short','sortShort')}</select></div></div></div>
+  <div class="grid g3" id="taskList">${taskCards()}</div></div>`;
+}
+
+/* ================= تفاصيل المهمة / Task detail ================= */
+function task(){
+  const t=S.tasks.find(x=>x.id===S.param);
+  if(!t)return `<div class="wrap"><div class="card empty"><b>${tr('notFound')}</b><a class="btn" href="#/${S.role==='business'?'business':'tasks'}">${tr('backToTasks')}</a></div></div>`;
+  const isStu=S.role==='student';
+  const b=bz(t.biz);
+  const r=isStu?match(me(),t):null;
+  const applied=isStu?S.apps.find(a=>a.task===t.id&&a.student===S.me):null;
+  let side='';
+  if(isStu&&t.status==='open'&&!applied){
+    side=`<div class="card raise"><h3>${tr('applyTitle')}</h3><div class="form" style="margin-top:10px">
+      <label class="field"><span>${tr('msgLabel')}</span><textarea data-bind="applyMsg" placeholder="${esc(tr('msgPh'))}">${esc(vf('applyMsg'))}</textarea></label>
+      <label class="field"><span>${tr('daysLabel')}</span><input type="number" min="1" max="60" data-bind="applyDays" value="${esc(vf('applyDays')||t.days)}"></label>
+      <button class="btn primary" data-act="apply" data-id="${t.id}">${tr('sendApp')}</button></div></div>`;
+  }else if(applied){
+    side=`<div class="card"><span class="chip p">${tr('applied')}</span><p class="small muted" style="margin-top:8px">${tr('appliedNote')}</p></div>`;
+  }else if(S.role==='guest'){
+    side=`<div class="card"><h3>${tr('applyTitle')}</h3><p class="small muted" style="margin-top:6px">${tr('guestApply')}</p><div class="row" style="margin-top:12px"><button class="btn primary" data-act="goSignup" data-v="student">${tr('signup')}</button><button class="btn" data-act="goLogin" data-v="student">${tr('login')}</button></div></div>`;
+  }else if(!isStu){
+    side=`<div class="card"><p class="small muted">${tr('bizNote')}</p></div>`;
+  }else{side=`<div class="card"><span class="chip">${stLabel(t.status)}</span></div>`}
+  const meta=[L(b.name),L(b.sector),L(CATS[t.cat])].filter(Boolean).join(' · ');
+  return `<div class="wrap"><p class="small"><a href="#/${S.role==='business'?'business':'tasks'}" class="muted">${tr('back')}</a></p>
+  <div class="ph"><h1>${esc(L(t.title))}</h1><p>${esc(meta)}</p></div>
+  <div class="grid side">
+    <div class="stack">
+      <div class="card"><h3>${tr('descTitle')}</h3><p class="muted" style="margin-top:6px">${esc(L(t.desc))}</p>
+        <hr class="hr"><h3>${tr('delivTitle')}</h3><ul style="margin:10px 0 0;padding-inline-start:20px">${t.deliv.map(d=>`<li>${esc(L(d))}</li>`).join('')}</ul></div>
+      <div class="card"><h3>${tr('skillsReq')}</h3><div class="stack" style="margin-top:8px">${t.skills.map(k=>{const st=isStu?me().skills[k]:null;return `<div class="row between"><b>${esc(L(SK[k]))}</b>${isStu?(st?`<span class="chip ${SK_CLASS[st]}">${tr('youHave',skLabel(st))}</span>`:`<span class="chip no">${tr('notAdded')}</span>`):''}</div>`}).join('')}</div></div>
+      ${r&&t.status==='open'?`<div class="card"><div class="row"><div class="ring" style="--p:${r.total}"><span>${r.total}%</span></div><div><h3>${tr('yourMatch')}</h3><p class="small muted">${tr('matchParts',r.parts.skills,r.parts.field,r.parts.avail)}</p></div></div></div>`:''}
+    </div>
+    <div class="stack">
+      <div class="card"><h3>${tr('budgetTitle')}</h3>
+        <div class="row between" style="margin-top:8px"><span class="muted">${tr('budgetFor')}</span>${money(t.budget)}</div>
+        <p class="small muted" style="margin-top:10px">${tr('durLine',t.days,t.hours)}</p></div>
+      ${side}
+    </div></div></div>`;
+}
+
+/* ================= لوحة المنشأة / Business ================= */
+function business(){
+  const g=gate(['business'],'gateBiz');if(g)return g;
+  const b=bz(S.biz);const mine=S.tasks.filter(t=>t.biz===S.biz);
+  const sel=Array.isArray(vf('postSkills'))?vf('postSkills'):[];
+  const spent=mine.filter(t=>t.status==='completed').reduce((a,t)=>a+t.budget,0);
+  return `<div class="wrap"><div class="ph"><h1>${tr('bizTitle')}</h1><p>${tr('bizLead',esc(L(b.name)))}</p></div>
+  <div class="grid g4" style="margin-bottom:20px">
+    <div class="card kpi"><b>${mine.length}</b><span>${tr('kPosted')}</span></div>
+    <div class="card kpi"><b>${mine.filter(t=>t.status==='open').reduce((a,t)=>a+applicants(t.id).length,0)}</b><span>${tr('kNewApps')}</span></div>
+    <div class="card kpi"><b>${mine.filter(t=>['assigned','in_progress','submitted'].includes(t.status)).length}</b><span>${tr('kActive')}</span></div>
+    <div class="card kpi"><b>${fmt(spent)}</b><span>${tr('kPaid')}</span></div></div>
+  <div class="grid side">
+    <div class="card"><h3>${tr('myTasks')}</h3><div class="stack" style="margin-top:10px">${mine.length?mine.map(t=>`<div class="row between" style="padding:10px 0;border-bottom:1px solid var(--line)">
+      <div><b>${esc(L(t.title))}</b><div class="small muted">${stLabel(t.status)} · ${fmt(t.budget)} ${tr('cur')}${t.status==='open'?' · '+tr('applicantsN',applicants(t.id).length):''}</div></div>
+      <div class="row">${t.status==='open'?`<button class="btn sm" data-act="openMatch" data-id="${t.id}">${tr('viewCands')}</button>`:`<a class="btn sm" href="#/projects">${tr('follow')}</a>`}</div></div>`).join(''):`<div class="empty"><b>${tr('noPosted')}</b>${tr('noPostedHint')}</div>`}</div></div>
+    <div class="card raise"><h3>${tr('postTitle')}</h3><div class="form" style="margin-top:10px">
+      <label class="field"><span>${tr('fTitle')}</span><input data-bind="postTitle" value="${esc(vf('postTitle'))}" placeholder="${esc(tr('fTitlePh'))}"></label>
+      <label class="field"><span>${tr('fCat')}</span><select data-bind="postCat">${Object.entries(CATS).map(([k,l])=>`<option value="${k}" ${vf('postCat')===k?'selected':''}>${esc(L(l))}</option>`).join('')}</select></label>
+      <label class="field"><span>${tr('fDesc')}</span><textarea data-bind="postDesc">${esc(vf('postDesc'))}</textarea></label>
+      <label class="field"><span>${tr('fDeliv')}</span><textarea data-bind="postDeliv" placeholder="${esc(tr('fDelivPh'))}">${esc(vf('postDeliv'))}</textarea></label>
+      <div class="field"><span>${tr('fSkills')}</span><div class="chips">${Object.keys(SK).map(k=>`<button type="button" class="chip ${sel.includes(k)?'on':''}" data-act="togglePostSkill" data-k="${k}" aria-pressed="${sel.includes(k)}">${esc(L(SK[k]))}</button>`).join('')}</div></div>
+      <div class="grid g2"><label class="field"><span>${tr('fBudget')}</span><input type="number" min="100" step="50" data-bind="postBudget" value="${esc(vf('postBudget'))}"></label>
+        <label class="field"><span>${tr('fDays')}</span><input type="number" min="1" data-bind="postDays" value="${esc(vf('postDays'))}"></label></div>
+      <button class="btn primary" data-act="post">${tr('postBtn')}</button></div></div>
+  </div></div>`;
+}
+
+/* ================= المرشحون / Matching ================= */
+function matching(){
+  const g=gate(['business'],'gateBiz');if(g)return g;
+  const open=S.tasks.filter(t=>t.biz===S.biz&&t.status==='open');
+  if(!open.length)return `<div class="wrap"><div class="ph"><h1>${tr('matchPageTitle')}</h1></div><div class="card empty"><b>${tr('noOpen')}</b>${tr('noOpenHint')}<p style="margin-top:12px"><a class="btn primary" href="#/business">${tr('postTitle')}</a></p></div></div>`;
+  const t=open.find(x=>x.id===S.ui.matchTask)||open[0];
+  const ranked=S.students.map(s=>({s,r:match(s,t),applied:S.apps.find(a=>a.task===t.id&&a.student===s.id)})).sort((a,b)=>b.r.total-a.r.total||(b.applied?1:0)-(a.applied?1:0));
+  return `<div class="wrap"><div class="ph"><h1>${tr('matchPageTitle')}</h1><p>${tr('matchLead')}</p></div>
+  <div class="card flat" style="margin-bottom:18px"><label class="field"><span>${tr('taskLabel')}</span><select data-sel="matchTask">${open.map(x=>`<option value="${x.id}" ${x.id===t.id?'selected':''}>${esc(L(x.title))}</option>`).join('')}</select></label>
+    <div class="chips" style="margin-top:10px">${t.skills.map(k=>skillChip(k,null,true)).join('')}</div></div>
+  <div class="grid side"><div class="stack">${ranked.map(({s,r,applied})=>`<div class="card"><div class="row">
+      <div class="ring" style="--p:${r.total}"><span>${r.total}%</span></div>
+      <div style="flex:1;min-width:200px"><div class="row"><b>${esc(L(s.name))}</b>${applied?`<span class="chip p">${tr('appliedChip')}</span>`:''}</div>
+        <p class="small muted">${esc([L(s.major),L(LV[s.level]||s.level),tr('hoursWk',s.hours)].filter(Boolean).join(' · '))}</p>
+        <div class="chips" style="margin-top:6px">${r.per.map(p=>skillChip(p.skill,p.status)).join('')}</div></div>
+      <button class="btn ${applied?'primary':''}" data-act="pick" data-id="${t.id}" data-s="${s.id}">${tr('pick')}</button></div>
+      <div class="grid g3" style="margin-top:12px;gap:10px">
+        <div><div class="row between small"><span>${tr('pSkills')}</span><b>${r.parts.skills}/70</b></div><div class="meter"><i style="width:${r.parts.skills/70*100}%"></i></div></div>
+        <div><div class="row between small"><span>${tr('pField')}</span><b>${r.parts.field}/15</b></div><div class="meter"><i style="width:${r.parts.field/15*100}%"></i></div></div>
+        <div><div class="row between small"><span>${tr('pAvail')}</span><b>${r.parts.avail}/15</b></div><div class="meter"><i style="width:${r.parts.avail/15*100}%"></i></div></div></div>
+      ${applied?`<p class="small muted" style="margin-top:10px">«${esc(L(applied.msg))}» — ${tr('proposedDays',applied.days)}</p>`:''}
+    </div>`).join('')}</div>
+    <div class="card" style="align-self:start"><h3>${tr('howCalc')}</h3>
+      <div class="stack small" style="margin-top:8px"><p>${tr('howSkills')}</p><p>${tr('howField')}</p><p>${tr('howAvail')}</p></div></div></div></div>`;
+}
+
+/* ================= المشاريع / Projects ================= */
+const CUR={assigned:1,in_progress:1,submitted:3,completed:5};
+function projects(){
+  const g=gate(['student','business'],'gateAny');if(g)return g;
+  const isStu=S.role==='student';
+  const list=S.tasks.filter(t=>t.status!=='open'&&(isStu?t.assignee===S.me:t.biz===S.biz));
+  const steps=['step1','step2','step3','step4','step5'].map(tr);
+  return `<div class="wrap"><div class="ph"><h1>${tr('projTitle')}</h1><p>${tr(isStu?'projSubStu':'projSubBiz')}</p></div>
+  <div class="stack">${list.length?list.map(t=>{
+    const c=CUR[t.status];const s=stu(t.assignee);
+    const stepper=`<div class="stepper">${steps.map((l,i)=>`<div class="s ${i<c?'done':i===c?'cur':''}"><i>${i<c?'✓':i+1}</i>${l}</div>`).join('')}</div>`;
+    let actions='';
+    if(isStu){
+      if(t.status==='assigned')actions=`<button class="btn primary" data-act="start" data-id="${t.id}">${tr('startWork')}</button>`;
+      if(t.status==='in_progress')actions=`<div class="form" style="width:100%"><label class="field"><span>${tr('deliverLabel')}</span><textarea data-bind="dl_${t.id}" placeholder="${esc(tr('deliverPh'))}">${esc(vf('dl_'+t.id))}</textarea></label><div><button class="btn primary" data-act="deliver" data-id="${t.id}">${tr('deliverBtn')}</button></div></div>`;
+      if(t.status==='submitted')actions=`<span class="chip p">${tr('awaiting')}</span>`;
+      if(t.status==='completed')actions=`<a class="btn" href="#/review">${tr('viewRecord')}</a>`;
+    }else{
+      if(t.status==='submitted')actions=`<button class="btn primary" data-act="goReview" data-id="${t.id}">${tr('reviewApprove')}</button><button class="btn" data-act="revise" data-id="${t.id}">${tr('reqChanges')}</button>`;
+      if(t.status==='completed')actions=`<span class="chip v">${tr('completedChip',esc(t.record))}</span>`;
+    }
+    return `<div class="card"><div class="row between"><div><h3>${esc(L(t.title))}</h3><p class="small muted">${esc(L(bz(t.biz).name))} · ${tr('studentIs',esc(L(s.name)))} · ${fmt(t.budget)} ${tr('cur')}</p></div>
+      <span class="chip ${t.status==='completed'?'v':''}">${stLabel(t.status)}</span></div>
+      ${stepper}
+      ${t.status!=='completed'?`<p class="small muted">${tr(t.status==='submitted'?'submittedNote':'heldNote')}</p>`:''}
+      ${t.delivery?`<div class="note" style="margin-top:10px"><b>${tr('deliveryNotes')}</b> ${esc(L(t.delivery))}</div>`:''}
+      ${t.revNote?`<div class="note" style="margin-top:10px"><b>${tr('changeReq')}</b> ${tr('revNoteText')}</div>`:''}
+      ${actions?`<div class="row" style="margin-top:12px">${actions}</div>`:''}</div>`}).join(''):`<div class="card empty"><b>${tr('emptyProj')}</b>${tr(isStu?'emptyProjStu':'emptyProjBiz')}<p style="margin-top:12px"><a class="btn primary" href="#/${isStu?'tasks':'matching'}">${tr(isStu?'browseTasks':'viewCands')}</a></p></div>`}</div></div>`;
+}
+
+/* ================= التقييم والإنجازات / Reviews & achievements ================= */
+function stars(k){const v=S.ui.rev[k]||0;return `<div class="stars" role="radiogroup">${[1,2,3,4,5].map(i=>`<button type="button" class="${i<=v?'on':''}" data-act="rate" data-k="${k}" data-v="${i}" aria-label="${tr('ofFive',i)}">★</button>`).join('')}</div>`}
+function recCard(t){
+  const s=stu(t.assignee);const a=avgRate(t);
+  return `<div class="cred"><div class="t"><div class="row between"><b>${esc(L(t.title))}</b><span class="chip v">${tr('verified')}</span></div>
+    <p class="small muted">${esc(L(s.name))} · ${esc(L(bz(t.biz).name))} · ${esc(t.doneAt)}</p>
+    <div class="chips" style="margin-top:10px">${t.skills.map(k=>skillChip(k,(t.proved||[]).includes(k)?'V':'D')).join('')}</div>
+    <p class="small muted" style="margin-top:6px">${tr('provedNote')}</p>
+    ${t.comment?`<p class="small" style="margin-top:8px">“${esc(L(t.comment))}”</p>`:''}</div>
+    <div class="perf"></div>
+    <div class="rec"><div class="row between"><span>★ ${a.toFixed(1)} / 5</span><span class="num">${fmt(t.budget)} ${tr('cur')}</span></div>
+      <p class="id">${esc(t.record)}</p></div></div>`;
+}
+function review(){
+  const g=gate(['student','business'],'gateAny');if(g)return g;
+  const isStu=S.role==='student';
+  const recs=S.tasks.filter(t=>t.status==='completed'&&(isStu?t.assignee===S.me:t.biz===S.biz));
+  let form='';
+  if(!isStu){
+    const pend=S.tasks.filter(t=>t.status==='submitted'&&t.biz===S.biz);
+    if(!pend.length){
+      form=`<div class="card empty"><b>${tr('noPending')}</b>${tr('noPendingHint')}</div>`;
+    }else{
+      const t=pend.find(x=>x.id===S.ui.revTask)||pend[0];const s=stu(t.assignee);
+      form=`<div class="card raise"><h3>${tr('evalTitle',esc(L(t.title)))}</h3><p class="small muted">${tr('studentIs',esc(L(s.name)))}</p>
+        ${pend.length>1?`<label class="field" style="margin-top:10px"><span>${tr('taskLabel')}</span><select data-sel="revTask">${pend.map(x=>`<option value="${x.id}" ${x.id===t.id?'selected':''}>${esc(L(x.title))}</option>`).join('')}</select></label>`:''}
+        ${t.delivery?`<div class="note" style="margin-top:10px">${esc(L(t.delivery))}</div>`:''}
+        <div class="grid g2" style="margin-top:14px">
+          <div><span class="small"><b>${tr('rQ')}</b></span>${stars('q')}</div><div><span class="small"><b>${tr('rC')}</b></span>${stars('c')}</div>
+          <div><span class="small"><b>${tr('rT')}</b></span>${stars('t')}</div><div><span class="small"><b>${tr('rF')}</b></span>${stars('f')}</div></div>
+        <div class="field" style="margin-top:14px"><span>${tr('provedTitle')}</span><div class="chips">${t.skills.map(k=>`<button type="button" class="chip ${(S.ui.proved||[]).includes(k)?'on':''}" data-act="toggleProved" data-k="${k}" aria-pressed="${(S.ui.proved||[]).includes(k)}">${esc(L(SK[k]))}</button>`).join('')}</div><small>${tr('provedHint')}</small></div>
+        <label class="field" style="margin-top:14px"><span>${tr('commentLabel')}</span><textarea data-bind="revComment">${esc(vf('revComment'))}</textarea></label>
+        <div class="row" style="margin-top:14px"><button class="btn primary" data-act="submitReview" data-id="${t.id}">${tr('approveBtn')}</button></div>
+        <p class="small muted" style="margin-top:8px">${tr('approveNote',fmt(t.budget))}</p></div>`;
+    }
   }
+  return `<div class="wrap"><div class="ph"><h1>${tr(isStu?'achTitle':'revTitle')}</h1><p>${tr(isStu?'achLead':'revLead')}</p></div>
+  ${form}
+  <div class="sec" style="margin-top:${form?'40px':'0'}"><h2 style="font-size:1.2rem;margin-bottom:12px">${tr(isStu?'recsStu':'recsBiz')}</h2>
+  ${recs.length?`<div class="grid g3">${recs.map(t=>`<div>${recCard(t)}<div class="row" style="margin-top:8px"><button class="btn sm" data-act="copy" data-v="${esc(t.record)}">${tr('copyRec')}</button></div></div>`).join('')}</div>`:`<div class="card empty"><b>${tr('noRecs')}</b>${tr('noRecsHint')}</div>`}</div></div>`;
+}
 
-  langBtn.addEventListener('click', () => {
-    const next = document.documentElement.lang === 'en' ? 'ar' : 'en';
-    localStorage.setItem('sfv-lang', next);
-    setLang(next);
-  });
+/* ================= العرض والتوجيه / Rendering & routing ================= */
+const VIEWS={home,auth,profile,tasks,task,business,matching,projects,review};
+function parse(){const h=(location.hash||'#/home').replace(/^#\//,'').split('/');S.route=VIEWS[h[0]]?h[0]:'home';S.param=h[1]||null}
+function render(){
+  // Organizations don't use the task list; send them to their dashboard
+  if(S.route==='tasks'&&S.role==='business'){S.route='business';history.replaceState(null,'','#/business')}
+  applyLang();
+  $('#app').innerHTML=header()+`<main id="main" tabindex="-1">${VIEWS[S.route]()}</main>`+footer();
+}
+window.addEventListener('hashchange',()=>{parse();render();window.scrollTo(0,0)});
 
-  // ?lang=en in the URL overrides the saved choice (handy for screenshots)
-  const startLang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('sfv-lang');
-  if (startLang === 'en') setLang('en');
+/* ================= التفاعل / Actions ================= */
+const A={
+  skip(el,e){e.preventDefault();const m=$('#main');if(m)m.focus()},
+  lang(){S.lang=S.lang==='ar'?'en':'ar';LS.set('sfv-lang',S.lang);render()},
+  set(el){S.ui[el.dataset.k]=el.dataset.v;render()},
+  howTab(el){S.ui.howTab=el.dataset.v;render()},
+  scrollTo(el,e){
+    e.preventDefault();const id=el.dataset.v;
+    const run=()=>{const n=document.getElementById(id);if(n)n.scrollIntoView({behavior:'smooth',block:'start'})};
+    if(S.route!=='home'){location.hash='#/home';setTimeout(run,60)}else run();
+  },
+  goSignup(el){S.ui.authTab='signup';if(el.dataset.v)S.ui.authRole=el.dataset.v;go('#/auth')},
+  goLogin(el){S.ui.authTab='login';if(el.dataset.v)S.ui.authRole=el.dataset.v;go('#/auth')},
+  logout(){S.role='guest';toast(tr('loggedOut'));go('#/home')},
+  auth(){
+    const f=S.ui.f,signup=S.ui.authTab==='signup',st=S.ui.authRole==='student';
+    const mail=(f.auMail||'').trim().toLowerCase(),name=(f.auName||'').trim();
+    if(!mail||!f.auPass){toast(tr('needMailPass'));return}
+    if(signup&&!name){toast(tr(st?'needNameStu':'needNameBiz'));return}
+    if(signup){
+      const id=(st?'s':'b')+'n'+(++S.seq);
+      if(st){S.students.push({id,name,major:(f.auMajor||'').trim(),level:f.auLevel==='grad'?'grad':'student',hours:8,fields:[],skills:{},pend:{},portfolio:''});S.me=id}
+      else{S.bizs.push({id,name,sector:(f.auSector||'').trim()});S.biz=id}
+      S.accounts.push({email:mail,role:st?'student':'business',id});
+      S.role=st?'student':'business';
+    }else{
+      const acc=S.accounts.find(a=>a.email===mail);
+      if(acc){S.role=acc.role;if(acc.role==='student')S.me=acc.id;else S.biz=acc.id}
+      else{S.role=st?'student':'business';if(st)S.me='s1';else S.biz='b2'}
+    }
+    ['auName','auMail','auPass','auMajor','auSector','auCR','auLevel'].forEach(k=>delete f[k]);
+    toast(tr(signup?'signedUp':'loggedIn'));
+    go(S.role==='business'?'#/business':'#/profile');
+  },
+  verify(el){const s=me(),k=el.dataset.k;s.pend[k]=s.skills[k];s.skills[k]='P';toast(tr('verifySent'));render()},
+  addSkill(){const k=$('#newSkill')?.value;if(!k)return;me().skills[k]='D';toast(tr('skillAdded'));render()},
+  toggleField(el){const s=me(),k=el.dataset.k;s.fields=s.fields.includes(k)?s.fields.filter(x=>x!==k):[...s.fields,k];render()},
+  apply(el){
+    const t=S.tasks.find(x=>x.id===el.dataset.id);const msg=(vf('applyMsg')||'').trim();
+    if(msg.length<10){toast(tr('msgShort'));return}
+    S.apps.push({id:'a'+(S.apps.length+1),task:t.id,student:S.me,msg,days:+vf('applyDays')||t.days});
+    S.ui.f.applyMsg='';S.ui.f.applyDays='';toast(tr('applySent'));render();
+  },
+  togglePostSkill(el){const k=el.dataset.k;const a=Array.isArray(S.ui.f.postSkills)?S.ui.f.postSkills:[];S.ui.f.postSkills=a.includes(k)?a.filter(x=>x!==k):[...a,k];render()},
+  post(){
+    const f=S.ui.f;const sk=Array.isArray(f.postSkills)?f.postSkills:[];
+    if(!(f.postTitle||'').trim()){toast(tr('needTitle'));return}
+    if(!(f.postDesc||'').trim()){toast(tr('needDesc'));return}
+    if(!sk.length){toast(tr('needSkill'));return}
+    if(!(+f.postBudget>=100)){toast(tr('minBudget'));return}
+    if(!(+f.postDays>=1)){toast(tr('needDays'));return}
+    const id='t'+(S.tasks.length+1);
+    S.tasks.push({id,title:f.postTitle.trim(),biz:S.biz,cat:f.postCat||'design',desc:f.postDesc.trim(),deliv:(f.postDeliv||'').split('\n').map(x=>x.trim()).filter(Boolean),skills:sk,budget:+f.postBudget,days:+f.postDays,hours:10,status:'open'});
+    ['postTitle','postDesc','postDeliv','postBudget','postDays','postSkills','postCat'].forEach(k=>delete f[k]);
+    S.ui.matchTask=id;toast(tr('posted'));render();
+  },
+  openMatch(el){S.ui.matchTask=el.dataset.id;go('#/matching')},
+  pick(el){
+    const t=S.tasks.find(x=>x.id===el.dataset.id);t.assignee=el.dataset.s;t.status='assigned';
+    S.apps=S.apps.filter(a=>a.task!==t.id||a.student===t.assignee);
+    toast(tr('picked',L(stu(t.assignee).name)));go('#/projects');
+  },
+  start(el){S.tasks.find(x=>x.id===el.dataset.id).status='in_progress';toast(tr('started'));render()},
+  deliver(el){
+    const t=S.tasks.find(x=>x.id===el.dataset.id);const d=(vf('dl_'+t.id)||'').trim();
+    if(d.length<5){toast(tr('needDelivery'));return}
+    t.delivery=d;t.revNote=null;t.status='submitted';toast(tr('submitted'));render();
+  },
+  revise(el){const t=S.tasks.find(x=>x.id===el.dataset.id);t.status='in_progress';t.revNote=true;toast(tr('changesSent'));render()},
+  goReview(el){S.ui.revTask=el.dataset.id;go('#/review')},
+  rate(el){S.ui.rev[el.dataset.k]=+el.dataset.v;render()},
+  toggleProved(el){const k=el.dataset.k;const a=S.ui.proved||[];S.ui.proved=a.includes(k)?a.filter(x=>x!==k):[...a,k];render()},
+  submitReview(el){
+    const r=S.ui.rev;if(!(r.q&&r.c&&r.t&&r.f)){toast(tr('rateAll'));return}
+    const t=S.tasks.find(x=>x.id===el.dataset.id);const s=stu(t.assignee);
+    t.rating={q:r.q,c:r.c,t:r.t,f:r.f};t.comment=vf('revComment');t.proved=S.ui.proved||[];
+    t.status='completed';t.doneAt=new Date().toISOString().slice(0,10);
+    t.record='SFV-2026-'+String(S.tasks.filter(x=>x.record).length+1).padStart(4,'0');
+    t.proved.forEach(k=>{const cur=s.skills[k];if(!cur)s.skills[k]='R';else if(cur==='D'||cur==='P')s.skills[k]='R';else if(cur==='R')s.skills[k]='V'});
+    S.ui.rev={};S.ui.proved=[];S.ui.f.revComment='';S.ui.revTask=null;
+    toast(tr('approved',t.record));render();
+  },
+  copy(el){try{navigator.clipboard.writeText(el.dataset.v).then(()=>toast(tr('copied')),()=>toast(tr('copyFail')))}catch(e){toast(tr('copyFail'))}}
+};
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-act]');if(!el)return;
+  const fn=A[el.dataset.act];if(fn)fn(el,e);
+});
+document.addEventListener('input',e=>{
+  const el=e.target;
+  if(el.dataset.live==='q'){S.ui.q=el.value;$('#taskList').innerHTML=taskCards();return}
+  const k=el.dataset.bind;if(k)S.ui.f[k]=el.value;
+});
+document.addEventListener('change',e=>{
+  const el=e.target;
+  if(el.dataset.sel){S.ui[el.dataset.sel]=el.value;render();return}
+  if(el.dataset.hours!==undefined){me().hours=+el.value;render();return}
+  const k=el.dataset.bind;if(k)S.ui.f[k]=el.value;
+});
+
+S.lang=LS.get('sfv-lang')==='en'?'en':'ar';
+parse();render();
 </script>
 </body>
 </html>
