@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مهارة مقابل قيمة | Skill for Value</title>
+<meta name="description" content="مهام قصيرة مدفوعة من منشآت حقيقية لطلاب الجامعة وخريجيها، تنتهي بسجل إنجاز موثّق.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F7F6; --surface:#FFFFFF; --ink:#10272B; --muted:#55706F; --line:#D6E0DE;
+  --brand:#0B6E66; --brand-d:#08504B; --onbrand:#FFFFFF; --mint:#E2F0ED;
+  --gold:#B9791A; --gold-fill:#F0C060; --gold-soft:#FBF1DA;
+  --ok:#1F7A4D; --ok-soft:#DFF1E6; --warn:#9A6A0B; --warn-soft:#FBF0D3;
+  --bad:#B3412F; --bad-soft:#F8E2DD;
+  --shadow:0 1px 2px rgba(16,39,43,.06),0 8px 24px rgba(16,39,43,.06);
+  --r-btn:8px; --r-card:14px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,Arial,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--brand)}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:1180px; margin:0 auto; padding:0 16px}
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:9px 16px; border-radius:var(--r-btn); border:1px solid var(--line);
+  background:var(--surface); color:var(--ink); font:inherit; font-weight:600;
+  font-size:.95rem; text-decoration:none; cursor:pointer; white-space:nowrap;
+  transition:background .15s, border-color .15s;
+}
+.btn:hover{border-color:var(--brand)}
+.btn-primary{background:var(--brand); border-color:var(--brand); color:var(--onbrand)}
+.btn-primary:hover{background:var(--brand-d); border-color:var(--brand-d)}
+.btn-lg{padding:12px 22px; font-size:1rem}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,.toggle button:focus-visible{
+  outline:3px solid var(--gold-fill); outline-offset:2px;
+}
+
+/* Header */
+.site-header{position:sticky; top:0; z-index:10; background:var(--surface); border-bottom:1px solid var(--line)}
+.topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; flex-wrap:wrap}
+.logo{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink)}
+.logo-mark{
+  width:40px; height:40px; border-radius:10px; background:var(--brand);
+  display:grid; place-items:center; flex-shrink:0;
+}
+.logo-text strong{display:block; font-size:1.05rem; line-height:1.3}
+.logo-text small{display:block; color:var(--muted); font-size:.75rem; direction:ltr; text-align:right}
+.actions{display:flex; gap:8px; flex-wrap:wrap}
+.nav{border-top:1px solid var(--line)}
+.nav ul{list-style:none; margin:0; padding:8px 16px; display:flex; gap:6px}
+.nav a{display:block; padding:6px 14px; border-radius:var(--r-btn); color:var(--muted); text-decoration:none; font-weight:500}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current="page"]{background:var(--mint); color:var(--brand-d); font-weight:600}
+
+/* Sections */
+section{padding:56px 0}
+.sec-title{font-size:1.6rem; font-weight:700; line-height:1.4}
+.sec-sub{color:var(--muted); margin-top:6px; margin-bottom:24px}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card); box-shadow:var(--shadow); padding:22px}
+.card h3{font-size:1.15rem; margin-bottom:6px}
+.card p{color:var(--muted)}
+.grid-3{display:grid; gap:16px}
+
+/* Hero */
+.hero{padding-top:48px}
+.hero-grid{display:grid; gap:32px; align-items:center}
+.hero h1{font-size:clamp(1.8rem,4.5vw,2.8rem); line-height:1.35; font-weight:700}
+.hero-lead{color:var(--muted); font-size:1.1rem; margin-top:14px; max-width:560px}
+.hero-ctas{display:flex; gap:10px; flex-wrap:wrap; margin-top:24px}
+.hero-note{color:var(--muted); font-size:.85rem; margin-top:14px}
+.hero-note a{font-weight:600}
+
+/* Example task card */
+.example{border-radius:var(--r-card); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--line)}
+.example-body{background:var(--surface); padding:20px}
+.example-head{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:12px}
+.example-head h3{font-size:1.05rem}
+.tags{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px}
+.tag{
+  display:inline-block; padding:3px 10px; border-radius:999px; font-size:.8rem; font-weight:500;
+  background:var(--bg); color:var(--muted); border:1px solid var(--line);
+}
+.tag-ok{background:var(--ok-soft); color:var(--ok); border-color:transparent}
+.tag-gold{background:var(--gold-soft); color:var(--warn); border-color:transparent}
+.tag-mint{background:var(--mint); color:var(--brand-d); border-color:transparent}
+.stats{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.stat{border-radius:10px; padding:12px 14px}
+.stat small{display:block; color:var(--muted); font-size:.8rem}
+.stat strong{font-size:1.25rem}
+.stat-mint{background:var(--mint)}
+.stat-gold{background:var(--gold-soft)}
+.record{background:var(--brand-d); color:var(--onbrand); padding:16px 20px}
+.record-top{display:flex; justify-content:space-between; align-items:center; gap:8px}
+.record-top strong{font-size:1rem}
+.record-rating{color:var(--gold-fill); font-weight:700; direction:ltr}
+.record p{opacity:.8; font-size:.85rem}
+.record code{display:block; margin-top:6px; font-family:inherit; font-size:.8rem; opacity:.75; direction:ltr; text-align:right; letter-spacing:.5px}
+
+/* How it works */
+.toggle{display:inline-flex; background:var(--mint); border-radius:999px; padding:4px; margin-bottom:20px}
+.toggle button{
+  font:inherit; font-weight:600; border:0; background:transparent; color:var(--muted);
+  padding:6px 18px; border-radius:999px; cursor:pointer;
+}
+.toggle button[aria-selected="true"]{background:var(--brand); color:var(--onbrand)}
+.steps{list-style:none; margin:0; padding:0; display:grid; gap:12px}
+.steps li{padding:18px 20px}
+.step-num{
+  width:30px; height:30px; border-radius:50%; background:var(--brand-d); color:var(--onbrand);
+  display:grid; place-items:center; font-weight:700; font-size:.95rem; margin-bottom:10px;
+}
+.steps h3{font-size:1.05rem; margin-bottom:2px}
+.steps p{font-size:.92rem}
+
+/* Tasks */
+.task .org{font-size:.85rem; color:var(--muted); display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px}
+.task h3{margin-bottom:12px}
+.task .tags{margin-bottom:14px}
+.task-meta{display:flex; gap:14px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:12px; font-size:.9rem; color:var(--muted)}
+.task-meta strong{color:var(--brand-d); font-size:1.05rem}
+.more{display:inline-block; margin-top:20px; font-weight:600}
+
+/* Skill levels */
+.badge{display:inline-block; padding:3px 12px; border-radius:999px; font-size:.85rem; font-weight:600; margin-bottom:12px}
+.badge-gray{background:var(--bg); color:var(--muted); border:1px solid var(--line)}
+.badge-gold{background:var(--gold-soft); color:var(--warn)}
+.badge-ok{background:var(--ok-soft); color:var(--ok)}
+.note{
+  margin-top:16px; background:var(--gold-soft); border-right:4px solid var(--gold);
+  border-radius:var(--r-btn); padding:12px 16px; font-size:.92rem;
+}
+
+/* Compare table */
+.table-wrap{overflow-x:auto; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card); box-shadow:var(--shadow)}
+table{width:100%; border-collapse:collapse; min-width:560px}
+th,td{padding:14px 18px; text-align:right; border-bottom:1px solid var(--line); vertical-align:top}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+thead th{background:var(--bg); font-size:.9rem; color:var(--muted)}
+thead th.ours{background:var(--mint); color:var(--brand-d)}
+tbody th{font-weight:600; width:22%}
+td{color:var(--muted)}
+td.ours{color:var(--ink); background:#F7FBFA; font-weight:500}
+
+/* FAQ */
+.faq{display:grid; gap:10px; max-width:820px}
+.faq details{background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card); padding:0 20px}
+.faq summary{cursor:pointer; font-weight:600; padding:16px 0; list-style:none; display:flex; justify-content:space-between; gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--brand); font-size:1.3rem; line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq details p{color:var(--muted); padding-bottom:16px}
+
+/* CTA */
+.cta{background:var(--brand-d); color:var(--onbrand); border-radius:var(--r-card); padding:36px 24px; text-align:center}
+.cta h2{font-size:1.6rem}
+.cta p{opacity:.85; margin:8px 0 20px}
+.cta .hero-ctas{justify-content:center; margin-top:0}
+.cta .btn-primary{background:var(--surface); color:var(--brand-d); border-color:var(--surface)}
+.cta .btn-primary:hover{background:var(--mint)}
+.cta .btn-ghost{background:transparent; color:var(--onbrand); border-color:rgba(255,255,255,.5)}
+.cta .btn-ghost:hover{border-color:var(--onbrand)}
+
+/* Footer */
+.site-footer{background:var(--surface); border-top:1px solid var(--line); padding:40px 0 20px; margin-top:56px}
+.footer-grid{display:grid; gap:24px}
+.footer-about p{color:var(--muted); font-size:.92rem; margin-top:10px; max-width:360px}
+.site-footer h4{margin:0 0 8px; font-size:1rem}
+.site-footer ul{list-style:none; margin:0; padding:0}
+.site-footer li a{color:var(--muted); text-decoration:none; display:inline-block; padding:3px 0}
+.site-footer li a:hover{color:var(--brand)}
+.copy{border-top:1px solid var(--line); margin-top:28px; padding-top:16px; color:var(--muted); font-size:.85rem}
+
+/* Desktop */
+@media (min-width:860px){
+  .hero-grid{grid-template-columns:1.1fr .9fr; gap:56px}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .steps{grid-template-columns:repeat(5,1fr)}
+  .footer-grid{grid-template-columns:2fr 1fr 1fr}
+  section{padding:72px 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap topbar">
+    <a href="#top" class="logo" aria-label="مهارة مقابل قيمة - الرئيسية">
+      <span class="logo-mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="#fff">
+          <rect x="2" y="11" width="4" height="7" rx="1"/>
+          <rect x="8" y="7" width="4" height="11" rx="1"/>
+          <rect x="14" y="2" width="4" height="16" rx="1"/>
+        </svg>
+      </span>
+      <span class="logo-text">
+        <strong>مهارة مقابل قيمة</strong>
+        <small>Skill for Value</small>
+      </span>
+    </a>
+    <div class="actions">
+      <a href="#" class="btn" lang="en">English</a>
+      <a href="#" class="btn">تسجيل الدخول</a>
+      <a href="#" class="btn btn-primary">إنشاء حساب</a>
+    </div>
+  </div>
+  <nav class="nav" aria-label="التنقل الرئيسي">
+    <ul class="wrap">
+      <li><a href="#top" aria-current="page">الرئيسية</a></li>
+      <li><a href="#tasks">المهام</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>مهارتك تستحق أن تتحول إلى خبرة موثّقة ودخل حقيقي</h1>
+        <p class="hero-lead">مهام قصيرة مدفوعة من منشآت حقيقية، تُطابَق مع مهاراتك المتحقَّق منها، وتنتهي بسجل إنجاز يُضاف إلى ملفك المهني.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn btn-primary btn-lg">أنا طالب أو خريج</a>
+          <a href="#" class="btn btn-lg">أنا منشأة</a>
+        </div>
+        <p class="hero-note">مخصصة لطلاب الجامعة وخريجيها، وليست منصة عمل حر عامة. <a href="#tasks">استعرض المهام</a></p>
+      </div>
+
+      <div class="example">
+        <div class="example-body">
+          <div class="example-head">
+            <h3>مهمة: تصميم واجهة تطبيق حجز</h3>
+            <span class="tag tag-mint">مثال</span>
+          </div>
+          <div class="tags">
+            <span class="tag tag-ok">Figma ✓</span>
+            <span class="tag tag-ok">HTML/CSS ✓</span>
+            <span class="tag tag-gold">تحليل البيانات</span>
+          </div>
+          <div class="stats">
+            <div class="stat stat-mint"><small>قيمة المهمة</small><strong>1,000 ر.س</strong></div>
+            <div class="stat stat-gold"><small>المدة</small><strong>10 أيام</strong></div>
+          </div>
+        </div>
+        <div class="record">
+          <div class="record-top">
+            <strong>سجل إنجاز موثّق</strong>
+            <span class="record-rating">★ 4.8</span>
+          </div>
+          <p>يُضاف تلقائيًا إلى ملفك بعد اعتماد المنشأة</p>
+          <code>SFV-2026-0001</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section id="why">
+    <div class="wrap">
+      <h2 class="sec-title">لماذا مهارة مقابل قيمة؟</h2>
+      <p class="sec-sub">مسار واضح يجمع الطالب والمنشأة على أساس مهارة موثّقة.</p>
+      <div class="grid-3">
+        <article class="card">
+          <h3>للطلاب والخريجين</h3>
+          <p>ابدأ بفرصة صغيرة، واكسب دخلًا، وابنِ سجلًا موثّقًا يثبت مهارتك لأي جهة.</p>
+        </article>
+        <article class="card">
+          <h3>للمنشآت</h3>
+          <p>انشر مهمة قصيرة بمخرجات واضحة، واختر من مواهب تثق بمستوى مهاراتها دون الحاجة إلى توظيف كامل.</p>
+        </article>
+        <article class="card">
+          <h3>ثقة من البداية</h3>
+          <p>لكل مهارة مستوى توثيق ظاهر، وتنتهي كل مهمة بتقييم وسجل إنجاز قابل للتحقق.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- How -->
+  <section id="how">
+    <div class="wrap">
+      <h2 class="sec-title">كيف تعمل المنصة</h2>
+      <p class="sec-sub">اختر مسارك لترى الخطوات.</p>
+      <div class="toggle" role="tablist" aria-label="اختر المسار">
+        <button type="button" role="tab" id="tab-students" aria-controls="steps-students" aria-selected="true">للطلاب</button>
+        <button type="button" role="tab" id="tab-orgs" aria-controls="steps-orgs" aria-selected="false" tabindex="-1">للمنشآت</button>
+      </div>
+
+      <ol class="steps" id="steps-students" role="tabpanel" aria-labelledby="tab-students">
+        <li class="card"><span class="step-num">1</span><h3>أنشئ ملف مهاراتك</h3><p>أضف مهاراتك ومجالات اهتمامك وساعات تفرغك.</p></li>
+        <li class="card"><span class="step-num">2</span><h3>وثّق مهاراتك</h3><p>اطلب مراجعة أعمالك أو توثيقًا أكاديميًا لترتفع ثقة المنشآت بك.</p></li>
+        <li class="card"><span class="step-num">3</span><h3>تقدّم للمهام المناسبة</h3><p>ترى نسبة المطابقة لكل مهمة قبل التقديم.</p></li>
+        <li class="card"><span class="step-num">4</span><h3>نفّذ وسلّم</h3><p>نفّذ المخرجات المتفق عليها وسلّمها عبر المنصة.</p></li>
+        <li class="card"><span class="step-num">5</span><h3>وثّق خبرتك</h3><p>بعد اعتماد المنشأة تحصل على المبلغ وسجل إنجاز في ملفك.</p></li>
+      </ol>
+
+      <ol class="steps" id="steps-orgs" role="tabpanel" aria-labelledby="tab-orgs" hidden>
+        <li class="card"><span class="step-num">1</span><h3>أنشئ حساب منشأتك</h3><p>سجّل بيانات المنشأة ومجال عملها.</p></li>
+        <li class="card"><span class="step-num">2</span><h3>انشر مهمة قصيرة</h3><p>حدّد المخرجات والمهارات المطلوبة والمدة والقيمة.</p></li>
+        <li class="card"><span class="step-num">3</span><h3>اختر المرشح المناسب</h3><p>ترى المتقدمين مرتّبين بحسب المطابقة ومستوى توثيق مهاراتهم.</p></li>
+        <li class="card"><span class="step-num">4</span><h3>استلم المخرجات</h3><p>تابع التنفيذ واستلم العمل عبر المنصة في الموعد المتفق عليه.</p></li>
+        <li class="card"><span class="step-num">5</span><h3>اعتمد وقيّم</h3><p>بعد اعتمادك يُصرف المبلغ للطالب ويُضاف سجل الإنجاز إلى ملفه.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Open tasks -->
+  <section id="tasks">
+    <div class="wrap">
+      <h2 class="sec-title">مهام مفتوحة الآن</h2>
+      <p class="sec-sub">مهام قصيرة من منشآت حقيقية تنتظر مهارتك.</p>
+      <div class="grid-3">
+        <article class="card task">
+          <div class="org"><span>نماء للحلول التقنية</span><span class="tag tag-mint">تصميم</span></div>
+          <h3>تصميم واجهة تطبيق حجز لمركز لياقة</h3>
+          <div class="tags"><span class="tag">Figma</span></div>
+          <div class="task-meta"><strong>1,200 ر.س</strong><span>10 يومًا</span><span>12 س/أسبوع</span></div>
+        </article>
+        <article class="card task">
+          <div class="org"><span>أفق للاستشارات</span><span class="tag tag-mint">بيانات وتحليل</span></div>
+          <h3>لوحة تحليلات مبيعات في Power BI</h3>
+          <div class="tags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">تحليل البيانات</span></div>
+          <div class="task-meta"><strong>1,500 ر.س</strong><span>14 يومًا</span><span>10 س/أسبوع</span></div>
+        </article>
+        <article class="card task">
+          <div class="org"><span>مقهى ركن الصباح</span><span class="tag tag-mint">تصميم</span></div>
+          <h3>هوية بصرية لمقهى ناشئ</h3>
+          <div class="tags"><span class="tag">تصميم الهوية البصرية</span><span class="tag">Adobe Illustrator</span></div>
+          <div class="task-meta"><strong>1,000 ر.س</strong><span>12 يومًا</span><span>10 س/أسبوع</span></div>
+        </article>
+      </div>
+      <a href="#" class="more">عرض كل المهام ←</a>
+    </div>
+  </section>
+
+  <!-- Skill levels -->
+  <section id="levels">
+    <div class="wrap">
+      <h2 class="sec-title">مستويات توثيق المهارة</h2>
+      <p class="sec-sub">يظهر مستوى كل مهارة للمنشآت، ويرتفع بالمراجعة وبإثباتها في مشاريع فعلية.</p>
+      <div class="grid-3">
+        <article class="card"><span class="badge badge-gray">مُعلنة</span><p>يصرّح بها الطالب.</p></article>
+        <article class="card"><span class="badge badge-gold">أعمالها مُراجعة</span><p>يراجع المراجع نماذج أعماله.</p></article>
+        <article class="card"><span class="badge badge-ok">موثّقة ✓</span><p>توثيق أكاديمي أو اجتياز تقييم.</p></article>
+      </div>
+      <p class="note">اعتماد المنشأة لمهارة أثبتها الطالب في مشروع يرفع مستواها تلقائيًا.</p>
+    </div>
+  </section>
+
+  <!-- Compare -->
+  <section id="compare">
+    <div class="wrap">
+      <h2 class="sec-title">ما الذي يميّزنا عن منصات العمل الحر؟</h2>
+      <p class="sec-sub">الفرق في من يشارك، وفي ما تخرج به بعد كل مهمة.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              <th scope="col">منصات العمل الحر العامة</th>
+              <th scope="col" class="ours">مهارة مقابل قيمة</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">المتقدمون</th><td>الجميع، والمنافسة غالبًا على السعر</td><td class="ours">طلاب وخريجو الجامعة فقط</td></tr>
+            <tr><th scope="row">حجم العمل</th><td>مشاريع بأحجام متفاوتة</td><td class="ours">مهام قصيرة واضحة المخرجات تناسب وقت الطالب</td></tr>
+            <tr><th scope="row">المهارات</th><td>ادعاءات ذاتية في الغالب</td><td class="ours">مستويات توثيق: مُعلنة، مُراجعة، موثّقة، وتتعزز بكل مشروع</td></tr>
+            <tr><th scope="row">ما يحصل عليه الطالب</th><td>دخل</td><td class="ours">دخل وسجل إنجاز قابل للتحقق وخبرة عملية</td></tr>
+            <tr><th scope="row">ما تحصل عليه المنشأة</th><td>مرشحون كثر يصعب تقييمهم</td><td class="ours">مرشحون مرتّبون بحسب المطابقة ومستوى التوثيق</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <h2 class="sec-title">أسئلة شائعة</h2>
+      <p class="sec-sub">إجابات سريعة عن أكثر ما يُسأل عنه.</p>
+      <div class="faq">
+        <details>
+          <summary>من يمكنه الانضمام؟</summary>
+          <p>طلاب الجامعة وخريجوها كمنفّذين للمهام، والمنشآت بمختلف أحجامها كناشرين لها. يُطلب من الطالب التحقق من انتمائه الجامعي عند التسجيل.</p>
+        </details>
+        <details>
+          <summary>كيف يتحقق النظام من مهاراتي؟</summary>
+          <p>تبدأ كل مهارة "مُعلنة"، ثم ترتفع إلى "مُراجعة" بعد مراجعة نماذج أعمالك، وإلى "موثّقة" بتوثيق أكاديمي أو اجتياز تقييم. واعتماد المنشأة لعملك في مشروع يرفع مستواها تلقائيًا.</p>
+        </details>
+        <details>
+          <summary>كيف تُحمى المدفوعات؟</summary>
+          <p>تودِع المنشأة قيمة المهمة لدى المنصة قبل بدء التنفيذ، ولا يُصرف المبلغ للطالب إلا بعد اعتماد التسليم. هكذا يضمن الطرفان حقهما.</p>
+        </details>
+        <details>
+          <summary>ماذا لو لم أكن راضيًا عن التسليم؟</summary>
+          <p>يمكن للمنشأة طلب تعديلات ضمن المخرجات المتفق عليها. وإن لم يُحل الخلاف، يتدخل فريق المنصة لمراجعة العمل والوصول إلى قرار عادل.</p>
+        </details>
+        <details>
+          <summary>كيف تُضمن جودة العمل؟</summary>
+          <p>بمطابقة المهمة مع مهارات موثّقة، وبمخرجات واضحة من البداية، وبتقييم علني بعد كل مهمة يبني سمعة الطالب ويحفّزه على الإتقان.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="start">
+    <div class="wrap">
+      <div class="cta">
+        <h2>ابدأ الآن</h2>
+        <p>أنشئ حسابك كطالب أو كمنشأة وابدأ أول مهمة.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn btn-primary btn-lg">أنا طالب أو خريج</a>
+          <a href="#" class="btn btn-ghost btn-lg">أنا منشأة</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a href="#top" class="logo">
+          <span class="logo-mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="#fff">
+              <rect x="2" y="11" width="4" height="7" rx="1"/>
+              <rect x="8" y="7" width="4" height="11" rx="1"/>
+              <rect x="14" y="2" width="4" height="16" rx="1"/>
+            </svg>
+          </span>
+          <span class="logo-text"><strong>مهارة مقابل قيمة</strong><small>Skill for Value</small></span>
+        </a>
+        <p>مهام قصيرة مدفوعة تحوّل مهارات طلاب الجامعة وخريجيها إلى خبرة موثّقة.</p>
+      </div>
+      <div>
+        <h4>للطلاب والخريجين</h4>
+        <ul>
+          <li><a href="#tasks">استعرض المهام</a></li>
+          <li><a href="#how">كيف تعمل المنصة</a></li>
+          <li><a href="#faq">أسئلة شائعة</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>للمنشآت</h4>
+        <ul>
+          <li><a href="#">انشر مهمة</a></li>
+          <li><a href="#tasks">استعرض المهام</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copy">© 2026 مهارة مقابل قيمة. جميع الحقوق محفوظة.</p>
+  </div>
+</footer>
+
+<script>
+  // Switch between student and organization steps
+  const tabs = document.querySelectorAll('.toggle [role="tab"]');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => select(tab));
+    tab.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        const other = [...tabs].find(t => t !== tab);
+        select(other);
+        other.focus();
+      }
+    });
+  });
+  function select(active) {
+    tabs.forEach(t => {
+      const on = t === active;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+</script>
+</body>
+</html>
