@@ -11,7 +11,7 @@ Static rebuild of the "مهارة مقابل قيمة | Skill for Value" landing
 ## Structure
 
 - `index.html` is the whole site: HTML, CSS (in `<style>`), and JS (in `<script>`) in one file. No build step, no dependencies, no package manager, no tests.
-- Plain HTML/CSS/JS only. Login, sign-up, payments, and the English button are placeholder `href="#"` links.
+- Plain HTML/CSS/JS only. Login, sign-up, and payments are placeholder `href="#"` links.
 
 ## Running and checking
 
@@ -30,4 +30,5 @@ Headless Edge won't render narrower than ~500px; a `--window-size=420,...` scree
 - Radii: `--r-btn` (8px) for buttons, `--r-card` (14px) for cards. Max content width 1180px (`.wrap`).
 - One breakpoint: `@media (min-width:860px)` switches to the desktop layout (two-column hero, 3-column grids, 5-column steps). Mobile styles are the default.
 - The "how it works" toggle uses ARIA tabs (`role="tab"`/`tabpanel`) and the `hidden` attribute. A global `[hidden]{display:none !important}` rule is required because `.steps` sets `display:grid`.
+- Language switch (`#lang-toggle`): Arabic stays in the HTML; English is in the `EN` object in `<script>`. Every translatable element needs `data-i18n="key"` (text), `data-i18n-html` (contains markup), or `data-i18n-attr="attr:key"`, plus a matching `EN` entry. Choice is saved in `localStorage` (`sfv-lang`); `?lang=en` forces English for screenshots. Use logical CSS (`text-align:start`, `border-inline-start`) so both directions work.
 - Steps for organizations and the FAQ answers aren't in the reference; they were written for this build and can be changed.

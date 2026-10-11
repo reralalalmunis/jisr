@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>مهارة مقابل قيمة | Skill for Value</title>
-<meta name="description" content="مهام قصيرة مدفوعة من منشآت حقيقية لطلاب الجامعة وخريجيها، تنتهي بسجل إنجاز موثّق.">
+<meta name="description" content="مهام قصيرة مدفوعة من منشآت حقيقية لطلاب الجامعة وخريجيها، تنتهي بسجل إنجاز موثّق." data-i18n-attr="content:meta.desc">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -56,6 +56,7 @@ h1,h2,h3,p{margin:0}
 }
 .logo-text strong{display:block; font-size:1.05rem; line-height:1.3}
 .logo-text small{display:block; color:var(--muted); font-size:.75rem; direction:ltr; text-align:right}
+html[lang="en"] .logo-text small{display:none}
 .actions{display:flex; gap:8px; flex-wrap:wrap}
 .nav{border-top:1px solid var(--line)}
 .nav ul{list-style:none; margin:0; padding:8px 16px; display:flex; gap:6px}
@@ -105,7 +106,8 @@ section{padding:56px 0}
 .record-top strong{font-size:1rem}
 .record-rating{color:var(--gold-fill); font-weight:700; direction:ltr}
 .record p{opacity:.8; font-size:.85rem}
-.record code{display:block; margin-top:6px; font-family:inherit; font-size:.8rem; opacity:.75; direction:ltr; text-align:right; letter-spacing:.5px}
+.record code{display:block; margin-top:6px; font-family:inherit; font-size:.8rem; opacity:.75; direction:ltr; text-align:start; letter-spacing:.5px}
+html[dir="rtl"] .record code{text-align:right}
 
 /* How it works */
 .toggle{display:inline-flex; background:var(--mint); border-radius:999px; padding:4px; margin-bottom:20px}
@@ -137,14 +139,14 @@ section{padding:56px 0}
 .badge-gold{background:var(--gold-soft); color:var(--warn)}
 .badge-ok{background:var(--ok-soft); color:var(--ok)}
 .note{
-  margin-top:16px; background:var(--gold-soft); border-right:4px solid var(--gold);
+  margin-top:16px; background:var(--gold-soft); border-inline-start:4px solid var(--gold);
   border-radius:var(--r-btn); padding:12px 16px; font-size:.92rem;
 }
 
 /* Compare table */
 .table-wrap{overflow-x:auto; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card); box-shadow:var(--shadow)}
 table{width:100%; border-collapse:collapse; min-width:560px}
-th,td{padding:14px 18px; text-align:right; border-bottom:1px solid var(--line); vertical-align:top}
+th,td{padding:14px 18px; text-align:start; border-bottom:1px solid var(--line); vertical-align:top}
 tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
 thead th{background:var(--bg); font-size:.9rem; color:var(--muted)}
 thead th.ours{background:var(--mint); color:var(--brand-d)}
@@ -196,7 +198,7 @@ td.ours{color:var(--ink); background:#F7FBFA; font-weight:500}
 
 <header class="site-header">
   <div class="wrap topbar">
-    <a href="#top" class="logo" aria-label="مهارة مقابل قيمة - الرئيسية">
+    <a href="#top" class="logo" aria-label="مهارة مقابل قيمة - الرئيسية" data-i18n-attr="aria-label:logo.home">
       <span class="logo-mark" aria-hidden="true">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="#fff">
           <rect x="2" y="11" width="4" height="7" rx="1"/>
@@ -205,20 +207,20 @@ td.ours{color:var(--ink); background:#F7FBFA; font-weight:500}
         </svg>
       </span>
       <span class="logo-text">
-        <strong>مهارة مقابل قيمة</strong>
+        <strong data-i18n="brand">مهارة مقابل قيمة</strong>
         <small>Skill for Value</small>
       </span>
     </a>
     <div class="actions">
-      <a href="#" class="btn" lang="en">English</a>
-      <a href="#" class="btn">تسجيل الدخول</a>
-      <a href="#" class="btn btn-primary">إنشاء حساب</a>
+      <button type="button" class="btn" id="lang-toggle" lang="en">English</button>
+      <a href="#" class="btn" data-i18n="nav.login">تسجيل الدخول</a>
+      <a href="#" class="btn btn-primary" data-i18n="nav.signup">إنشاء حساب</a>
     </div>
   </div>
-  <nav class="nav" aria-label="التنقل الرئيسي">
+  <nav class="nav" aria-label="التنقل الرئيسي" data-i18n-attr="aria-label:nav.label">
     <ul class="wrap">
-      <li><a href="#top" aria-current="page">الرئيسية</a></li>
-      <li><a href="#tasks">المهام</a></li>
+      <li><a href="#top" aria-current="page" data-i18n="nav.home">الرئيسية</a></li>
+      <li><a href="#tasks" data-i18n="nav.tasks">المهام</a></li>
     </ul>
   </nav>
 </header>
@@ -229,37 +231,37 @@ td.ours{color:var(--ink); background:#F7FBFA; font-weight:500}
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <h1>مهارتك تستحق أن تتحول إلى خبرة موثّقة ودخل حقيقي</h1>
-        <p class="hero-lead">مهام قصيرة مدفوعة من منشآت حقيقية، تُطابَق مع مهاراتك المتحقَّق منها، وتنتهي بسجل إنجاز يُضاف إلى ملفك المهني.</p>
+        <h1 data-i18n="hero.title">مهارتك تستحق أن تتحول إلى خبرة موثّقة ودخل حقيقي</h1>
+        <p class="hero-lead" data-i18n="hero.lead">مهام قصيرة مدفوعة من منشآت حقيقية، تُطابَق مع مهاراتك المتحقَّق منها، وتنتهي بسجل إنجاز يُضاف إلى ملفك المهني.</p>
         <div class="hero-ctas">
-          <a href="#" class="btn btn-primary btn-lg">أنا طالب أو خريج</a>
-          <a href="#" class="btn btn-lg">أنا منشأة</a>
+          <a href="#" class="btn btn-primary btn-lg" data-i18n="cta.student">أنا طالب أو خريج</a>
+          <a href="#" class="btn btn-lg" data-i18n="cta.org">أنا منشأة</a>
         </div>
-        <p class="hero-note">مخصصة لطلاب الجامعة وخريجيها، وليست منصة عمل حر عامة. <a href="#tasks">استعرض المهام</a></p>
+        <p class="hero-note" data-i18n-html="hero.note">مخصصة لطلاب الجامعة وخريجيها، وليست منصة عمل حر عامة. <a href="#tasks">استعرض المهام</a></p>
       </div>
 
       <div class="example">
         <div class="example-body">
           <div class="example-head">
-            <h3>مهمة: تصميم واجهة تطبيق حجز</h3>
-            <span class="tag tag-mint">مثال</span>
+            <h3 data-i18n="ex.title">مهمة: تصميم واجهة تطبيق حجز</h3>
+            <span class="tag tag-mint" data-i18n="ex.tag">مثال</span>
           </div>
           <div class="tags">
             <span class="tag tag-ok">Figma ✓</span>
             <span class="tag tag-ok">HTML/CSS ✓</span>
-            <span class="tag tag-gold">تحليل البيانات</span>
+            <span class="tag tag-gold" data-i18n="skill.data">تحليل البيانات</span>
           </div>
           <div class="stats">
-            <div class="stat stat-mint"><small>قيمة المهمة</small><strong>1,000 ر.س</strong></div>
-            <div class="stat stat-gold"><small>المدة</small><strong>10 أيام</strong></div>
+            <div class="stat stat-mint"><small data-i18n="ex.value">قيمة المهمة</small><strong data-i18n="ex.amount">1,000 ر.س</strong></div>
+            <div class="stat stat-gold"><small data-i18n="ex.duration">المدة</small><strong data-i18n="ex.days">10 أيام</strong></div>
           </div>
         </div>
         <div class="record">
           <div class="record-top">
-            <strong>سجل إنجاز موثّق</strong>
+            <strong data-i18n="ex.record">سجل إنجاز موثّق</strong>
             <span class="record-rating">★ 4.8</span>
           </div>
-          <p>يُضاف تلقائيًا إلى ملفك بعد اعتماد المنشأة</p>
+          <p data-i18n="ex.recordNote">يُضاف تلقائيًا إلى ملفك بعد اعتماد المنشأة</p>
           <code>SFV-2026-0001</code>
         </div>
       </div>
@@ -269,20 +271,20 @@ td.ours{color:var(--ink); background:#F7FBFA; font-weight:500}
   <!-- Why -->
   <section id="why">
     <div class="wrap">
-      <h2 class="sec-title">لماذا مهارة مقابل قيمة؟</h2>
-      <p class="sec-sub">مسار واضح يجمع الطالب والمنشأة على أساس مهارة موثّقة.</p>
+      <h2 class="sec-title" data-i18n="why.title">لماذا مهارة مقابل قيمة؟</h2>
+      <p class="sec-sub" data-i18n="why.sub">مسار واضح يجمع الطالب والمنشأة على أساس مهارة موثّقة.</p>
       <div class="grid-3">
         <article class="card">
-          <h3>للطلاب والخريجين</h3>
-          <p>ابدأ بفرصة صغيرة، واكسب دخلًا، وابنِ سجلًا موثّقًا يثبت مهارتك لأي جهة.</p>
+          <h3 data-i18n="why.c1.title">للطلاب والخريجين</h3>
+          <p data-i18n="why.c1.text">ابدأ بفرصة صغيرة، واكسب دخلًا، وابنِ سجلًا موثّقًا يثبت مهارتك لأي جهة.</p>
         </article>
         <article class="card">
-          <h3>للمنشآت</h3>
-          <p>انشر مهمة قصيرة بمخرجات واضحة، واختر من مواهب تثق بمستوى مهاراتها دون الحاجة إلى توظيف كامل.</p>
+          <h3 data-i18n="why.c2.title">للمنشآت</h3>
+          <p data-i18n="why.c2.text">انشر مهمة قصيرة بمخرجات واضحة، واختر من مواهب تثق بمستوى مهاراتها دون الحاجة إلى توظيف كامل.</p>
         </article>
         <article class="card">
-          <h3>ثقة من البداية</h3>
-          <p>لكل مهارة مستوى توثيق ظاهر، وتنتهي كل مهمة بتقييم وسجل إنجاز قابل للتحقق.</p>
+          <h3 data-i18n="why.c3.title">ثقة من البداية</h3>
+          <p data-i18n="why.c3.text">لكل مهارة مستوى توثيق ظاهر، وتنتهي كل مهمة بتقييم وسجل إنجاز قابل للتحقق.</p>
         </article>
       </div>
     </div>
@@ -291,27 +293,27 @@ td.ours{color:var(--ink); background:#F7FBFA; font-weight:500}
   <!-- How -->
   <section id="how">
     <div class="wrap">
-      <h2 class="sec-title">كيف تعمل المنصة</h2>
-      <p class="sec-sub">اختر مسارك لترى الخطوات.</p>
-      <div class="toggle" role="tablist" aria-label="اختر المسار">
-        <button type="button" role="tab" id="tab-students" aria-controls="steps-students" aria-selected="true">للطلاب</button>
-        <button type="button" role="tab" id="tab-orgs" aria-controls="steps-orgs" aria-selected="false" tabindex="-1">للمنشآت</button>
+      <h2 class="sec-title" data-i18n="how.title">كيف تعمل المنصة</h2>
+      <p class="sec-sub" data-i18n="how.sub">اختر مسارك لترى الخطوات.</p>
+      <div class="toggle" role="tablist" aria-label="اختر المسار" data-i18n-attr="aria-label:how.tablist">
+        <button type="button" role="tab" id="tab-students" aria-controls="steps-students" aria-selected="true" data-i18n="how.tabStudents">للطلاب</button>
+        <button type="button" role="tab" id="tab-orgs" aria-controls="steps-orgs" aria-selected="false" tabindex="-1" data-i18n="how.tabOrgs">للمنشآت</button>
       </div>
 
       <ol class="steps" id="steps-students" role="tabpanel" aria-labelledby="tab-students">
-        <li class="card"><span class="step-num">1</span><h3>أنشئ ملف مهاراتك</h3><p>أضف مهاراتك ومجالات اهتمامك وساعات تفرغك.</p></li>
-        <li class="card"><span class="step-num">2</span><h3>وثّق مهاراتك</h3><p>اطلب مراجعة أعمالك أو توثيقًا أكاديميًا لترتفع ثقة المنشآت بك.</p></li>
-        <li class="card"><span class="step-num">3</span><h3>تقدّم للمهام المناسبة</h3><p>ترى نسبة المطابقة لكل مهمة قبل التقديم.</p></li>
-        <li class="card"><span class="step-num">4</span><h3>نفّذ وسلّم</h3><p>نفّذ المخرجات المتفق عليها وسلّمها عبر المنصة.</p></li>
-        <li class="card"><span class="step-num">5</span><h3>وثّق خبرتك</h3><p>بعد اعتماد المنشأة تحصل على المبلغ وسجل إنجاز في ملفك.</p></li>
+        <li class="card"><span class="step-num">1</span><h3 data-i18n="how.s1.title">أنشئ ملف مهاراتك</h3><p data-i18n="how.s1.text">أضف مهاراتك ومجالات اهتمامك وساعات تفرغك.</p></li>
+        <li class="card"><span class="step-num">2</span><h3 data-i18n="how.s2.title">وثّق مهاراتك</h3><p data-i18n="how.s2.text">اطلب مراجعة أعمالك أو توثيقًا أكاديميًا لترتفع ثقة المنشآت بك.</p></li>
+        <li class="card"><span class="step-num">3</span><h3 data-i18n="how.s3.title">تقدّم للمهام المناسبة</h3><p data-i18n="how.s3.text">ترى نسبة المطابقة لكل مهمة قبل التقديم.</p></li>
+        <li class="card"><span class="step-num">4</span><h3 data-i18n="how.s4.title">نفّذ وسلّم</h3><p data-i18n="how.s4.text">نفّذ المخرجات المتفق عليها وسلّمها عبر المنصة.</p></li>
+        <li class="card"><span class="step-num">5</span><h3 data-i18n="how.s5.title">وثّق خبرتك</h3><p data-i18n="how.s5.text">بعد اعتماد المنشأة تحصل على المبلغ وسجل إنجاز في ملفك.</p></li>
       </ol>
 
       <ol class="steps" id="steps-orgs" role="tabpanel" aria-labelledby="tab-orgs" hidden>
-        <li class="card"><span class="step-num">1</span><h3>أنشئ حساب منشأتك</h3><p>سجّل بيانات المنشأة ومجال عملها.</p></li>
-        <li class="card"><span class="step-num">2</span><h3>انشر مهمة قصيرة</h3><p>حدّد المخرجات والمهارات المطلوبة والمدة والقيمة.</p></li>
-        <li class="card"><span class="step-num">3</span><h3>اختر المرشح المناسب</h3><p>ترى المتقدمين مرتّبين بحسب المطابقة ومستوى توثيق مهاراتهم.</p></li>
-        <li class="card"><span class="step-num">4</span><h3>استلم المخرجات</h3><p>تابع التنفيذ واستلم العمل عبر المنصة في الموعد المتفق عليه.</p></li>
-        <li class="card"><span class="step-num">5</span><h3>اعتمد وقيّم</h3><p>بعد اعتمادك يُصرف المبلغ للطالب ويُضاف سجل الإنجاز إلى ملفه.</p></li>
+        <li class="card"><span class="step-num">1</span><h3 data-i18n="how.o1.title">أنشئ حساب منشأتك</h3><p data-i18n="how.o1.text">سجّل بيانات المنشأة ومجال عملها.</p></li>
+        <li class="card"><span class="step-num">2</span><h3 data-i18n="how.o2.title">انشر مهمة قصيرة</h3><p data-i18n="how.o2.text">حدّد المخرجات والمهارات المطلوبة والمدة والقيمة.</p></li>
+        <li class="card"><span class="step-num">3</span><h3 data-i18n="how.o3.title">اختر المرشح المناسب</h3><p data-i18n="how.o3.text">ترى المتقدمين مرتّبين بحسب المطابقة ومستوى توثيق مهاراتهم.</p></li>
+        <li class="card"><span class="step-num">4</span><h3 data-i18n="how.o4.title">استلم المخرجات</h3><p data-i18n="how.o4.text">تابع التنفيذ واستلم العمل عبر المنصة في الموعد المتفق عليه.</p></li>
+        <li class="card"><span class="step-num">5</span><h3 data-i18n="how.o5.title">اعتمد وقيّم</h3><p data-i18n="how.o5.text">بعد اعتمادك يُصرف المبلغ للطالب ويُضاف سجل الإنجاز إلى ملفه.</p></li>
       </ol>
     </div>
   </section>
@@ -319,66 +321,66 @@ td.ours{color:var(--ink); background:#F7FBFA; font-weight:500}
   <!-- Open tasks -->
   <section id="tasks">
     <div class="wrap">
-      <h2 class="sec-title">مهام مفتوحة الآن</h2>
-      <p class="sec-sub">مهام قصيرة من منشآت حقيقية تنتظر مهارتك.</p>
+      <h2 class="sec-title" data-i18n="tasks.title">مهام مفتوحة الآن</h2>
+      <p class="sec-sub" data-i18n="tasks.sub">مهام قصيرة من منشآت حقيقية تنتظر مهارتك.</p>
       <div class="grid-3">
         <article class="card task">
-          <div class="org"><span>نماء للحلول التقنية</span><span class="tag tag-mint">تصميم</span></div>
-          <h3>تصميم واجهة تطبيق حجز لمركز لياقة</h3>
+          <div class="org"><span data-i18n="tasks.t1.org">نماء للحلول التقنية</span><span class="tag tag-mint" data-i18n="cat.design">تصميم</span></div>
+          <h3 data-i18n="tasks.t1.title">تصميم واجهة تطبيق حجز لمركز لياقة</h3>
           <div class="tags"><span class="tag">Figma</span></div>
-          <div class="task-meta"><strong>1,200 ر.س</strong><span>10 يومًا</span><span>12 س/أسبوع</span></div>
+          <div class="task-meta"><strong data-i18n="tasks.t1.amount">1,200 ر.س</strong><span data-i18n="tasks.t1.days">10 يومًا</span><span data-i18n="tasks.t1.hours">12 س/أسبوع</span></div>
         </article>
         <article class="card task">
-          <div class="org"><span>أفق للاستشارات</span><span class="tag tag-mint">بيانات وتحليل</span></div>
-          <h3>لوحة تحليلات مبيعات في Power BI</h3>
-          <div class="tags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">تحليل البيانات</span></div>
-          <div class="task-meta"><strong>1,500 ر.س</strong><span>14 يومًا</span><span>10 س/أسبوع</span></div>
+          <div class="org"><span data-i18n="tasks.t2.org">أفق للاستشارات</span><span class="tag tag-mint" data-i18n="cat.data">بيانات وتحليل</span></div>
+          <h3 data-i18n="tasks.t2.title">لوحة تحليلات مبيعات في Power BI</h3>
+          <div class="tags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag" data-i18n="skill.data">تحليل البيانات</span></div>
+          <div class="task-meta"><strong data-i18n="tasks.t2.amount">1,500 ر.س</strong><span data-i18n="tasks.t2.days">14 يومًا</span><span data-i18n="tasks.t2.hours">10 س/أسبوع</span></div>
         </article>
         <article class="card task">
-          <div class="org"><span>مقهى ركن الصباح</span><span class="tag tag-mint">تصميم</span></div>
-          <h3>هوية بصرية لمقهى ناشئ</h3>
-          <div class="tags"><span class="tag">تصميم الهوية البصرية</span><span class="tag">Adobe Illustrator</span></div>
-          <div class="task-meta"><strong>1,000 ر.س</strong><span>12 يومًا</span><span>10 س/أسبوع</span></div>
+          <div class="org"><span data-i18n="tasks.t3.org">مقهى ركن الصباح</span><span class="tag tag-mint" data-i18n="cat.design">تصميم</span></div>
+          <h3 data-i18n="tasks.t3.title">هوية بصرية لمقهى ناشئ</h3>
+          <div class="tags"><span class="tag" data-i18n="skill.brand">تصميم الهوية البصرية</span><span class="tag">Adobe Illustrator</span></div>
+          <div class="task-meta"><strong data-i18n="tasks.t3.amount">1,000 ر.س</strong><span data-i18n="tasks.t3.days">12 يومًا</span><span data-i18n="tasks.t3.hours">10 س/أسبوع</span></div>
         </article>
       </div>
-      <a href="#" class="more">عرض كل المهام ←</a>
+      <a href="#" class="more" data-i18n="tasks.more">عرض كل المهام ←</a>
     </div>
   </section>
 
   <!-- Skill levels -->
   <section id="levels">
     <div class="wrap">
-      <h2 class="sec-title">مستويات توثيق المهارة</h2>
-      <p class="sec-sub">يظهر مستوى كل مهارة للمنشآت، ويرتفع بالمراجعة وبإثباتها في مشاريع فعلية.</p>
+      <h2 class="sec-title" data-i18n="levels.title">مستويات توثيق المهارة</h2>
+      <p class="sec-sub" data-i18n="levels.sub">يظهر مستوى كل مهارة للمنشآت، ويرتفع بالمراجعة وبإثباتها في مشاريع فعلية.</p>
       <div class="grid-3">
-        <article class="card"><span class="badge badge-gray">مُعلنة</span><p>يصرّح بها الطالب.</p></article>
-        <article class="card"><span class="badge badge-gold">أعمالها مُراجعة</span><p>يراجع المراجع نماذج أعماله.</p></article>
-        <article class="card"><span class="badge badge-ok">موثّقة ✓</span><p>توثيق أكاديمي أو اجتياز تقييم.</p></article>
+        <article class="card"><span class="badge badge-gray" data-i18n="levels.l1">مُعلنة</span><p data-i18n="levels.l1.text">يصرّح بها الطالب.</p></article>
+        <article class="card"><span class="badge badge-gold" data-i18n="levels.l2">أعمالها مُراجعة</span><p data-i18n="levels.l2.text">يراجع المراجع نماذج أعماله.</p></article>
+        <article class="card"><span class="badge badge-ok" data-i18n="levels.l3">موثّقة ✓</span><p data-i18n="levels.l3.text">توثيق أكاديمي أو اجتياز تقييم.</p></article>
       </div>
-      <p class="note">اعتماد المنشأة لمهارة أثبتها الطالب في مشروع يرفع مستواها تلقائيًا.</p>
+      <p class="note" data-i18n="levels.note">اعتماد المنشأة لمهارة أثبتها الطالب في مشروع يرفع مستواها تلقائيًا.</p>
     </div>
   </section>
 
   <!-- Compare -->
   <section id="compare">
     <div class="wrap">
-      <h2 class="sec-title">ما الذي يميّزنا عن منصات العمل الحر؟</h2>
-      <p class="sec-sub">الفرق في من يشارك، وفي ما تخرج به بعد كل مهمة.</p>
+      <h2 class="sec-title" data-i18n="cmp.title">ما الذي يميّزنا عن منصات العمل الحر؟</h2>
+      <p class="sec-sub" data-i18n="cmp.sub">الفرق في من يشارك، وفي ما تخرج به بعد كل مهمة.</p>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
               <td></td>
-              <th scope="col">منصات العمل الحر العامة</th>
-              <th scope="col" class="ours">مهارة مقابل قيمة</th>
+              <th scope="col" data-i18n="cmp.them">منصات العمل الحر العامة</th>
+              <th scope="col" class="ours" data-i18n="brand">مهارة مقابل قيمة</th>
             </tr>
           </thead>
           <tbody>
-            <tr><th scope="row">المتقدمون</th><td>الجميع، والمنافسة غالبًا على السعر</td><td class="ours">طلاب وخريجو الجامعة فقط</td></tr>
-            <tr><th scope="row">حجم العمل</th><td>مشاريع بأحجام متفاوتة</td><td class="ours">مهام قصيرة واضحة المخرجات تناسب وقت الطالب</td></tr>
-            <tr><th scope="row">المهارات</th><td>ادعاءات ذاتية في الغالب</td><td class="ours">مستويات توثيق: مُعلنة، مُراجعة، موثّقة، وتتعزز بكل مشروع</td></tr>
-            <tr><th scope="row">ما يحصل عليه الطالب</th><td>دخل</td><td class="ours">دخل وسجل إنجاز قابل للتحقق وخبرة عملية</td></tr>
-            <tr><th scope="row">ما تحصل عليه المنشأة</th><td>مرشحون كثر يصعب تقييمهم</td><td class="ours">مرشحون مرتّبون بحسب المطابقة ومستوى التوثيق</td></tr>
+            <tr><th scope="row" data-i18n="cmp.r1">المتقدمون</th><td data-i18n="cmp.r1.them">الجميع، والمنافسة غالبًا على السعر</td><td class="ours" data-i18n="cmp.r1.ours">طلاب وخريجو الجامعة فقط</td></tr>
+            <tr><th scope="row" data-i18n="cmp.r2">حجم العمل</th><td data-i18n="cmp.r2.them">مشاريع بأحجام متفاوتة</td><td class="ours" data-i18n="cmp.r2.ours">مهام قصيرة واضحة المخرجات تناسب وقت الطالب</td></tr>
+            <tr><th scope="row" data-i18n="cmp.r3">المهارات</th><td data-i18n="cmp.r3.them">ادعاءات ذاتية في الغالب</td><td class="ours" data-i18n="cmp.r3.ours">مستويات توثيق: مُعلنة، مُراجعة، موثّقة، وتتعزز بكل مشروع</td></tr>
+            <tr><th scope="row" data-i18n="cmp.r4">ما يحصل عليه الطالب</th><td data-i18n="cmp.r4.them">دخل</td><td class="ours" data-i18n="cmp.r4.ours">دخل وسجل إنجاز قابل للتحقق وخبرة عملية</td></tr>
+            <tr><th scope="row" data-i18n="cmp.r5">ما تحصل عليه المنشأة</th><td data-i18n="cmp.r5.them">مرشحون كثر يصعب تقييمهم</td><td class="ours" data-i18n="cmp.r5.ours">مرشحون مرتّبون بحسب المطابقة ومستوى التوثيق</td></tr>
           </tbody>
         </table>
       </div>
@@ -388,28 +390,28 @@ td.ours{color:var(--ink); background:#F7FBFA; font-weight:500}
   <!-- FAQ -->
   <section id="faq">
     <div class="wrap">
-      <h2 class="sec-title">أسئلة شائعة</h2>
-      <p class="sec-sub">إجابات سريعة عن أكثر ما يُسأل عنه.</p>
+      <h2 class="sec-title" data-i18n="faq.title">أسئلة شائعة</h2>
+      <p class="sec-sub" data-i18n="faq.sub">إجابات سريعة عن أكثر ما يُسأل عنه.</p>
       <div class="faq">
         <details>
-          <summary>من يمكنه الانضمام؟</summary>
-          <p>طلاب الجامعة وخريجوها كمنفّذين للمهام، والمنشآت بمختلف أحجامها كناشرين لها. يُطلب من الطالب التحقق من انتمائه الجامعي عند التسجيل.</p>
+          <summary data-i18n="faq.q1">من يمكنه الانضمام؟</summary>
+          <p data-i18n="faq.a1">طلاب الجامعة وخريجوها كمنفّذين للمهام، والمنشآت بمختلف أحجامها كناشرين لها. يُطلب من الطالب التحقق من انتمائه الجامعي عند التسجيل.</p>
         </details>
         <details>
-          <summary>كيف يتحقق النظام من مهاراتي؟</summary>
-          <p>تبدأ كل مهارة "مُعلنة"، ثم ترتفع إلى "مُراجعة" بعد مراجعة نماذج أعمالك، وإلى "موثّقة" بتوثيق أكاديمي أو اجتياز تقييم. واعتماد المنشأة لعملك في مشروع يرفع مستواها تلقائيًا.</p>
+          <summary data-i18n="faq.q2">كيف يتحقق النظام من مهاراتي؟</summary>
+          <p data-i18n="faq.a2">تبدأ كل مهارة "مُعلنة"، ثم ترتفع إلى "مُراجعة" بعد مراجعة نماذج أعمالك، وإلى "موثّقة" بتوثيق أكاديمي أو اجتياز تقييم. واعتماد المنشأة لعملك في مشروع يرفع مستواها تلقائيًا.</p>
         </details>
         <details>
-          <summary>كيف تُحمى المدفوعات؟</summary>
-          <p>تودِع المنشأة قيمة المهمة لدى المنصة قبل بدء التنفيذ، ولا يُصرف المبلغ للطالب إلا بعد اعتماد التسليم. هكذا يضمن الطرفان حقهما.</p>
+          <summary data-i18n="faq.q3">كيف تُحمى المدفوعات؟</summary>
+          <p data-i18n="faq.a3">تودِع المنشأة قيمة المهمة لدى المنصة قبل بدء التنفيذ، ولا يُصرف المبلغ للطالب إلا بعد اعتماد التسليم. هكذا يضمن الطرفان حقهما.</p>
         </details>
         <details>
-          <summary>ماذا لو لم أكن راضيًا عن التسليم؟</summary>
-          <p>يمكن للمنشأة طلب تعديلات ضمن المخرجات المتفق عليها. وإن لم يُحل الخلاف، يتدخل فريق المنصة لمراجعة العمل والوصول إلى قرار عادل.</p>
+          <summary data-i18n="faq.q4">ماذا لو لم أكن راضيًا عن التسليم؟</summary>
+          <p data-i18n="faq.a4">يمكن للمنشأة طلب تعديلات ضمن المخرجات المتفق عليها. وإن لم يُحل الخلاف، يتدخل فريق المنصة لمراجعة العمل والوصول إلى قرار عادل.</p>
         </details>
         <details>
-          <summary>كيف تُضمن جودة العمل؟</summary>
-          <p>بمطابقة المهمة مع مهارات موثّقة، وبمخرجات واضحة من البداية، وبتقييم علني بعد كل مهمة يبني سمعة الطالب ويحفّزه على الإتقان.</p>
+          <summary data-i18n="faq.q5">كيف تُضمن جودة العمل؟</summary>
+          <p data-i18n="faq.a5">بمطابقة المهمة مع مهارات موثّقة، وبمخرجات واضحة من البداية، وبتقييم علني بعد كل مهمة يبني سمعة الطالب ويحفّزه على الإتقان.</p>
         </details>
       </div>
     </div>
@@ -419,11 +421,11 @@ td.ours{color:var(--ink); background:#F7FBFA; font-weight:500}
   <section id="start">
     <div class="wrap">
       <div class="cta">
-        <h2>ابدأ الآن</h2>
-        <p>أنشئ حسابك كطالب أو كمنشأة وابدأ أول مهمة.</p>
+        <h2 data-i18n="start.title">ابدأ الآن</h2>
+        <p data-i18n="start.text">أنشئ حسابك كطالب أو كمنشأة وابدأ أول مهمة.</p>
         <div class="hero-ctas">
-          <a href="#" class="btn btn-primary btn-lg">أنا طالب أو خريج</a>
-          <a href="#" class="btn btn-ghost btn-lg">أنا منشأة</a>
+          <a href="#" class="btn btn-primary btn-lg" data-i18n="cta.student">أنا طالب أو خريج</a>
+          <a href="#" class="btn btn-ghost btn-lg" data-i18n="cta.org">أنا منشأة</a>
         </div>
       </div>
     </div>
@@ -443,27 +445,27 @@ td.ours{color:var(--ink); background:#F7FBFA; font-weight:500}
               <rect x="14" y="2" width="4" height="16" rx="1"/>
             </svg>
           </span>
-          <span class="logo-text"><strong>مهارة مقابل قيمة</strong><small>Skill for Value</small></span>
+          <span class="logo-text"><strong data-i18n="brand">مهارة مقابل قيمة</strong><small>Skill for Value</small></span>
         </a>
-        <p>مهام قصيرة مدفوعة تحوّل مهارات طلاب الجامعة وخريجيها إلى خبرة موثّقة.</p>
+        <p data-i18n="footer.about">مهام قصيرة مدفوعة تحوّل مهارات طلاب الجامعة وخريجيها إلى خبرة موثّقة.</p>
       </div>
       <div>
-        <h4>للطلاب والخريجين</h4>
+        <h4 data-i18n="why.c1.title">للطلاب والخريجين</h4>
         <ul>
-          <li><a href="#tasks">استعرض المهام</a></li>
-          <li><a href="#how">كيف تعمل المنصة</a></li>
-          <li><a href="#faq">أسئلة شائعة</a></li>
+          <li><a href="#tasks" data-i18n="footer.browse">استعرض المهام</a></li>
+          <li><a href="#how" data-i18n="how.title">كيف تعمل المنصة</a></li>
+          <li><a href="#faq" data-i18n="faq.title">أسئلة شائعة</a></li>
         </ul>
       </div>
       <div>
-        <h4>للمنشآت</h4>
+        <h4 data-i18n="why.c2.title">للمنشآت</h4>
         <ul>
-          <li><a href="#">انشر مهمة</a></li>
-          <li><a href="#tasks">استعرض المهام</a></li>
+          <li><a href="#" data-i18n="footer.post">انشر مهمة</a></li>
+          <li><a href="#tasks" data-i18n="footer.browse">استعرض المهام</a></li>
         </ul>
       </div>
     </div>
-    <p class="copy">© 2026 مهارة مقابل قيمة. جميع الحقوق محفوظة.</p>
+    <p class="copy" data-i18n="footer.copy">© 2026 مهارة مقابل قيمة. جميع الحقوق محفوظة.</p>
   </div>
 </footer>
 
@@ -488,6 +490,168 @@ td.ours{color:var(--ink); background:#F7FBFA; font-weight:500}
       document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
     });
   }
+
+  // Language switch. Arabic lives in the HTML; English lives here.
+  const EN = {
+    'meta.title': 'Skill for Value | مهارة مقابل قيمة',
+    'meta.desc': 'Short paid tasks from real organizations for university students and graduates, ending with a verified achievement record.',
+    'brand': 'Skill for Value',
+    'logo.home': 'Skill for Value - Home',
+    'nav.label': 'Main navigation',
+    'nav.login': 'Log in',
+    'nav.signup': 'Sign up',
+    'nav.home': 'Home',
+    'nav.tasks': 'Tasks',
+    'hero.title': 'Your skill deserves to become verified experience and real income',
+    'hero.lead': 'Short paid tasks from real organizations, matched to your verified skills, each ending with an achievement record added to your professional profile.',
+    'cta.student': "I'm a student or graduate",
+    'cta.org': "I'm an organization",
+    'hero.note': 'Made for university students and graduates, not a general freelancing platform. <a href="#tasks">Browse tasks</a>',
+    'ex.title': 'Task: Booking app interface design',
+    'ex.tag': 'Example',
+    'skill.data': 'Data analysis',
+    'skill.brand': 'Brand identity design',
+    'ex.value': 'Task value',
+    'ex.amount': 'SAR 1,000',
+    'ex.duration': 'Duration',
+    'ex.days': '10 days',
+    'ex.record': 'Verified achievement record',
+    'ex.recordNote': 'Added to your profile automatically once the organization approves',
+    'why.title': 'Why Skill for Value?',
+    'why.sub': 'A clear path that brings students and organizations together around verified skills.',
+    'why.c1.title': 'For students & graduates',
+    'why.c1.text': 'Start with a small opportunity, earn income, and build a verified record that proves your skill to anyone.',
+    'why.c2.title': 'For organizations',
+    'why.c2.text': 'Post a short task with clear deliverables and choose from talent whose skill levels you can trust, without a full hire.',
+    'why.c3.title': 'Trust from the start',
+    'why.c3.text': 'Every skill shows its verification level, and every task ends with a rating and a verifiable achievement record.',
+    'how.title': 'How it works',
+    'how.sub': 'Choose your path to see the steps.',
+    'how.tablist': 'Choose a path',
+    'how.tabStudents': 'For students',
+    'how.tabOrgs': 'For organizations',
+    'how.s1.title': 'Create your skills profile',
+    'how.s1.text': 'Add your skills, interests, and available hours.',
+    'how.s2.title': 'Verify your skills',
+    'how.s2.text': 'Request a portfolio review or academic verification so organizations trust you more.',
+    'how.s3.title': 'Apply to the right tasks',
+    'how.s3.text': 'See your match score for each task before you apply.',
+    'how.s4.title': 'Do the work and deliver',
+    'how.s4.text': 'Complete the agreed deliverables and submit them through the platform.',
+    'how.s5.title': 'Document your experience',
+    'how.s5.text': 'Once the organization approves, you get paid and an achievement record lands on your profile.',
+    'how.o1.title': 'Create your organization account',
+    'how.o1.text': "Register your organization's details and field.",
+    'how.o2.title': 'Post a short task',
+    'how.o2.text': 'Set the deliverables, required skills, duration, and value.',
+    'how.o3.title': 'Pick the right candidate',
+    'how.o3.text': 'See applicants ranked by match and by how well their skills are verified.',
+    'how.o4.title': 'Receive the deliverables',
+    'how.o4.text': 'Follow progress and receive the work through the platform on the agreed date.',
+    'how.o5.title': 'Approve and rate',
+    'how.o5.text': "Once you approve, the student is paid and the achievement record is added to their profile.",
+    'tasks.title': 'Open tasks now',
+    'tasks.sub': 'Short tasks from real organizations waiting for your skills.',
+    'tasks.t1.org': 'Namaa Tech Solutions',
+    'tasks.t1.title': 'Booking app interface for a fitness center',
+    'tasks.t1.amount': 'SAR 1,200',
+    'tasks.t1.days': '10 days',
+    'tasks.t1.hours': '12 hrs/week',
+    'tasks.t2.org': 'Ofoq Consulting',
+    'tasks.t2.title': 'Sales analytics dashboard in Power BI',
+    'tasks.t2.amount': 'SAR 1,500',
+    'tasks.t2.days': '14 days',
+    'tasks.t2.hours': '10 hrs/week',
+    'tasks.t3.org': 'Rukn Al-Sabah Café',
+    'tasks.t3.title': 'Visual identity for a new café',
+    'tasks.t3.amount': 'SAR 1,000',
+    'tasks.t3.days': '12 days',
+    'tasks.t3.hours': '10 hrs/week',
+    'cat.design': 'Design',
+    'cat.data': 'Data & analytics',
+    'tasks.more': 'View all tasks →',
+    'levels.title': 'Skill verification levels',
+    'levels.sub': 'Organizations see the level of every skill. It rises through review and through proof in real projects.',
+    'levels.l1': 'Self-declared',
+    'levels.l1.text': 'Stated by the student.',
+    'levels.l2': 'Work reviewed',
+    'levels.l2.text': 'A reviewer checks samples of their work.',
+    'levels.l3': 'Verified ✓',
+    'levels.l3.text': 'Academic verification or a passed assessment.',
+    'levels.note': "When an organization approves a skill the student proved in a project, that skill's level rises automatically.",
+    'cmp.title': 'What sets us apart from freelancing platforms?',
+    'cmp.sub': 'The difference is in who takes part, and what you walk away with after each task.',
+    'cmp.them': 'General freelancing platforms',
+    'cmp.r1': 'Applicants',
+    'cmp.r1.them': 'Anyone, usually competing on price',
+    'cmp.r1.ours': 'University students and graduates only',
+    'cmp.r2': 'Work size',
+    'cmp.r2.them': 'Projects of all sizes',
+    'cmp.r2.ours': "Short tasks with clear deliverables that fit a student's schedule",
+    'cmp.r3': 'Skills',
+    'cmp.r3.them': 'Mostly self-claimed',
+    'cmp.r3.ours': 'Verification levels: declared, reviewed, verified, and strengthened with every project',
+    'cmp.r4': 'What the student gets',
+    'cmp.r4.them': 'Income',
+    'cmp.r4.ours': 'Income, a verifiable achievement record, and hands-on experience',
+    'cmp.r5': 'What the organization gets',
+    'cmp.r5.them': 'Many candidates that are hard to assess',
+    'cmp.r5.ours': 'Candidates ranked by match and verification level',
+    'faq.title': 'FAQ',
+    'faq.sub': 'Quick answers to the most common questions.',
+    'faq.q1': 'Who can join?',
+    'faq.a1': 'University students and graduates complete tasks, and organizations of any size post them. Students verify their university affiliation when they sign up.',
+    'faq.q2': 'How does the platform verify my skills?',
+    'faq.a2': 'Every skill starts as "self-declared", rises to "reviewed" after your work samples are reviewed, and to "verified" through academic verification or a passed assessment. An organization approving your work on a project also raises its level automatically.',
+    'faq.q3': 'How are payments protected?',
+    'faq.a3': "The organization deposits the task value with the platform before work starts, and the student is paid only after the delivery is approved. That way both sides' rights are protected.",
+    'faq.q4': "What if I'm not happy with the delivery?",
+    'faq.a4': "The organization can request revisions within the agreed deliverables. If the dispute isn't resolved, the platform team steps in to review the work and reach a fair decision.",
+    'faq.q5': 'How is work quality ensured?',
+    'faq.a5': "By matching tasks to verified skills, setting clear deliverables from the start, and a public rating after every task that builds the student's reputation and motivates quality.",
+    'start.title': 'Get started',
+    'start.text': 'Create your account as a student or an organization and start your first task.',
+    'footer.about': 'Short paid tasks that turn the skills of university students and graduates into verified experience.',
+    'footer.browse': 'Browse tasks',
+    'footer.post': 'Post a task',
+    'footer.copy': '© 2026 Skill for Value. All rights reserved.'
+  };
+  const AR = {'meta.title': document.title};
+  const langBtn = document.getElementById('lang-toggle');
+
+  function setLang(lang) {
+    const dict = lang === 'en' ? EN : AR;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+    document.title = dict['meta.title'];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (!(key in AR)) AR[key] = el.textContent;
+      el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.dataset.i18nHtml;
+      if (!(key in AR)) AR[key] = el.innerHTML;
+      el.innerHTML = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+      const [attr, key] = el.dataset.i18nAttr.split(':');
+      if (!(key in AR)) AR[key] = el.getAttribute(attr);
+      el.setAttribute(attr, dict[key]);
+    });
+    langBtn.textContent = lang === 'en' ? 'العربية' : 'English';
+    langBtn.lang = lang === 'en' ? 'ar' : 'en';
+  }
+
+  langBtn.addEventListener('click', () => {
+    const next = document.documentElement.lang === 'en' ? 'ar' : 'en';
+    localStorage.setItem('sfv-lang', next);
+    setLang(next);
+  });
+
+  // ?lang=en in the URL overrides the saved choice (handy for screenshots)
+  const startLang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('sfv-lang');
+  if (startLang === 'en') setLang('en');
 </script>
 </body>
 </html>
