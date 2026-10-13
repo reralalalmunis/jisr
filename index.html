@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>مهارة مقابل قيمة | Skill for Value</title>
+<title>جسر | من مهارتك، إلى إنجازك، إلى فرصتك.</title>
+<link rel="icon" type="image/png" href="brand/icon.png">
+<link rel="apple-touch-icon" href="brand/icon.png">
 <meta name="description" content="مهام قصيرة مدفوعة تحوّل مهارات طلاب الجامعة وخريجيها إلى خبرة موثّقة. Short paid tasks that turn students’ skills into verified experience.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,25 +15,25 @@
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
-  --bg:#F3F7F6;--surface:#FFFFFF;--ink:#10272B;--muted:#55706F;--line:#D6E0DE;
-  --brand:#0B6E66;--brand-d:#08504B;--onbrand:#FFFFFF;--mint:#E2F0ED;
-  --gold:#B9791A;--gold-fill:#F0C060;--gold-soft:#FBF1DA;
+  --bg:#F7F4F0;--surface:#FFFFFF;--ink:#14213F;--muted:#5A6275;--line:#D2C9C2;
+  --brand:#0A3699;--brand-d:#082360;--onbrand:#FFFFFF;--mint:#E6ECFA;
+  --gold:#A8430F;--gold-fill:#C54F16;--gold-soft:#FBEDE4;--ongold:#FFFFFF;
   --ok:#1F7A4D;--ok-soft:#DFF1E6;--warn:#9A6A0B;--warn-soft:#FBF0D3;--bad:#B3412F;--bad-soft:#F8E2DD;
-  --shadow:0 1px 2px rgba(16,39,43,.06),0 8px 24px rgba(16,39,43,.06);
+  --shadow:0 1px 2px rgba(8,35,96,.06),0 8px 24px rgba(8,35,96,.06);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#0C1A1C;--surface:#132527;--ink:#E6EFEE;--muted:#9DB3B1;--line:#25393B;
-    --brand:#3FB5A6;--brand-d:#7DD3C7;--onbrand:#04201D;--mint:#173032;
-    --gold:#E9B44C;--gold-fill:#E9B44C;--gold-soft:#2C2614;
+    --bg:#0B1430;--surface:#121D3D;--ink:#EEF1F8;--muted:#A9B4CE;--line:#26335A;
+    --brand:#83A6F4;--brand-d:#B5C8F8;--onbrand:#082360;--mint:#1A2850;
+    --gold:#F0884F;--gold-fill:#F0884F;--gold-soft:#33200F;--ongold:#1A0A02;
     --ok:#6CD39B;--ok-soft:#14301F;--warn:#E9B44C;--warn-soft:#2C2614;--bad:#F08A78;--bad-soft:#38201B;
     --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0C1A1C;--surface:#132527;--ink:#E6EFEE;--muted:#9DB3B1;--line:#25393B;
-  --brand:#3FB5A6;--brand-d:#7DD3C7;--onbrand:#04201D;--mint:#173032;
-  --gold:#E9B44C;--gold-fill:#E9B44C;--gold-soft:#2C2614;
+  --bg:#0B1430;--surface:#121D3D;--ink:#EEF1F8;--muted:#A9B4CE;--line:#26335A;
+  --brand:#83A6F4;--brand-d:#B5C8F8;--onbrand:#082360;--mint:#1A2850;
+  --gold:#F0884F;--gold-fill:#F0884F;--gold-soft:#33200F;--ongold:#1A0A02;
   --ok:#6CD39B;--ok-soft:#14301F;--warn:#E9B44C;--warn-soft:#2C2614;--bad:#F08A78;--bad-soft:#38201B;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
 }
@@ -56,7 +58,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .brand{display:flex;align-items:center;gap:10px}
 .brand b{display:block;font-size:1.05rem;line-height:1.2}
 .brand small{display:block;color:var(--muted);font-size:.75rem;letter-spacing:.02em}
-.mark{width:38px;height:38px;border-radius:10px;background:var(--brand);display:grid;place-items:center;flex:none}
+.mark{width:38px;height:38px;border-radius:10px;overflow:hidden;flex:none}
+.mark img{display:block;width:100%;height:100%;object-fit:cover}
 .seg{display:flex;background:var(--mint);border-radius:999px;padding:3px;gap:2px;width:max-content;max-width:100%}
 .seg button{border:0;background:transparent;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:.875rem;color:var(--muted);font-weight:500}
 .seg button[aria-pressed="true"]{background:var(--brand);color:var(--onbrand)}
@@ -76,7 +79,7 @@ main:focus{outline:none}
 .btn:hover{border-color:var(--brand)}
 .btn.primary{background:var(--brand);color:var(--onbrand);border-color:var(--brand)}
 .btn.primary:hover{background:var(--brand-d);border-color:var(--brand-d)}
-.btn.gold{background:var(--gold-fill);color:#2B1F05;border-color:var(--gold-fill)}
+.btn.gold{background:var(--gold-fill);color:var(--ongold);border-color:var(--gold-fill)}
 .btn.ghost{background:transparent;color:var(--onbrand);border-color:var(--onbrand)}
 .btn.ghost:hover{background:rgba(255,255,255,.12);border-color:var(--onbrand)}
 .btn.sm{padding:6px 12px;font-size:.85rem;border-radius:8px}
@@ -142,6 +145,16 @@ button.chip.on{background:var(--brand);color:var(--onbrand)}
 .cred .split b{display:block;font-size:1.25rem}
 .cred .rec{background:var(--brand);color:var(--onbrand);padding:18px 22px}
 .cred .rec .id{direction:ltr;text-align:start;font-size:.8rem;opacity:.85;letter-spacing:.04em}
+.hlogo{display:flex;flex-direction:column;align-items:center;text-align:center}
+.hlogo img{width:320px;height:auto}
+.hlogo .lg-dark{display:none}
+.hlogo p{margin-top:14px;font-size:1.2rem;font-weight:500;color:var(--muted)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .hlogo .lg-light{display:none}
+  :root:not([data-theme="light"]) .hlogo .lg-dark{display:block}
+}
+:root[data-theme="dark"] .hlogo .lg-light{display:none}
+:root[data-theme="dark"] .hlogo .lg-dark{display:block}
 
 /* journey */
 .journey{display:grid;grid-template-columns:repeat(var(--n,5),minmax(0,1fr));gap:12px;counter-reset:j}
@@ -181,7 +194,7 @@ details.qa p{margin-top:8px;color:var(--muted)}
 .stepper .s:first-child::before{display:none}
 .stepper .s.done i{background:var(--brand);color:var(--onbrand)}
 .stepper .s.done::before{background:var(--brand)}
-.stepper .s.cur i{background:var(--gold-fill);color:#2B1F05}
+.stepper .s.cur i{background:var(--gold-fill);color:var(--ongold)}
 .stepper .s.cur{color:var(--ink);font-weight:600}
 .stepper .s.cur::before{background:var(--brand)}
 
@@ -202,6 +215,7 @@ footer.ft .copy{margin-top:24px;padding-top:16px;border-top:1px solid var(--line
 
 @media (max-width:980px){
   .hero{grid-template-columns:1fr}
+  .hlogo img{width:240px}
   .journey{grid-template-columns:repeat(2,minmax(0,1fr))}
   .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .side{grid-template-columns:1fr}
@@ -209,6 +223,8 @@ footer.ft .copy{margin-top:24px;padding-top:16px;border-top:1px solid var(--line
 }
 @media (max-width:620px){
   .wrap{padding-inline:14px}
+  .hlogo img{width:180px}
+  .hlogo p{font-size:1rem}
   .g2,.g3,.g4{grid-template-columns:1fr}
   .journey{grid-template-columns:1fr}
   .stepper .s{font-size:.68rem}
@@ -226,7 +242,8 @@ footer.ft .copy{margin-top:24px;padding-top:16px;border-top:1px solid var(--line
 <script>
 /* ================= الترجمة / Translations ================= */
 const D={
- docTitle:['مهارة مقابل قيمة | Skill for Value','Skill for Value | مهارة مقابل قيمة'],
+ docTitle:['جسر | من مهارتك، إلى إنجازك، إلى فرصتك.','JISR | From your skill, to your achievement, to your opportunity.'],
+ tagline:['من مهارتك، إلى إنجازك، إلى فرصتك.','From your skill, to your achievement, to your opportunity.'],
  skip:['تخطَّ إلى المحتوى','Skip to content'],
  navLabel:['القائمة الرئيسية','Main navigation'],
  cur:['ر.س','SAR'],
@@ -240,7 +257,7 @@ const D={
  ftTag:['مهام قصيرة مدفوعة تحوّل مهارات طلاب الجامعة وخريجيها إلى خبرة موثّقة.','Short paid tasks that turn university students’ and graduates’ skills into verified experience.'],
  ftStudents:['للطلاب والخريجين','For students & graduates'],ftBiz:['للمنشآت','For businesses'],
  ftHow:['كيف تعمل المنصة','How it works'],ftFaq:['أسئلة شائعة','FAQ'],ftBrowse:['استعرض المهام','Browse tasks'],ftPost:['انشر مهمة','Post a task'],
- ftCopy:['© 2026 مهارة مقابل قيمة. جميع الحقوق محفوظة.','© 2026 Skill for Value. All rights reserved.'],
+ ftCopy:['© 2026 جسر. جميع الحقوق محفوظة.','© 2026 JISR. All rights reserved.'],
 
  /* home */
  heroTitle:['مهارتك تستحق أن تتحول إلى خبرة موثّقة ودخل حقيقي','Turn your skills into verified experience and real income'],
@@ -248,11 +265,7 @@ const D={
  ctaStudent:['أنا طالب أو خريج','I’m a student or graduate'],ctaBiz:['أنا منشأة','I’m a business'],
  heroNote:['مخصصة لطلاب الجامعة وخريجيها، وليست منصة عمل حر عامة.','Built for university students and graduates, not a general freelance marketplace.'],
  browseTasks:['استعرض المهام','Browse tasks'],
- credTask:['مهمة: تصميم واجهة تطبيق حجز','Task: Booking app interface design'],credEx:['مثال','Example'],
- credValue:['قيمة المهمة','Task value'],credDur:['المدة','Duration'],credDays:['10 أيام','10 days'],
- credRec:['سجل إنجاز موثّق','Verified achievement record'],credRecSub:['يُضاف تلقائيًا إلى ملفك بعد اعتماد المنشأة','Added to your profile automatically once the business approves'],
- credAria:['مثال على مهمة مكتملة','Example of a completed task'],
- whyTitle:['لماذا مهارة مقابل قيمة؟','Why Skill for Value?'],
+ whyTitle:['لماذا جسر؟','Why JISR?'],
  whyLead:['مسار واضح يجمع الطالب والمنشأة على أساس مهارة موثّقة.','A clear path that brings students and businesses together around verified skills.'],
  whyStu:['للطلاب والخريجين','For students & graduates'],
  whyStuT:['ابدأ بفرصة صغيرة، واكسب دخلًا، وابنِ سجلًا موثّقًا يثبت مهارتك لأي جهة.','Start with a small opportunity, earn income, and build a verified record that proves your skills to anyone.'],
@@ -411,7 +424,7 @@ const LV={y3:['سنة ثالثة','3rd year'],y4:['سنة رابعة','4th year'
 const SK_CLASS={V:'v',R:'r',D:'d',P:'p'};
 const SK_W={V:1,R:.7,D:.35,P:.35};
 const STATUS_KEY={open:'stOpen',assigned:'stAssigned',in_progress:'stProgress',submitted:'stSubmitted',completed:'stCompleted'};
-const BR=['مهارة مقابل قيمة','Skill for Value'];
+const BR=['جسر','JISR'];
 
 const S={
   lang:'ar',role:'guest',me:'s1',biz:'b2',route:'home',param:null,seq:0,accounts:[],
@@ -454,11 +467,11 @@ const S={
     {id:'t8',title:['صفحة تعريفية لمكتب استشارات','Company profile page for a consulting office'],biz:'b4',cat:'tech',
      desc:['تصميم وتنفيذ صفحة تعريفية بسيطة بالخدمات وطرق التواصل.','Design and build a simple page presenting services and contact options.'],
      deliv:[['تصميم Figma','Figma design'],['تنفيذ HTML/CSS','HTML/CSS implementation']],skills:['figma','html'],budget:900,days:9,hours:10,status:'completed',assignee:'s1',
-     rating:{q:5,c:5,t:4,f:5},comment:['تسليم منظم وتواصل واضح، والصفحة جاهزة للنشر.','Well-organized delivery and clear communication; the page is ready to publish.'],proved:['figma','html'],record:'SFV-2026-0001',doneAt:'2026-09-14'},
+     rating:{q:5,c:5,t:4,f:5},comment:['تسليم منظم وتواصل واضح، والصفحة جاهزة للنشر.','Well-organized delivery and clear communication; the page is ready to publish.'],proved:['figma','html'],record:'JISR-2026-0001',doneAt:'2026-09-14'},
     {id:'t9',title:['تصميم قائمة طعام ولافتات','Menu and signage design'],biz:'b1',cat:'design',
      desc:['قائمة طعام مطبوعة ولافتتان داخليتان بهوية المقهى.','A printed menu and two indoor signs in the café’s brand identity.'],
      deliv:[['ملفات الطباعة','Print-ready files'],['نسخ رقمية','Digital versions']],skills:['brand','ai'],budget:700,days:6,hours:12,status:'completed',assignee:'s4',
-     rating:{q:5,c:4,t:5,f:5},comment:['عمل احترافي وفي الوقت المحدد.','Professional work, delivered on time.'],proved:['brand'],record:'SFV-2026-0002',doneAt:'2026-09-20'},
+     rating:{q:5,c:4,t:5,f:5},comment:['عمل احترافي وفي الوقت المحدد.','Professional work, delivered on time.'],proved:['brand'],record:'JISR-2026-0002',doneAt:'2026-09-20'},
     {id:'t10',title:['نموذج أولي لواجهة لوحة عملاء','Prototype for a client dashboard interface'],biz:'b2',cat:'tech',
      desc:['نموذج أولي تفاعلي للوحة عملاء داخلية: قائمة العملاء، تفاصيل العميل، وسجل التواصل.','An interactive prototype for an internal client dashboard: client list, client details and communication log.'],
      deliv:[['نموذج Figma تفاعلي','Interactive Figma prototype'],['صفحتان بـ HTML/CSS','Two HTML/CSS pages']],skills:['figma','html'],budget:1100,days:10,hours:10,status:'submitted',assignee:'s1',
@@ -466,7 +479,7 @@ const S={
     {id:'t11',title:['ترجمة تقرير سنوي','Annual report translation'],biz:'b3',cat:'lang',
      desc:['ترجمة تقرير سنوي لجمعية من العربية إلى الإنجليزية.','Translate an association’s annual report from Arabic to English.'],
      deliv:[['التقرير مترجمًا','Translated report']],skills:['translate'],budget:600,days:5,hours:12,status:'completed',assignee:'s6',
-     rating:{q:4,c:5,t:5,f:4},comment:['ترجمة دقيقة ومصطلحات متسقة.','Accurate translation with consistent terminology.'],proved:['translate'],record:'SFV-2026-0003',doneAt:'2026-09-25'}
+     rating:{q:4,c:5,t:5,f:4},comment:['ترجمة دقيقة ومصطلحات متسقة.','Accurate translation with consistent terminology.'],proved:['translate'],record:'JISR-2026-0003',doneAt:'2026-09-25'}
   ],
   apps:[
     {id:'a1',task:'t1',student:'s4',msg:['خبرتي في Figma ويمكنني تسليم النموذج التفاعلي في الوقت المحدد.','I have Figma experience and can deliver the interactive prototype on time.'],days:9},
@@ -536,7 +549,7 @@ function header(){
   return `<a class="skip" href="#" data-act="skip">${tr('skip')}</a>
   <header class="top"><div class="wrap bar">
     <a class="brand" href="#/home" aria-label="${esc(L(BR))}">
-      <span class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="14" width="4.5" height="7" rx="1" fill="#fff"/><rect x="9.75" y="9" width="4.5" height="12" rx="1" fill="#fff"/><rect x="16.5" y="4" width="4.5" height="17" rx="1" fill="#fff"/><circle cx="19" cy="3.2" r="2.2" fill="#F0C060"/></svg></span>
+      <span class="mark"><img src="brand/icon.png" alt="" width="38" height="38"></span>
       <span><b>${esc(L(BR))}</b><small>${esc(S.lang==='ar'?BR[1]:BR[0])}</small></span>
     </a>
     <div class="row"><button class="btn sm" data-act="lang" aria-label="Language / اللغة">${tr('langBtn')}</button>${who}</div>
@@ -547,7 +560,7 @@ function footer(){
   const stuLinks=`${S.role!=='business'?`<li><a href="#/tasks">${tr('ftBrowse')}</a></li>`:''}<li><a href="#/home" data-act="scrollTo" data-v="how">${tr('ftHow')}</a></li><li><a href="#/home" data-act="scrollTo" data-v="faq">${tr('ftFaq')}</a></li>`;
   const bizLinks=`<li><a href="#/business">${tr('ftPost')}</a></li>`;
   return `<footer class="ft"><div class="wrap"><div class="cols">
-    <div><b style="color:var(--ink)">${esc(L(BR))}</b><p style="margin-top:6px;max-width:42ch">${tr('ftTag')}</p></div>
+    <div><b style="color:var(--ink)">${esc(L(BR))}</b><p style="margin-top:6px;color:var(--gold);font-weight:600">${tr('tagline')}</p><p style="margin-top:6px;max-width:42ch">${tr('ftTag')}</p></div>
     <div><h4>${tr('ftStudents')}</h4><ul>${stuLinks}</ul></div>
     <div><h4>${tr('ftBiz')}</h4><ul>${bizLinks}</ul></div></div>
     <div class="copy">${tr('ftCopy')}</div></div></footer>`;
@@ -608,18 +621,10 @@ function home(){
       <div class="row cta">${heroCtas()}</div>
       <p class="small muted" style="margin-top:14px">${tr('heroNote')}${S.role==='guest'?` <a class="link" href="#/tasks">${tr('browseTasks')}</a>`:''}</p>
     </div>
-    <div class="cred" aria-label="${tr('credAria')}">
-      <div class="t">
-        <div class="row between"><b>${tr('credTask')}</b><span class="chip">${tr('credEx')}</span></div>
-        <div class="chips" style="margin-top:10px">${skillChip('figma','V')}${skillChip('html','V')}${skillChip('data','R')}</div>
-        <div class="split"><div><span class="small muted">${tr('credValue')}</span><b class="num">1,000 ${tr('cur')}</b></div><div class="g"><span class="small muted">${tr('credDur')}</span><b class="num">${tr('credDays')}</b></div></div>
-      </div>
-      <div class="perf"></div>
-      <div class="rec">
-        <div class="row between"><b>${tr('credRec')}</b><span>★ 4.8</span></div>
-        <p class="small" style="opacity:.9;margin-top:2px">${tr('credRecSub')}</p>
-        <p class="id">SFV-2026-0001</p>
-      </div>
+    <div class="hlogo">
+      <img class="lg-light" src="brand/logo-stacked.png" alt="${esc(L(BR))}" width="417" height="400">
+      <img class="lg-dark" src="brand/logo-stacked-dark.png" alt="${esc(L(BR))}" width="417" height="400">
+      <p>${tr('tagline')}</p>
     </div>
   </section>
 
@@ -1032,7 +1037,7 @@ const A={
     const t=S.tasks.find(x=>x.id===el.dataset.id);const s=stu(t.assignee);
     t.rating={q:r.q,c:r.c,t:r.t,f:r.f};t.comment=vf('revComment');t.proved=S.ui.proved||[];
     t.status='completed';t.doneAt=new Date().toISOString().slice(0,10);
-    t.record='SFV-2026-'+String(S.tasks.filter(x=>x.record).length+1).padStart(4,'0');
+    t.record='JISR-2026-'+String(S.tasks.filter(x=>x.record).length+1).padStart(4,'0');
     t.proved.forEach(k=>{const cur=s.skills[k];if(!cur)s.skills[k]='R';else if(cur==='D'||cur==='P')s.skills[k]='R';else if(cur==='R')s.skills[k]='V'});
     S.ui.rev={};S.ui.proved=[];S.ui.f.revComment='';S.ui.revTask=null;
     toast(tr('approved',t.record));render();
