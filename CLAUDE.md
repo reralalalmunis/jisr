@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 "جسر | JISR" (formerly "مهارة مقابل قيمة | Skill for Value"): a platform matching university students/graduates with short paid tasks from organizations. `index.html` started as the original site from https://dashing-torte-81514a.netlify.app/ (only the Netlify-injected comment and `/.netlify/` script were removed) and has since been rebranded. It is published on GitHub Pages at https://reralalalmunis.github.io/jisr/ (repo `reralalalmunis/jisr`).
 
-Brand assets live in `brand/`. `BRAND.md` has the name, tagline and colors. The images: `icon.png` (favicon and header mark), `logo-stacked.png` / `logo-stacked-dark.png` (home hero, light/dark), and `brand-board.png` (reference). The tagline is the `tagline` string in `index.html`.
+Brand assets live in `brand/`. `BRAND.md` has the name, tagline and colors. The images: `icon.png` (header mark), `favicon-32.png` (favicon), `apple-touch-icon.png`, `logo-stacked.png` / `logo-stacked-dark.png` (home hero, light/dark), and `brand-board.png` (reference). The tagline is the `tagline` string in `index.html`.
 
 ## Structure
 
@@ -31,5 +31,6 @@ Headless Edge won't render narrower than ~500px; a `--window-size=420,...` scree
 - Arabic and RTL are the default (`<html lang="ar" dir="rtl">`).
 - Colors come from the CSS variables in `:root`, with dark values in `:root[data-theme="dark"]`. Don't add raw hex values in new rules. The variable names are older than the rebrand: `--brand` is JISR blue, `--gold`/`--gold-fill` are the orange accent, `--ongold` is text on orange, and `--mint` is a pale blue tint.
 - Dark mode does not follow the device setting. The site always starts light; the header sun/moon button (`themeBtn()`, action `A.theme`) toggles `S.theme`, which is saved in `localStorage` (key `jisr-theme`) and applied as `<html data-theme="dark">` by `applyLang()`. A tiny script in `<head>` sets the attribute before first paint to avoid a flash. Style dark mode only with `:root[data-theme="dark"]` selectors (the hero logo swap does this).
+- Intro animation: the `<head>` script adds `class="intro"` to `<html>` on every full page load or reload (not on hash route changes), but not when reduce motion is on. That class hides `#app`. `intro()` (called after the first `render()`) plays the effect from `brand/intro-demo.html`: `intro-ribbon.png` is revealed by a thick stroke mask along its centre line, `intro-dot.png` pops in, and `intro-words.png` (or `intro-words-dark.png`) fades up. Then the logo flies so its mark lands on the header `.mark`. The numbers in `intro()` assume 564x541 images with the mark at x 53-530, y 0-298, so update them if the logo files change. It waits up to 1s for the images. A click or a key press skips it.
 - Styles are desktop-first, with breakpoints at `max-width:980px` and `max-width:620px`.
 - Use relative paths only. The site is served from `/jisr/` on GitHub Pages, so root paths like `/x` would break.

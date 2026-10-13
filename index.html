@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>جسر | من مهارتك، إلى إنجازك، إلى فرصتك.</title>
-<link rel="icon" type="image/png" href="brand/icon.png">
-<link rel="apple-touch-icon" href="brand/icon.png">
-<script>try{if(localStorage.getItem('jisr-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
+<link rel="icon" type="image/png" href="brand/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+<script>try{if(localStorage.getItem('jisr-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}
+try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro')}catch(e){}</script>
 <meta name="description" content="مهام قصيرة مدفوعة تحوّل مهارات طلاب الجامعة وخريجيها إلى خبرة موثّقة. Short paid tasks that turn students’ skills into verified experience.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,6 +46,28 @@ button,input,select,textarea{font:inherit;color:inherit}
 .num{font-variant-numeric:tabular-nums}
 .skip{position:absolute;inset-inline-start:12px;top:-64px;background:var(--brand);color:var(--onbrand);padding:8px 14px;border-radius:8px;z-index:60;font-weight:600}
 .skip:focus{top:8px}
+
+/* intro: the ribbon is painted along its centre line, the dot pops in, the words fade up,
+   then the logo flies to the header mark (steps from brand/intro-demo.html) */
+#app{transition:opacity .5s ease}
+.intro #app{opacity:0;animation:intro-show .3s 4s forwards}
+#intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--bg);cursor:pointer;transition:background-color .5s ease}
+#intro .lg{width:min(320px,70vw);aspect-ratio:564/541;transform-origin:0 0;transition:transform .7s cubic-bezier(.6,0,.2,1),opacity .15s ease}
+#intro svg{display:block;width:100%;height:100%;overflow:visible}
+#intro #rib-stroke{stroke-dasharray:1;stroke-dashoffset:1}
+#intro .dot{transform-box:view-box;transform-origin:488.5px 41px;transform:scale(0)}
+#intro .words{opacity:0;transform:translateY(10px)}
+#intro.go #rib-stroke{animation:intro-draw 1.1s cubic-bezier(.55,.05,.35,1) .15s forwards}
+#intro.go .dot{animation:intro-pop .45s cubic-bezier(.3,1.6,.5,1) 1.15s forwards}
+#intro.go .words{animation:intro-up .5s ease-out 1.4s forwards}
+#intro .words-w{transition:opacity .3s ease}
+#intro.fly{background-color:transparent}
+#intro.fly .words-w{opacity:0}
+#intro.done .lg{opacity:0}
+@keyframes intro-draw{to{stroke-dashoffset:0}}
+@keyframes intro-show{to{opacity:1}}
+@keyframes intro-pop{to{transform:scale(1)}}
+@keyframes intro-up{to{opacity:1;transform:none}}
 
 /* header */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
@@ -624,8 +647,8 @@ function home(){
       <p class="small muted" style="margin-top:14px">${tr('heroNote')}${S.role==='guest'?` <a class="link" href="#/tasks">${tr('browseTasks')}</a>`:''}</p>
     </div>
     <div class="hlogo">
-      <img class="lg-light" src="brand/logo-stacked.png" alt="${esc(L(BR))}" width="417" height="400">
-      <img class="lg-dark" src="brand/logo-stacked-dark.png" alt="${esc(L(BR))}" width="417" height="400">
+      <img class="lg-light" src="brand/logo-stacked.png" alt="${esc(L(BR))}" width="564" height="541">
+      <img class="lg-dark" src="brand/logo-stacked-dark.png" alt="${esc(L(BR))}" width="564" height="541">
       <p>${tr('tagline')}</p>
     </div>
   </section>
@@ -1063,9 +1086,50 @@ document.addEventListener('change',e=>{
   const k=el.dataset.bind;if(k)S.ui.f[k]=el.value;
 });
 
+/* ================= المقدمة / Intro animation ================= */
+// Runs on every full page load (class set in <head>). Click, tap or any key skips it.
+function intro(){
+  const root=document.documentElement;if(!root.classList.contains('intro'))return;
+  const img=n=>`<image href="brand/${n}.png" width="564" height="541"`;
+  const words=`intro-words${S.theme==='dark'?'-dark':''}`;
+  const el=document.createElement('div');el.id='intro';el.setAttribute('aria-hidden','true');
+  el.innerHTML=`<div class="lg"><svg viewBox="0 0 564 541">
+    <defs><mask id="rib-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="564" height="541">
+    <path id="rib-stroke" pathLength="1" d="M108,282 C109,277 108,263 114,253 C119,244 133,235 142,224 C150,213 156,200 164,188 C172,177 180,166 189,156 C199,146 210,137 222,129 C235,121 248,113 262,109 C275,105 289,102 302,103 C315,104 327,109 339,116 C350,123 360,135 370,145 C380,156 390,169 400,178 C411,187 422,197 433,200 C445,204 460,204 470,199 C479,194 486,181 490,168 C495,156 493,138 497,125 C501,112 512,96 515,90" fill="none" stroke="#fff" stroke-width="160" stroke-linecap="round" stroke-linejoin="round"/>
+    </mask></defs>
+    ${img('intro-ribbon')} mask="url(#rib-mask)"/>
+    ${img('intro-dot')} class="dot"/>
+    <g class="words-w">${img(words)} class="words"/></g></svg></div>`;
+  document.body.appendChild(el);
+  const timers=[];
+  const finish=()=>{timers.forEach(clearTimeout);root.classList.remove('intro');el.remove();removeEventListener('keydown',finish)};
+  el.addEventListener('click',finish);addEventListener('keydown',finish);
+  let started=false;
+  const start=()=>{
+    if(started||!el.isConnected)return;started=true;
+    el.classList.add('go');
+    timers.push(setTimeout(()=>{
+      // Move the logo so its mark (x 53-530, y 0-298 of 564x541) lands on the header mark,
+      // which is centered in icon.png and fills 68% of its width
+      const lg=el.querySelector('.lg'),r=lg.getBoundingClientRect(),m=document.querySelector('.brand .mark');
+      if(m){
+        const t=m.getBoundingClientRect(),s=r.width/564,k=(t.width*.68)/(477*s);
+        lg.style.transform=`translate(${t.left+t.width/2-r.left-k*291.5*s}px,${t.top+t.height/2-r.top-k*149*s}px) scale(${k})`;
+      }
+      el.classList.add('fly');
+    },2000));
+    timers.push(setTimeout(()=>root.classList.remove('intro'),2300));
+    timers.push(setTimeout(()=>el.classList.add('done'),2700));
+    timers.push(setTimeout(finish,2850));
+  };
+  // Start when the images are ready, but wait at most 1s so a slow connection doesn't stall the page
+  Promise.all(['intro-ribbon','intro-dot',words].map(n=>{const i=new Image();i.src=`brand/${n}.png`;return i.decode().catch(()=>{})})).then(start);
+  timers.push(setTimeout(start,1000));
+}
+
 S.lang=LS.get('sfv-lang')==='en'?'en':'ar';
 S.theme=LS.get('jisr-theme')==='dark'?'dark':'light';
-parse();render();
+parse();render();intro();
 </script>
 </body>
 </html>
